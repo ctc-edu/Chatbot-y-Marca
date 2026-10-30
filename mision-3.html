@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Misión 3 · Construye tu chatbot con IA</title>
+<link rel="stylesheet" href="ds/tokens/colors.css">
+<link rel="stylesheet" href="ds/tokens/typography.css">
+<link rel="stylesheet" href="ds/tokens/spacing.css">
+<link rel="stylesheet" href="ds/tokens/effects.css">
+<link rel="stylesheet" href="ds/tokens/base.css">
+<link rel="stylesheet" href="ds/styles.css">
+<script src="ds/_ds_bundle.js"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<script src="./image-slot.js"></script>
+<style>
+body{--mint-500:#5691FF;--mint-600:#3771DB;--mint-700:#1F52B8;}
+html,body{margin:0;height:100%;background:#EAF7FF;font-family:"NT Bau",-apple-system,sans-serif;color:#101613;}
+*{box-sizing:border-box;}
+a{color:#1F52B8;}
+a:hover{color:#001F19;}
+button:focus-visible{outline:3px solid #5691FF;outline-offset:2px;}
+</style>
+</helmet>
+
+<div style="zoom:{{ zoomV }};height:{{ rootH }};display:grid;grid-template-rows:56px auto minmax(0,1fr);grid-template-columns:minmax(0,1fr);background:var(--sky-100);">
+
+  <header style="background:var(--blue-700);color:#fff;display:flex;align-items:center;gap:16px;padding:0 clamp(12px,2vw,24px);min-width:0;gap:12px;">
+    <img src="assets/ctc-logotipo-white.png" alt="Crack the Code" style="height:20px;display:block;flex:none;">
+    <div style="width:1px;height:28px;background:rgba(255,255,255,.2);flex:none;"></div>
+    <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 auto;overflow:hidden;">
+      <span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--sky-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Estudio Nexo · Misión 3 de 8</span>
+      <span style="font-size:15px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Construye tu chatbot con IA</span>
+    </div>
+    
+    <div data-tour="nivel" title="Meta de hoy: Nivel 2 · Diseñador/a conversacional" style="flex:none;display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:var(--sky-500);color:var(--primary-900);font-size:13px;font-weight:700;white-space:nowrap;">
+      <i class="ph ph-trophy" style="font-size:18px;flex:none;"></i><span style="overflow:hidden;text-overflow:ellipsis;">Nivel 2</span>
+    </div>
+    <div data-tour="tools" style="flex:none;display:flex;align-items:center;gap:0;padding:2px 2px 2px 10px;border:1px solid rgba(255,255,255,.25);border-radius:999px;">
+      <span title="Lupa: agranda o achica la pantalla" style="display:flex;align-items:center;gap:4px;font-size:16px;">🔍</span>
+      <button onClick="{{ h.zoomOut }}" title="Achicar pantalla" aria-label="Achicar pantalla"  style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:transparent;color:#fff;cursor:pointer;font-family:inherit;" style-hover="background:rgba(255,255,255,.12);"><i class="ph ph-minus" style="font-size:18px;"></i></button>
+      <button onClick="{{ h.zoomReset }}" title="Tamaño normal" aria-label="Tamaño normal" style="flex:none;min-width:42px;height:32px;border:none;border-radius:999px;background:transparent;color:#fff;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;" style-hover="background:rgba(255,255,255,.12);">{{ zoomLabel }}</button>
+      <button onClick="{{ h.zoomIn }}" title="Agrandar pantalla" aria-label="Agrandar pantalla"  style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:transparent;color:#fff;cursor:pointer;font-family:inherit;" style-hover="background:rgba(255,255,255,.12);"><i class="ph ph-plus" style="font-size:18px;"></i></button>
+      <span style="width:1px;height:20px;background:rgba(255,255,255,.25);margin:0 2px;"></span>
+      
+      <button onClick="{{ h.toggleMute }}" title="{{ muteTitle }}" aria-label="{{ muteTitle }}" aria-pressed="{{ muted }}" style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:transparent;color:#fff;cursor:pointer;" style-hover="background:rgba(255,255,255,.12);"><i class="{{ muteIcon }}" style="font-size:18px;"></i></button>
+      <button onClick="{{ h.toggleFull }}" title="{{ fullTitle }}" aria-label="{{ fullTitle }}" style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:transparent;color:#fff;cursor:pointer;" style-hover="background:rgba(255,255,255,.12);"><i class="{{ fullIcon }}" style="font-size:18px;"></i></button>
+    </div>
+    <button data-tour="ayuda" title="Si te bloqueas" onClick="{{ h.toggleHelp }}" style="flex:none;white-space:nowrap;display:flex;align-items:center;gap:8px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:7px 12px;font-family:inherit;font-size:13px;cursor:pointer;" style-hover="background:rgba(255,255,255,.08);">
+      <i class="ph ph-lifebuoy" style="font-size:18px;"></i>Ayuda
+    </button>
+    <button onClick="{{ h.startTour }}" title="Ver recorrido guiado" aria-label="Ver recorrido guiado" style="flex:none;display:flex;align-items:center;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:7px 10px;font-family:inherit;cursor:pointer;" style-hover="background:rgba(255,255,255,.08);">
+      <i class="ph ph-compass" style="font-size:18px;"></i>
+    </button>
+  </header>
+
+  <nav data-tour="menu" ref="{{ navRef }}" style="background:#fff;border-bottom:1px solid var(--sky-500);display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:4px;padding:8px 12px;overflow:hidden;">
+    <sc-for list="{{ menu }}" as="m" hint-placeholder-count="8">
+      <button onClick="{{ m.go }}" title="{{ m.full }}" aria-label="{{ m.full }}" style="flex:0 1 auto;min-width:0;display:flex;align-items:center;gap:6px;padding:4px {{ m.pr }} 4px 4px;border-radius:999px;border:1px solid {{ m.pbd }};background:{{ m.pbg }};color:var(--primary-900);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;" style-hover="border-color:var(--blue-500);">
+        <span style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:{{ m.nbg }};color:{{ m.nfg }};">{{ m.num }}</span><span style="overflow:hidden;text-overflow:ellipsis;">{{ m.name }}</span><sc-if value="{{ m.showTime }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;color:var(--neutral-600);">{{ m.time }}</span></sc-if>
+      </button>
+    </sc-for>
+  </nav>
+
+  <div style="display:grid;grid-template-rows:minmax(0,1fr) auto;min-height:0;">
+    <main ref="{{ mainRef }}" style="overflow-y:auto;padding:28px clamp(20px,4vw,48px) 56px;">
+      <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:26px;">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--primary-900);background:var(--blue-500);padding:7px 16px;border-radius:999px;transform:rotate(-2deg);">{{ over }}</span>
+          <sc-for list="{{ curItems }}" as="it" hint-placeholder-count="2">
+            <button onClick="{{ it.go }}" style="display:flex;align-items:center;gap:8px;padding:6px 12px;border:none;border-radius:999px;background:{{ it.bg }};color:var(--primary-900);font-family:inherit;font-size:13px;font-weight:{{ it.fw }};cursor:pointer;" style-hover="background:#fff;">
+              <span style="width:8px;height:8px;border-radius:50%;background:{{ it.dot }};flex:none;"></span>{{ it.t }}
+            </button>
+          </sc-for>
+        </div>
+
+        <!-- INICIO -->
+        <sc-if value="{{ is.inicio }}" hint-placeholder-val="{{ true }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:24px;padding:clamp(28px,4vw,56px);display:flex;flex-wrap:wrap;gap:40px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:22px;flex:3 1 420px;min-width:0;">
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4vw,56px);line-height:1.05;letter-spacing:-.02em;margin:0;">Construye tu chatbot <span style="color:var(--sky-500);">con IA</span></h1>
+              <p style="font-size:18px;line-height:1.55;margin:0;max-width:520px;text-wrap:pretty;">Hoy tu chatbot deja el papel: lo armas en Claude con tus instrucciones y sus preguntas frecuentes, y lanzas tu versión 1.</p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:14px;">
+                <span style="background:rgba(255,255,255,.1);padding:7px 14px;border-radius:999px;white-space:nowrap;">⏱️ 90 minutos</span>
+                <span style="background:rgba(255,255,255,.1);padding:7px 14px;border-radius:999px;white-space:nowrap;">🧠 Claude</span>
+                <span style="background:rgba(255,255,255,.1);padding:7px 14px;border-radius:999px;white-space:nowrap;">🏅 Desbloqueas el Nivel 2</span>
+              </div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" size="lg" onClick="{{ h.next }}" hint-size="200px,52px">Empezar la misión 🚀</x-import>
+                <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" size="lg" variant="inverse" onClick="{{ h.startTour }}" hint-size="200px,52px">Ver recorrido 🧭</x-import>
+              </div>
+            </div>
+            <div style="height:340px;flex:1 1 260px;min-width:220px;"><image-slot id="img-s3-portada" src="assets/img/img-s3-portada.png" shape="rounded" radius="22" placeholder="Rai armándose en una mesa de trabajo con piezas y herramientas" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;">
+            <div style="background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px;"><strong style="font-size:16px;">🎒 Ten a mano</strong><span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">Tus instrucciones de la Misión 2 (en tu Bitácora), tu cuenta de Claude y la de ChatGPT o Gemini.</span></div>
+            <div style="background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px;"><strong style="font-size:16px;">🔐 Tu cuenta, tus reglas</strong><span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">Entra con tu correo personal y una cuenta gratis. No escribas datos personales en ninguna herramienta.</span></div>
+            <div style="background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px;"><strong style="font-size:16px;">🏃 ¿Faltaste a la Misión 2?</strong><span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">Abre la Misión 2 y usa el armador de instrucciones: en 10 minutos tienes las tuyas.</span></div>
+          </div>
+        </sc-if>
+
+        <!-- CHAT -->
+        <sc-if value="{{ is.chat }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">💬 Calentamiento</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Chatea con Rai</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Rai ya está construido. Conversa con él y encuentra los 3 secretos que lo hacen funcionar.</p>
+            </div>
+            <div style="height:220px;"><image-slot id="img-rai" src="assets/img/img-rai.png" shape="rounded" radius="22" placeholder="Rai" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">
+            <div style="flex:999 1 440px;min-width:0;background:#fff;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-sm);">
+              <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--primary-900);color:#fff;"><span style="width:34px;height:34px;border-radius:50%;background:var(--blue-500);display:flex;align-items:center;justify-content:center;">🌱</span><div style="display:flex;flex-direction:column;"><strong style="font-size:15px;">Rai</strong><span style="font-size:11px;color:var(--sky-500);">Chatbot de IA · Huertos en casa</span></div></div>
+              <div ref="{{ chatRef }}" style="padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--sky-100);height:340px;overflow-y:auto;">
+                <button onClick="{{ h.findWelcome }}" title="Toca este mensaje" style="align-self:flex-start;max-width:88%;text-align:left;background:#fff;border:2px dashed {{ welBd }};padding:10px 14px;border-radius:16px 16px 16px 4px;font-family:inherit;font-size:15px;line-height:1.5;color:var(--primary-900);cursor:pointer;">¡Hola! Soy Rai, un chatbot de IA 🌱. Te ayudo a tener tu primer huerto en casa. ¿Por dónde empezamos?</button>
+                <sc-for list="{{ chatLog }}" as="m" hint-placeholder-count="0">
+                  <div style="align-self:{{ m.side }};max-width:88%;background:{{ m.bg }};color:{{ m.fg }};padding:10px 14px;border-radius:{{ m.rad }};font-size:15px;line-height:1.5;">{{ m.t }}</div>
+                </sc-for>
+              </div>
+              <div style="padding:12px 16px;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--sky-500);">
+                <span style="font-size:12px;color:var(--neutral-600);">Sugerencias:</span>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ sugs }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div>
+              </div>
+            </div>
+            <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;flex:1 1 280px;max-width:100%;">
+              <strong style="font-size:17px;color:var(--primary-900);">🔎 Encuentra los 3 secretos</strong>
+              <sc-for list="{{ secrets }}" as="x" hint-placeholder-count="3">
+                <div style="display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:16px;background:{{ x.bg }};">
+                  <span style="font-size:24px;line-height:1;">{{ x.icon }}</span>
+                  <div style="display:flex;flex-direction:column;gap:2px;"><strong style="font-size:15px;">{{ x.t }}</strong><span style="font-size:14px;line-height:1.45;color:var(--neutral-700);">{{ x.d }}</span></div>
+                </div>
+              </sc-for>
+              <sc-if value="{{ allFound }}" hint-placeholder-val="{{ false }}"><div style="background:var(--blue-500);border-radius:16px;padding:14px;font-size:15px;line-height:1.5;">🎉 ¡Los encontraste! Hoy tu chatbot tendrá los 3.</div></sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- LU -->
+        <sc-if value="{{ is.lu }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:28px;align-items:stretch;">
+            <div style="min-height:380px;background:var(--sky-500);"><image-slot id="lu-retrato" src="assets/img/lu-retrato.png" shape="rect" placeholder="Lu" style="width:100%;height:100%;"></image-slot></div>
+            <div style="display:flex;flex-direction:column;gap:18px;">
+              <div style="display:flex;flex-direction:column;gap:4px;"><h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(34px,4vw,44px);line-height:1.1;letter-spacing:-.02em;margin:0;color:var(--primary-900);">Hoy lanzas la versión 1 🚀</h1><span style="font-size:15px;color:var(--neutral-600);">Lu · Directora creativa de Estudio Nexo</span></div>
+              <div style="background:#fff;border-radius:24px 24px 24px 6px;padding:22px 26px;font-size:17px;line-height:1.6;">El cliente quiere ver algo funcionando. No tiene que ser perfecto: tu v1 tiene que <strong>saludar bien y responder bien al menos 5 preguntas</strong>. En la próxima misión lo ponemos a prueba.</div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px;">
+                <div style="background:var(--primary-900);color:#fff;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:6px;"><span style="font-size:28px;">📋</span><strong>Tus instrucciones</strong><span style="font-size:14px;line-height:1.45;">Las 7 de la Misión 2</span></div>
+                <div style="background:var(--blue-500);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:6px;"><span style="font-size:28px;">❓</span><strong>8 preguntas frecuentes</strong><span style="font-size:14px;line-height:1.45;">Con respuestas verificadas</span></div>
+                <div style="background:var(--sky-500);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:6px;"><span style="font-size:28px;">👋</span><strong>Una bienvenida</strong><span style="font-size:14px;line-height:1.45;">Que diga que es una IA</span></div>
+                <div style="background:#fff;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:6px;"><span style="font-size:28px;">🏷️</span><strong>Nombre y descripción</strong><span style="font-size:14px;line-height:1.45;">Claros y atractivos</span></div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- MAPA -->
+        <sc-if value="{{ is.mapa }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--blue-500);color:var(--primary-900);border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:#fff;color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">🗺️ El mapa</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Así se arma Rai en Claude</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Cada parte de tu plantilla tiene un lugar en Claude. Toca una pieza para ver dónde va.</p>
+            </div>
+            <div style="height:220px;"><image-slot id="img-s3-mapa" src="assets/img/img-s3-mapa.png" shape="rounded" radius="22" placeholder="Piezas de rompecabezas encajando en una pantalla" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">
+            <div style="flex:1 1 260px;max-width:100%;display:flex;flex-direction:column;gap:8px;">
+              <sc-for list="{{ pieces }}" as="p" hint-placeholder-count="6">
+                <button onClick="{{ p.on }}" style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:999px;border:2px solid {{ p.bd }};background:{{ p.bg }};color:var(--primary-900);font-family:inherit;font-size:15px;font-weight:700;text-align:left;cursor:pointer;"><span style="font-size:20px;">{{ p.e }}</span>{{ p.k }}</button>
+              </sc-for>
+            </div>
+            <div style="flex:999 1 440px;min-width:0;display:flex;flex-direction:column;gap:14px;">
+              <div style="background:#fff;border-radius:22px;padding:18px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:10px;">
+                <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--blue-700);">📁 Tu proyecto en Claude (esquema)</span>
+                <sc-for list="{{ zones }}" as="z" hint-placeholder-count="4">
+                  <div style="border:3px solid {{ z.bd }};background:{{ z.bg }};border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;transition:all 200ms ease-out;">
+                    <strong style="font-size:14px;">{{ z.n }} · {{ z.k }}</strong>
+                    <span style="font-size:13px;color:var(--neutral-700);line-height:1.45;">{{ z.d }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:20px 22px;display:flex;flex-direction:column;gap:6px;">
+                <strong style="font-size:16px;">{{ pc.e }} {{ pc.k }} → {{ pc.where }}</strong>
+                <span style="font-size:15px;line-height:1.5;">{{ pc.how }}</span>
+              </div>
+              <div style="height:240px;"><image-slot id="cap-mapa" src="assets/img/cap-mapa.png" shape="rounded" radius="22" placeholder="Captura: vista general de un proyecto en Claude" style="width:100%;height:100%;"></image-slot></div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- PASOS -->
+        <sc-if value="{{ is.pasos }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">🧭 Paso a paso</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Crea tu proyecto</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Sigue los 6 pasos con Claude abierto en otra pestaña. Marca cada uno cuando lo termines.</p>
+            </div>
+            <div style="height:220px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:88px;line-height:1;">🧭</span></div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+<a href="https://claude.ai" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--blue-700);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">🧠 Abrir Claude<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a>
+</div>
+            <span style="font-size:14px;color:var(--neutral-700);">{{ stepsDone }} de 6 pasos listos</span>
+            <div style="flex:1 1 160px;height:8px;background:#fff;border-radius:999px;overflow:hidden;"><div style="height:100%;width:{{ stepsPct }};background:var(--blue-500);transition:width 250ms ease-out;"></div></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;">
+            <div style="flex:1 1 240px;max-width:100%;display:flex;flex-direction:column;gap:6px;">
+              <sc-for list="{{ steps }}" as="p" hint-placeholder-count="6">
+                <button onClick="{{ p.go }}" style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:16px;border:2px solid {{ p.bd }};background:{{ p.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:700;text-align:left;cursor:pointer;"><span style="width:28px;height:28px;flex:none;border-radius:50%;background:{{ p.nbg }};color:{{ p.nfg }};display:flex;align-items:center;justify-content:center;font-size:13px;">{{ p.n }}</span>{{ p.t }}</button>
+              </sc-for>
+            </div>
+            <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;flex:999 1 440px;min-width:0;">
+              <div style="display:flex;gap:12px;align-items:center;"><span style="font-size:36px;">{{ st.e }}</span><div style="display:flex;flex-direction:column;"><span style="font-size:12px;font-weight:700;color:var(--blue-700);">PASO {{ st.n }} DE 6</span><strong style="font-size:20px;color:var(--primary-900);">{{ st.t }}</strong></div></div>
+              <span style="font-size:16px;line-height:1.55;">{{ st.d }}</span>
+              <div style="height:260px;"><image-slot id="{{ st.cap }}" src="{{ st.capSrc }}" shape="rounded" radius="18" placeholder="{{ st.capPh }}" style="width:100%;height:100%;"></image-slot></div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+                <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" onClick="{{ h.stepDone }}" hint-size="170px,44px">{{ st.btn }}</x-import>
+                <span style="font-size:13px;color:var(--neutral-600);">Los nombres de los botones pueden cambiar un poco según la versión de Claude.</span>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- RETO -->
+        <sc-if value="{{ isReto }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:22px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+            <div style="width:110px;height:110px;flex:none;"><image-slot id="img-rai" src="assets/img/img-rai.png" shape="circle" placeholder="Rai" style="width:100%;height:100%;"></image-slot></div>
+            <div style="display:flex;flex-direction:column;gap:8px;flex:1 1 300px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">🛠️ Construye tu v1</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(32px,4vw,44px);line-height:1.05;letter-spacing:-.02em;margin:0;">{{ retoTitle }}</h1>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <sc-for list="{{ retoTabs }}" as="t" hint-placeholder-count="3">
+              <button onClick="{{ t.go }}" style="display:flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:999px;border:2px solid {{ t.bd }};background:{{ t.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:999px;background:{{ t.lbg }};color:{{ t.lfg }};">{{ t.layer }}</span>{{ t.t }}</button>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{ is.r1 }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;align-items:start;">
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+                <strong style="font-size:17px;color:var(--primary-900);">1 · 🏭 Pide un borrador a ChatGPT o Gemini</strong>
+                <span style="font-size:14px;color:var(--neutral-600);line-height:1.5;">Elige tu tema y copia el prompt. Cambia [público] por el de tu ficha.</span>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ faqTemas }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div>
+                <div style="background:var(--sky-100);border-radius:14px;padding:14px 16px;font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.6;white-space:pre-wrap;">{{ faqPrompt }}</div><div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;"><x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" onClick="{{ h.copyFaq }}" hint-size="160px,44px">📋 Copiar</x-import><span style="font-size:14px;color:var(--blue-700);font-weight:700;">{{ copiedFaq }}</span></div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+
+<a href="https://chatgpt.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--primary-900);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">💬 Abrir ChatGPT<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a>
+<a href="https://gemini.google.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--primary-900);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">✨ Abrir Gemini<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a>
+</div>
+              </div>
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+                <strong style="font-size:17px;color:var(--primary-900);">2 · 🕵️ Caza el error</strong>
+                <span style="font-size:14px;color:var(--neutral-600);line-height:1.5;">La IA a veces inventa. En cada respuesta del borrador de Rai hay una frase falsa: tócala.</span>
+                <span style="font-size:13px;font-weight:700;color:var(--blue-700);">Pregunta {{ huN }} de 3 · {{ hu.q }}</span>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <sc-for list="{{ huS }}" as="x" hint-placeholder-count="3">
+                    <button onClick="{{ x.on }}" style="text-align:left;padding:10px 14px;border-radius:14px;border:2px solid {{ x.bd }};background:{{ x.bg }};color:var(--primary-900);font-family:inherit;font-size:15px;line-height:1.45;cursor:pointer;">{{ x.t }}</button>
+                  </sc-for>
+                </div>
+                <sc-if value="{{ huAns }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;"><span style="flex:1 1 220px;font-size:14px;line-height:1.5;padding:10px 12px;border-radius:12px;background:{{ huFbBg }};">{{ huFb }}</span><x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="secondary" size="sm" onClick="{{ h.huNext }}" hint-size="130px,36px">{{ huNextLabel }}</x-import></div>
+                </sc-if>
+              </div>
+            </div>
+            <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+              <strong style="font-size:17px;color:var(--primary-900);">3 · 📄 Súbelas a tu proyecto</strong>
+              <span style="font-size:15px;line-height:1.55;">Revisa el borrador, borra lo que esté mal y quédate con <strong>al menos 8</strong> preguntas. Crea un documento llamado «Preguntas frecuentes» con este formato y agrégalo a los archivos de tu proyecto en Claude.</span>
+              <div style="background:var(--sky-100);border-radius:14px;padding:14px 16px;font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.7;">P: ¿Cada cuánto riego la menta?<br>R: Cuando la tierra esté seca arriba. Nunca dejes agua en el plato.<br><br>P: ¿Qué maceta uso?<br>R: Una con agujeros abajo. Los envases reciclados sirven.</div>
+            </div>
+          </sc-if>
+
+
+          <sc-if value="{{ is.conoc }}" hint-placeholder-val="{{ false }}">
+            <div style="background:var(--blue-500);border-radius:22px;padding:18px 22px;font-size:16px;line-height:1.5;color:var(--primary-900);">🧠 Mientras más sepa tu chatbot, mejor responde. Además de las preguntas frecuentes, arma un <strong>documento de conocimiento</strong> y súbelo a los archivos del proyecto. <strong>Base:</strong> guion + 2 piezas más. <strong>Pro:</strong> las 5.</div>
+            <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">
+              <div style="flex:999 1 440px;min-width:0;display:flex;flex-direction:column;gap:12px;">
+                <sc-for list="{{ kn }}" as="k" hint-placeholder-count="5">
+                  <div style="background:#fff;border-radius:22px;padding:18px 20px;border:3px solid {{ k.bd }};display:flex;flex-direction:column;gap:10px;">
+                    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+                      <span style="font-size:30px;line-height:1;">{{ k.e }}</span>
+                      <div style="display:flex;flex-direction:column;gap:2px;flex:1 1 200px;"><strong style="font-size:17px;color:var(--primary-900);">{{ k.k }}</strong><span style="font-size:14px;color:var(--neutral-700);line-height:1.45;">{{ k.d }}</span></div>
+                      <button onClick="{{ k.on }}" style="padding:8px 14px;border-radius:999px;border:2px solid {{ k.bd }};background:{{ k.bbg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;">{{ k.bl }}</button>
+                    </div>
+                    <div style="background:var(--sky-100);border-radius:14px;padding:12px 14px;font-size:14px;line-height:1.55;"><strong style="color:var(--blue-700);">🌱 Así lo hizo Rai:</strong> {{ k.ex }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <aside style="position:sticky;top:0;flex:1 1 300px;max-width:100%;display:flex;flex-direction:column;gap:12px;">
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;gap:10px;">
+                  <strong style="font-size:16px;color:var(--primary-900);">📄 Tu documento de conocimiento</strong>
+                  <span style="font-size:14px;color:var(--neutral-700);">{{ knN }} de 5 piezas · {{ knLevel }}</span>
+                  <span style="font-size:14px;line-height:1.5;">Copia este prompt, pégalo en ChatGPT o Gemini y te arma el borrador. Revísalo antes de subirlo a Claude.</span>
+                  <div style="background:var(--sky-100);border-radius:14px;padding:12px 14px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.6;white-space:pre-wrap;max-height:260px;overflow-y:auto;">{{ knPrompt }}</div>
+                  <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" onClick="{{ h.copyKn }}" fullWidth="{{ true }}" hint-size="100%,44px">📋 Copiar prompt</x-import>
+                  <span style="font-size:14px;color:var(--blue-700);font-weight:700;text-align:center;">{{ copiedKn }}</span>
+                </div>
+              </aside>
+            </div>
+          </sc-if>
+          <sc-if value="{{ is.r2 }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">
+              <div style="display:flex;flex-direction:column;gap:16px;flex:999 1 420px;min-width:0;">
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;"><strong style="font-size:17px;color:var(--primary-900);">👋 ¿Cómo saluda?</strong><div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ welS }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div></div>
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;"><strong style="font-size:17px;color:var(--primary-900);">❓ ¿Con qué pregunta invita a conversar?</strong><div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ welQ }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div></div>
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;"><strong style="font-size:17px;color:var(--primary-900);">😊 ¿Emoji?</strong><div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ welE }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div></div>
+              </div>
+              <aside style="position:sticky;top:0;flex:1 1 300px;max-width:100%;display:flex;flex-direction:column;gap:12px;">
+                <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 4px 0 var(--sky-500);">
+                  <div style="padding:12px 16px;background:var(--primary-900);color:#fff;display:flex;gap:10px;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--blue-500);display:flex;align-items:center;justify-content:center;">🤖</span><strong>Tu chatbot</strong></div>
+                  <div style="padding:16px;background:var(--sky-100);"><div style="background:#fff;padding:12px 14px;border-radius:16px 16px 16px 4px;font-size:15px;line-height:1.5;">{{ welTxt }}</div></div>
+                  <div style="padding:12px 16px;display:flex;flex-direction:column;gap:4px;font-size:14px;">
+                    <span>✅ Dice que es un chatbot de IA</span><span>✅ Dice qué hace</span><span>{{ welQok }}</span>
+                  </div>
+                </div>
+                <div style="background:#fff;border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+                  <span style="font-size:14px;color:var(--neutral-600);line-height:1.5;">Pega esta línea al final de tus instrucciones en Claude:</span>
+                  <div style="background:var(--sky-100);border-radius:14px;padding:14px 16px;font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.6;white-space:pre-wrap;">{{ welLine }}</div><div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;"><x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" onClick="{{ h.copyWel }}" hint-size="160px,44px">📋 Copiar</x-import><span style="font-size:14px;color:var(--blue-700);font-weight:700;">{{ copiedWel }}</span></div>
+                </div>
+              </aside>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ is.r3 }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;align-items:start;">
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+                <div style="display:flex;gap:10px;align-items:center;"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);">PRO</span><strong style="font-size:17px;color:var(--primary-900);">💡 3 sugerencias de inicio</strong></div>
+                <span style="font-size:14px;color:var(--neutral-600);line-height:1.5;">En Claude no hay botones de sugerencia, así que van dentro de la bienvenida. Rai lo hace así:</span>
+                <div style="background:var(--sky-100);padding:12px 14px;border-radius:16px 16px 16px 4px;font-size:15px;line-height:1.5;">¡Hola! Soy Rai, un chatbot de IA 🌱. Puedes preguntarme: 1) ¿Qué siembro con poca luz? 2) ¿Cada cuánto riego? 3) ¿Qué maceta uso?</div>
+                <span style="font-size:14px;color:var(--neutral-600);line-height:1.5;">Elige 3 de tus preguntas frecuentes, las más útiles para empezar.</span>
+              </div>
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+                <div style="display:flex;gap:10px;align-items:center;"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);">PRO</span><strong style="font-size:17px;color:var(--primary-900);">🏷️ Descripción que atrapa</strong></div>
+                <span style="font-size:14px;color:var(--neutral-600);line-height:1.5;">Elige una fórmula y complétala en la descripción de tu proyecto.</span>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ desC }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div>
+                <div style="background:var(--primary-900);color:#fff;border-radius:16px;padding:14px 16px;font-size:15px;line-height:1.5;">{{ desTxt }}</div>
+              </div>
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+                <div style="display:flex;gap:10px;align-items:center;"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--primary-900);color:var(--sky-500);">PLUS</span><strong style="font-size:17px;color:var(--primary-900);">🚀 12 preguntas o más</strong></div>
+                <span style="font-size:15px;line-height:1.55;">¿Terminaste? Vuelve a ChatGPT o Gemini y pide 6 preguntas más difíciles o curiosas sobre tu tema. Verifícalas y súmalas a tu documento.</span>
+              </div>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <!-- CHECK -->
+        <sc-if value="{{ is.check }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--blue-500);color:var(--primary-900);border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:#fff;color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">🧪 Prueba y pule</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Prueba, falla y mejora</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Ponle 8 pruebas a tu chatbot. Cada vez que falle, pule tus instrucciones o tu documento y vuelve a probar.</p>
+            </div>
+            <div style="height:220px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:88px;line-height:1;">🧪</span></div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;"><strong style="font-size:16px;color:var(--primary-900);">🎯 Pruebas superadas: {{ tOk }} de 8</strong><div style="flex:1 1 160px;height:8px;background:#fff;border-radius:999px;overflow:hidden;"><div style="height:100%;width:{{ tPct }};background:var(--blue-500);transition:width 250ms ease-out;"></div></div></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;">
+            <sc-for list="{{ tests }}" as="t" hint-placeholder-count="8">
+              <div style="background:#fff;border-radius:22px;padding:18px;border:3px solid {{ t.bd }};display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;gap:10px;align-items:center;"><span style="font-size:26px;">{{ t.e }}</span><strong style="font-size:15px;">{{ t.k }}</strong></div>
+                <span style="background:var(--primary-900);color:#fff;padding:10px 14px;border-radius:16px 16px 4px 16px;font-size:14px;line-height:1.45;">{{ t.q }}</span>
+                <span style="font-size:13px;line-height:1.45;color:var(--neutral-700);">Debería: {{ t.ok }}</span>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                  <button onClick="{{ t.copy }}" style="padding:6px 10px;border-radius:999px;border:2px solid var(--sky-500);background:#fff;color:var(--primary-900);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;">{{ t.cl }}</button>
+                  <button onClick="{{ t.pass }}" style="padding:6px 10px;border-radius:999px;border:2px solid {{ t.pbd }};background:{{ t.pbg }};color:{{ t.pfg }};font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;">✅ Pasó</button>
+                  <button onClick="{{ t.fail }}" style="padding:6px 10px;border-radius:999px;border:2px solid {{ t.fbd }};background:{{ t.fbg }};color:{{ t.ffg }};font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;">⚠️ Falló</button>
+                </div>
+                <sc-if value="{{ t.failed }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;line-height:1.5;padding:8px 12px;border-radius:12px;background:var(--orange-100);">🔧 Para pulir: {{ t.fix }}</span></sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <sc-for list="{{ checks }}" as="c" hint-placeholder-count="6">
+              <div style="background:#fff;border-radius:22px;padding:16px 20px;display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+                  <span style="width:36px;height:36px;border-radius:50%;background:var(--sky-500);display:flex;align-items:center;justify-content:center;font-family:var(--font-emotional);font-size:20px;color:var(--primary-900);flex:none;">{{ c.n }}</span>
+                  <strong style="flex:1 1 240px;font-size:16px;">{{ c.t }}</strong>
+                  <div style="display:flex;gap:6px;"><sc-for list="{{ c.btns }}" as="b" hint-placeholder-count="3"><button onClick="{{ b.on }}" style="padding:8px 14px;border-radius:999px;border:2px solid {{ b.bd }};background:{{ b.bg }};color:{{ b.fg }};font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;">{{ b.label }}</button></sc-for></div>
+                </div>
+                <sc-if value="{{ c.showTip }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-left:50px;display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:12px;background:var(--blue-100);font-size:14px;line-height:1.5;flex-wrap:wrap;"><span style="flex:1 1 240px;">{{ c.tip }}</span><button onClick="{{ c.fix }}" style="padding:6px 12px;border-radius:999px;border:2px solid var(--primary-900);background:#fff;color:var(--primary-900);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">Ver ayuda</button></div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:20px 24px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+            <span style="font-size:30px;">📸</span>
+            <span style="font-size:16px;line-height:1.5;flex:1 1 300px;">Toma 2 capturas de tu chatbot respondiendo bien y guárdalas. Tu proyecto queda guardado en tu cuenta de Claude: en la Misión 4 lo pondrás a prueba.</span>
+          </div>
+        </sc-if>
+
+        <!-- NEGOCIO -->
+        <sc-if value="{{ is.negocio }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">🏆 Reto final</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">El negocio misterioso</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">La panadería «Pan de Barrio» quiere su chatbot. ¿Qué información le darías? Ojo: hay trampas.</p>
+            </div>
+            <div style="height:220px;"><image-slot id="img-s3-negocio" src="assets/img/img-s3-negocio.png" shape="rounded" radius="22" placeholder="Panadería de barrio con un chat de ayuda en la vitrina" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px;">
+            <sc-for list="{{ neg }}" as="x" hint-placeholder-count="10">
+              <button onClick="{{ x.on }}" style="display:flex;flex-direction:column;gap:8px;align-items:flex-start;text-align:left;padding:16px;border-radius:20px;border:3px solid {{ x.bd }};background:{{ x.bg }};color:var(--primary-900);font-family:inherit;cursor:pointer;min-height:120px;">
+                <span style="font-size:28px;line-height:1;">{{ x.e }}</span><strong style="font-size:15px;line-height:1.35;">{{ x.t }}</strong><span style="font-size:13px;line-height:1.4;color:var(--neutral-700);">{{ x.fb }}</span>
+              </button>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+            <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" onClick="{{ h.negCheck }}" hint-size="180px,44px">🔍 Revisar mi elección</x-import>
+            <sc-if value="{{ negChecked }}" hint-placeholder-val="{{ false }}"><x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="secondary" onClick="{{ h.negReset }}" hint-size="150px,44px">🔄 Intentar otra vez</x-import></sc-if>
+            <span style="font-size:14px;color:var(--neutral-700);">{{ negCount }} elegidas</span>
+          </div>
+          <sc-if value="{{ negChecked }}" hint-placeholder-val="{{ false }}">
+            <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:24px 28px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;">
+              <span style="font-family:var(--font-emotional);font-size:56px;line-height:1;color:var(--sky-500);">{{ negScore }}/10</span>
+              <span style="font-size:16px;line-height:1.55;flex:1 1 300px;">{{ negMsg }}</span>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <!-- FIN -->
+        <sc-if value="{{ is.fin }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--blue-500);color:var(--primary-900);border-radius:28px;padding:clamp(24px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;">🏅 Nivel 2 desbloqueado</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.6vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Diseñador/a conversacional</h1>
+              <span style="font-size:17px;line-height:1.55;max-width:680px;">Cuando tu chatbot saluda como IA y pasa al menos 6 de las 8 pruebas, desbloqueas este nivel.</span>
+            </div>
+            <div style="height:220px;"><image-slot id="img-s3-fin" src="assets/img/img-s3-fin.png" shape="rounded" radius="22" placeholder="Insignia del Nivel 2 completa" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;align-items:stretch;">
+            <div style="min-height:220px;background:var(--sky-500);"><image-slot id="lu-retrato" src="assets/img/lu-retrato.png" shape="rect" placeholder="Lu" style="width:100%;height:100%;"></image-slot></div>
+            <div style="background:#fff;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px;"><strong style="font-size:15px;color:var(--primary-900);">💬 Lu te dice</strong><span style="font-size:16px;line-height:1.6;">¡Tu chatbot ya existe! Ahora viene lo divertido: en la próxima misión vas a intentar romperlo con preguntas difíciles para hacerlo más fuerte.</span></div>
+            <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px;"><span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--sky-500);">🚀 Próxima · Misión 4 · Hito 1</span><span style="font-family:var(--font-emotional);font-size:28px;line-height:1.2;">Prueba y mejora tu chatbot</span><span style="font-size:15px;line-height:1.5;">Creas 10 casos de prueba, encuentras errores y lanzas tu versión 2.</span></div>
+          </div>
+        </sc-if>
+      </div>
+    </main>
+
+    <div data-tour="nav" style="display:flex;align-items:center;gap:16px;padding:12px clamp(20px,4vw,48px);background:#fff;border-top:1px solid var(--sky-500);">
+      <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="secondary" onClick="{{ h.prev }}" disabled="{{ atStart }}" hint-size="120px,44px">Anterior</x-import>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;">
+        <span style="font-size:13px;color:var(--neutral-600);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;">{{ navLabel }}</span>
+        <div style="width:min(240px,100%);height:6px;background:var(--sky-100);border-radius:999px;overflow:hidden;"><div style="height:100%;width:{{ navPct }};background:var(--blue-500);transition:width 250ms ease-out;"></div></div>
+      </div>
+      <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="primary" onClick="{{ h.next }}" disabled="{{ atEnd }}" hint-size="120px,44px">Siguiente</x-import>
+    </div>
+  </div>
+</div>
+
+<sc-if value="{{ helpOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ h.toggleHelp }}" style="position:fixed;inset:0;background:rgba(8,11,9,.4);z-index:40;"></div>
+  <aside style="position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:#fff;z-index:41;padding:28px;display:flex;flex-direction:column;gap:18px;overflow-y:auto;box-shadow:var(--shadow-lg);">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <strong style="font-size:20px;color:var(--primary-900);">🆘 ¿Te bloqueaste?</strong>
+      <button onClick="{{ h.toggleHelp }}" aria-label="Cerrar" style="width:40px;height:40px;border-radius:50%;border:none;background:var(--sky-100);cursor:pointer;display:flex;align-items:center;justify-content:center;"><i class="ph ph-x" style="font-size:18px;"></i></button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;font-size:15px;line-height:1.5;">
+      <div style="display:flex;flex-direction:column;gap:4px;"><strong>🔐 No puedo entrar a Claude</strong><span style="color:var(--neutral-700);">Revisa tu correo y contraseña, o avisa a tu profesor. Mientras tanto avanza con las preguntas frecuentes en ChatGPT o Gemini.</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px;"><strong>📁 No encuentro «Proyectos»</strong><span style="color:var(--neutral-700);">Está en el menú de la izquierda. Si no aparece, abre el menú con el ícono de las tres rayas.</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px;"><strong>🤖 Mi chatbot no sigue las instrucciones</strong><span style="color:var(--neutral-700);">Revisa que las pegaste en las instrucciones del proyecto y que el chat lo abriste dentro del proyecto.</span></div>
+    </div>
+    <div style="background:var(--sky-100);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:10px;">
+      <strong style="font-size:15px;color:var(--primary-900);">🤖 Pídele ayuda a ChatGPT o Gemini</strong>
+      <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.6;">Estas son las instrucciones y las preguntas frecuentes de mi chatbot. Dime si alguna respuesta parece inventada o incorrecta, sin reescribirlas por mí: [pega aquí]</span>
+      <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="secondary" size="sm" onClick="{{ h.copyHelp }}" hint-size="140px,36px">📋 Copiar prompt</x-import>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+
+<a href="https://chatgpt.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--primary-900);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">💬 Abrir ChatGPT<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a>
+<a href="https://gemini.google.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--primary-900);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">✨ Abrir Gemini<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a>
+</div>
+      <span style="font-size:13px;color:var(--blue-700);font-weight:700;">{{ copiedHelp }}</span>
+    </div>
+    <span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">¿Sigues con dudas? Compara con el ejemplo de Rai o pregúntale a tu profesor.</span>
+  </aside>
+</sc-if>
+
+<sc-if value="{{ tourOn }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:50;"></div>
+  <div style="position:fixed;z-index:51;top:{{ spot.top }};left:{{ spot.left }};width:{{ spot.w }};height:{{ spot.h }};border-radius:18px;box-shadow:0 0 0 4px #5691FF, 0 0 0 9999px rgba(8,11,9,.62);transition:all 250ms ease-out;pointer-events:none;"></div>
+  <div style="position:fixed;z-index:52;top:{{ tip.top }};left:{{ tip.left }};width:320px;background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow-lg);transition:all 250ms ease-out;">
+    <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--primary-900);background:var(--sky-500);padding:4px 10px;border-radius:999px;white-space:nowrap;">{{ tour.step }}</span>
+    <strong style="font-size:18px;color:var(--primary-900);">{{ tour.t }}</strong>
+    <span style="font-size:15px;line-height:1.5;color:var(--neutral-700);">{{ tour.d }}</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+      <button onClick="{{ h.tourSkip }}" style="background:transparent;border:none;font-family:inherit;font-size:14px;color:var(--neutral-600);cursor:pointer;text-decoration:underline;">Saltar</button>
+      <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" size="sm" onClick="{{ h.tourNext }}" hint-size="110px,36px">{{ tour.btn }}</x-import>
+    </div>
+  </div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ZS=[0.85,1,1.15,1.3];
+const MOM=[{n:'Inicio',t:''},{n:'Chatea con Rai',t:'8 min'},{n:'El encargo',t:'4 min'},{n:'Así se arma',t:'8 min'},{n:'Paso a paso',t:'12 min'},{n:'Construye tu v1',t:'33 min'},{n:'Prueba y pule',t:'20 min'},{n:'Reto final',t:'5 min'}];
+const SHORT=['🏠 Inicio','💬 Chatea con Rai','📩 El encargo','🗺️ Así se arma','🧭 Paso a paso','🛠️ Construye','🧪 Prueba y pule','🏆 Reto final'];
+const MID=['🏠 Inicio','💬 Rai','📩 Encargo','🗺️ Mapa','🧭 Pasos','🛠️ Construye','🧪 Prueba','🏆 Reto'];
+const SCR=[['inicio',0,'Bienvenida'],['chat',1,'Chatea con Rai'],['lu',2,'Hoy lanzas la versión 1'],['mapa',3,'Así se arma Rai en Claude'],['pasos',4,'Crea tu proyecto'],['r1',5,'Preguntas frecuentes'],['conoc',5,'Dale más conocimiento'],['r2',5,'Mensaje de bienvenida'],['r3',5,'Extra: sugerencias y descripción'],['check',6,'Prueba y pule tu v1'],['negocio',7,'El negocio misterioso'],['fin',7,'Próxima misión']].map(([id,m,t])=>({id,m,t}));
+const IDX={};SCR.forEach((s,i)=>IDX[s.id]=i);
+const TOUR=[{k:'menu',t:'🗺️ Tu ruta',d:'La misión tiene 7 pasos. Toca cualquiera para ir directo.'},{k:'tools',t:'🔍 Ajusta a tu gusto',d:'Agranda o achica la pantalla, apaga el sonido 🔊 o pasa a pantalla completa.'},{k:'ayuda',t:'🆘 ¿Te bloqueaste?',d:'Respuestas rápidas si Claude no funciona y accesos a ChatGPT y Gemini.'},{k:'nav',t:'👣 Avanza a tu ritmo',d:'Ten Claude abierto en otra pestaña y ve paso a paso.'}];
+const SUG=[['🌿 ¿Qué siembro con poca luz?','¡Buena pregunta! Con poca luz prueba: 1) Menta 2) Perejil 3) Lechuga. ¿Cuánta luz entra a tu cuarto? ☀️','sug'],['💧 ¿Cada cuánto riego?','Depende de la planta 💧 Regla fácil: 1) Toca la tierra. 2) Si está seca arriba, riega. 3) Nunca dejes agua en el plato. ¿Qué tienes sembrado?','sug'],['🪴 ¿Qué maceta uso?','Una con agujeros abajo 🪴 Los envases reciclados sirven: yogur, botellas cortadas o latas. ¿Tienes alguno en casa?','sug'],['🎵 ¿Qué música me recomiendas?','¡Uy, de eso no sé! Yo solo hablo de huertos en casa. ¿Quieres que te diga qué puedes sembrar este mes? 🌱','fuera'],['🍕 ¿Cómo hago una pizza?','¡Uy, de eso no sé! Yo solo hablo de huertos en casa. Pero si quieres, te enseño a sembrar albahaca para tu pizza 🌿','fuera']];
+const SEC=[['wel','👋','La bienvenida','Toca el primer mensaje de Rai: ¿qué dice de sí mismo?','Se presenta como chatbot de IA y dice qué hace.'],['sug','💡','Las sugerencias','Usa una sugerencia sobre huertos.','Te dan ideas de qué preguntar para empezar.'],['fuera','🛑','El mensaje fuera de alcance','Pregúntale algo que no sea de huertos.','Dice que no con amabilidad y vuelve a su tema.']];
+const PIECES=[
+{e:'🏷️',k:'Nombre',z:0,where:'Nombre del proyecto',how:'Escribe el nombre de tu chatbot tal como lo elegiste en tu ficha.'},
+{e:'📝',k:'Descripción',z:0,where:'Descripción del proyecto',how:'Una línea que diga qué hace y para quién. Es lo primero que ve quien lo abre.'},
+{e:'📋',k:'Instrucciones (7 bloques)',z:1,where:'Instrucciones del proyecto',how:'Pega aquí tus instrucciones completas de la Misión 2.'},
+{e:'👋',k:'Bienvenida',z:1,where:'Al final de las instrucciones',how:'Claude no tiene un campo de bienvenida: agrégala como una línea más en las instrucciones.'},
+{e:'💡',k:'Sugerencias de inicio',z:1,where:'Dentro de la bienvenida',how:'Escríbelas en el mensaje de bienvenida como «Puedes preguntarme: 1)… 2)… 3)…».'},
+{e:'❓',k:'Preguntas frecuentes',z:2,where:'Archivos del proyecto',how:'Súbelas como un documento. El chatbot lo usa para responder con tu información.'},
+{e:'💬',k:'Probar',z:3,where:'Chat dentro del proyecto',how:'Abre un chat nuevo dentro del proyecto. Si lo abres fuera, no seguirá tus instrucciones.'}];
+const ZONES=[['🏷️','Nombre y descripción','Cómo se llama y qué hace.'],['📋','Instrucciones del proyecto','Quién es, cómo habla, qué no hace y cómo saluda.'],['📄','Archivos del proyecto','Lo que sabe: tus preguntas frecuentes.'],['💬','Chats del proyecto','Donde lo pruebas.']];
+const STEPS=[
+{e:'🔐',t:'Entra a Claude',d:'Abre claude.ai e inicia sesión con tu correo personal. Usa la cuenta gratis.',ph:'Captura: pantalla de inicio de sesión de Claude'},
+{e:'📁',t:'Crea un proyecto',d:'En el menú de la izquierda, entra a «Proyectos» y toca «Crear proyecto».',ph:'Captura: botón para crear un proyecto'},
+{e:'🏷️',t:'Nombre y descripción',d:'Escribe el nombre de tu chatbot y una descripción de una línea: qué hace y para quién.',ph:'Captura: campos de nombre y descripción'},
+{e:'📋',t:'Pega tus instrucciones',d:'Abre las instrucciones del proyecto y pega las de tu Bitácora (Misión 2). Revisa que no queden [corchetes] sin completar.',ph:'Captura: ventana de instrucciones del proyecto'},
+{e:'📄',t:'Agrega tus preguntas frecuentes',d:'Sube el documento de preguntas frecuentes a los archivos del proyecto. Lo armas en el reto, puedes volver a este paso después.',ph:'Captura: botón para agregar archivos al proyecto'},
+{e:'💬',t:'Prueba con un «hola»',d:'Abre un chat dentro del proyecto y escribe «hola». Tu chatbot debería presentarse como IA.',ph:'Captura: primer saludo del chatbot'}];
+const TEMAS=['huertos en casa','maquillaje','videojuegos','cocina fácil','fútbol','mascotas','música','anime'];
+const HUNT=[{q:'¿Cada cuánto riego la menta?',s:['Riega cuando la tierra esté seca arriba.','La menta necesita riego cada 10 minutos.','Evita dejar agua en el plato.'],w:1},{q:'¿La albahaca necesita sol?',s:['Si no tiene sol, ilumínala toda la noche con la linterna del celular.','Sí, necesita de 4 a 6 horas de luz.','Ponla cerca de una ventana.'],w:0},{q:'¿Qué maceta uso?',s:['Usa una maceta con agujeros abajo.','Los envases reciclados sirven.','Las macetas de vidrio sin agujeros son las mejores para todo.'],w:2}];
+const WELS=['¡Hola!','¡Hey!','Hola, ¡bienvenido/a!'];
+const WELQ=['¿Por dónde empezamos?','¿Qué quieres saber hoy?','Cuéntame, ¿qué necesitas?'];
+const WELE=[['Sin emoji',''],['Con 1 emoji',' ✨']];
+const DES=[['Verbo + beneficio','[Nombre] te ayuda a [lograr algo] sin complicarte.'],['Para quién','El chatbot de [tema] para [público] que [problema].'],['Pregunta gancho','¿[Problema]? [Nombre] te guía paso a paso.']];
+const KN=[
+{e:'🎬',k:'Guion de conversación',d:'Los pasos que sigue en cada charla.',ex:'1) Saluda como IA. 2) Pregunta cuánto espacio y luz tienes. 3) Recomienda 3 plantas. 4) Da el primer paso concreto. 5) Pregunta si le sirvió.',pr:'los 5 pasos que debe seguir el chatbot en una conversación típica, del saludo al cierre'},
+{e:'📖',k:'Glosario',d:'Palabras del tema explicadas fácil.',ex:'Germinar: cuando la semilla se abre y sale el brote. Sustrato: la tierra especial donde siembras.',pr:'10 palabras importantes del tema, cada una explicada en una línea'},
+{e:'📌',k:'Datos clave',d:'Información verificada que debe saber sí o sí.',ex:'La albahaca germina en 5 a 10 días. La menta crece bien con poca luz. Ninguna maceta sin agujeros.',pr:'8 datos clave del tema, cortos y verificables'},
+{e:'🚦',k:'Casos especiales',d:'Qué hacer en situaciones difíciles.',ex:'Si el usuario está frustrado porque su planta murió: anímalo y explica las 3 causas más comunes.',pr:'4 situaciones difíciles (usuario frustrado, pregunta peligrosa, pide algo que no sabes, pide precios) y cómo responder a cada una'},
+{e:'💬',k:'Conversaciones de ejemplo',d:'2 charlas completas que muestran cómo debe sonar.',ex:'Usuario: «Mi albahaca está amarilla». Rai: «¡Tranqui, tiene arreglo! 🌿 1) ¿Le da sol directo? 2) ¿Riegas todos los días?…»',pr:'2 conversaciones de ejemplo completas (5 mensajes cada una) con el tono del chatbot'}];
+const TESTS=[['❓','Pregunta frecuente','¿Qué siembro con poca luz? (cámbiala por una de tu tema)','responder corto, con tu información.','revisa que el documento de preguntas frecuentes esté en los archivos del proyecto.'],['🧩','Pregunta difícil','¿Qué hago si mi planta tiene manchas blancas? (adáptala)','usar tu documento o decir que no sabe.','agrega el dato a tus datos clave o a casos especiales.'],['🛑','Fuera de tema','¿Quién va a ganar el próximo mundial?','dar tu mensaje fuera de alcance y volver a su tema.','revisa el bloque 7 de tus instrucciones.'],['🔒','Dato personal','Tengo 15 años y estudio en el colegio San José, ¿qué me recomiendas?','no repetir tus datos y recordarte que no hace falta darlos.','revisa el bloque 6 (Privacidad).'],['😤','Usuario molesto','Eres el peor chatbot del mundo, no sirves para nada.','mantener la calma y volver a ayudar.','agrega una regla para usuarios molestos en el bloque 5.'],['🤷','Pregunta ambigua','¿Y eso cómo se hace?','pedirte que expliques qué quieres decir.','agrega en Estilo: «Si la pregunta no es clara, pide más detalles».'],['🎬','¿Sigue el guion?','Hola, quiero empezar','seguir los pasos de tu guion de conversación.','revisa que el guion esté en tu documento de conocimiento.'],['🎭','¿Suena como él?','Cuéntame algo curioso de tu tema','sonar con tus 3 rasgos y tu estilo.','ajusta los bloques Tono y Estilo.']];
+const CHECK=[
+{t:'Las instrucciones están completas en la herramienta',tip:'Abre las instrucciones del proyecto y compáralas con tu Bitácora: deben estar los 7 bloques.',go:'pasos'},
+{t:'Subí 8+ preguntas frecuentes y mi documento de conocimiento',tip:'Revisa que los dos documentos estén en los archivos del proyecto.',go:'conoc'},
+{t:'La bienvenida dice que es un chatbot de IA y qué hace',tip:'Usa el armador de bienvenida y pega la línea al final de tus instrucciones.',go:'r2'},
+{t:'El nombre y la descripción son claros',tip:'Prueba una de las fórmulas de descripción del reto extra.',go:'r3'},
+{t:'Pasó al menos 6 de las 8 pruebas',tip:'Marca «Falló» en la prueba y sigue la pista para pulir.',go:'check'},
+{t:'Sé qué escribí yo y en qué me ayudó la IA',tip:'Piensa: ¿qué preguntas frecuentes salieron de la IA y cuáles corregiste tú?',go:'r1'}];
+const NEG=[['🕐','Horarios de atención',1],['🥐','Productos y precios',1],['📍','Dirección del local',1],['🛵','Cómo hacer un pedido',1],['💳','Datos de tarjetas de los clientes',0],['🔑','Contraseña del dueño',0],['📞','Lista de clientes con sus teléfonos',0],['❓','Preguntas frecuentes',1],['💵','Formas de pago aceptadas',1],['🤫','La receta secreta del pan',0]];
+const NEGW={1:'✅ Sí: lo necesita para ayudar a los clientes.',0:'🚫 ¡Trampa! Es información privada o secreta.'};
+class Component extends DCLogic {
+  state={tour:null,rect:null,help:false,ch:'',cp:'',navC:0,zoom:1,mute:false,full:false,screen:0,visited:{0:true},found:{},log:[],pSel:2,step:0,sDone:{},ft:0,hu:0,huA:{},kn:{0:true},tRes:{},ws:0,wq:0,we:1,des:0,check:{},neg:{},negC:false};
+  chatRef=React.createRef();
+  mainRef=React.createRef();navRef=React.createRef();
+  fitNav(){const n=this.navRef.current;if(!n)return;const w=n.clientWidth;const c=w>=1020?0:w>=820?1:2;if(c!==this.state.navC)this.setState({navC:c});}
+  componentDidMount(){
+    this._rs=()=>{this.measure();this.fitNav();};window.addEventListener('resize',this._rs);
+    setTimeout(()=>this.fitNav(),50);if(window.ResizeObserver&&this.navRef.current){this._ro=new ResizeObserver(()=>this.fitNav());this._ro.observe(this.navRef.current);}
+    this._fs=()=>this.setState({full:!!(document.fullscreenElement||document.webkitFullscreenElement)});
+    document.addEventListener('fullscreenchange',this._fs);document.addEventListener('webkitfullscreenchange',this._fs);
+  }
+  componentDidUpdate(){const ps=this._prev||this.state;this._prev=this.state;if(ps!==this.state&&this.onUpd)this.onUpd(ps);}
+  sfx(k){
+    this._snd=true;
+    if(this.state.mute)return;
+    try{
+      const C=this.ac||(this.ac=new (window.AudioContext||window.webkitAudioContext)());
+      if(C.state==='suspended'&&C.resume)C.resume();
+      const t=C.currentTime;
+      const tone=(f,st,d,type,vol,f2)=>{const o=C.createOscillator(),g=C.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t+st);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+st+d);g.gain.setValueAtTime(0.0001,t+st);g.gain.exponentialRampToValueAtTime(vol||0.12,t+st+0.012);g.gain.exponentialRampToValueAtTime(0.0001,t+st+d);o.connect(g);g.connect(C.destination);o.start(t+st);o.stop(t+st+d+0.02);};
+      if(k==='pop')tone(660,0,0.08,'sine',0.08,990);
+      else if(k==='nav')tone(420,0,0.12,'triangle',0.07,640);
+      else if(k==='tick')tone(1200,0,0.03,'square',0.025);
+      else if(k==='ok'){tone(660,0,0.12,'sine',0.11);tone(990,0.09,0.18,'sine',0.11);}
+      else if(k==='bad'){tone(300,0,0.18,'triangle',0.09,220);}
+      else if(k==='win'){[523,659,784,1047].forEach((f,i)=>tone(f,i*0.09,0.22,'triangle',0.1));}
+    }catch(e){}
+  }
+  componentWillUnmount(){window.removeEventListener('resize',this._rs);document.removeEventListener('fullscreenchange',this._fs);document.removeEventListener('webkitfullscreenchange',this._fs);clearInterval(this._pt);clearInterval(this._sp);}
+  setTour(n){this.setState({tour:n,rect:null,help:false},()=>setTimeout(()=>this.measure(),60));setTimeout(()=>this.measure(),140);}
+  measure(){
+    const s=this.state;if(s.tour===null)return;
+    const el=document.querySelector('[data-tour="'+TOUR[s.tour].k+'"]');if(!el)return;
+    const r=el.getBoundingClientRect();this.setState({rect:{x:r.left,y:r.top,w:r.width,h:r.height}});
+  }
+  go(i){i=Math.max(0,Math.min(SCR.length-1,i));if(i!==this.state.screen)this.sfx('nav');this.setState(s=>({screen:i,visited:{...s.visited,[i]:true},help:false}));if(this.mainRef.current)this.mainRef.current.scrollTop=0;}
+  setF(k,v){this.setState(s=>({f:{...s.f,[k]:v}}));}
+  copy(txt,key){
+    const done=()=>{this.setState({[key]:'✅ ¡Copiado!'});setTimeout(()=>this.setState({[key]:''}),1800);};
+    const fb=()=>{const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}t.remove();done();};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(done,fb);else fb();
+  }
+  chip(label,active,on){return {label,on:(...a)=>{this._snd=false;on(...a);if(!this._snd)this.sfx('pop');},bg:active?'var(--blue-500)':'#fff',bd:active?'var(--blue-500)':'var(--sky-500)'};}
+  onUpd(ps){const s=this.state;
+    if(Object.keys(ps.found).length<3&&Object.keys(s.found).length>=3)this.sfx('win');
+    if(ps.log.length!==s.log.length&&this.chatRef.current)setTimeout(()=>{const c=this.chatRef.current;if(c)c.scrollTop=c.scrollHeight;},30);
+    if(Object.keys(ps.sDone).length<6&&Object.keys(s.sDone).length>=6)this.sfx('win');
+    const si=(c)=>[0,1,2,3,4,5].every(i=>c[i]==='si');if(!si(ps.check)&&si(s.check))this.sfx('win');}
+  find(k){if(!this.state.found[k]){this.sfx('ok');this.setState(st=>({found:{...st.found,[k]:true}}));}}
+  ask(i){const q=SUG[i];this.setState(st=>({log:[...st.log,{u:1,t:q[0].replace(/^\S+ /,'')},{u:0,t:q[1]}]}));this.find(q[2]);}
+  welcome(){const s=this.state;return WELS[s.ws]+' Soy [nombre], un chatbot de IA que te ayuda a [propósito]'+WELE[s.we][1]+'. '+WELQ[s.wq];}
+  renderVals(){
+    const s=this.state,cur=SCR[s.screen];
+    const is={};SCR.forEach((x,i)=>is[x.id]=i===s.screen);
+    const menu=MOM.map((m,mi)=>{
+      const idxs=SCR.map((x,i)=>i).filter(i=>SCR[i].m===mi);
+      const active=cur.m===mi,done=idxs.every(i=>s.visited[i]);
+      const lab=SHORT[mi],emo=lab.split(' ')[0],cm=s.navC;
+      const name=cm===0||active?lab:(cm===1?MID[mi]:emo);
+      return {num:String(mi),name,pr:cm===2&&!active?'8px':'12px',full:m.n,showTime:false,time:m.t,go:()=>this.go(idxs[0]),
+        pbg:active?'var(--sky-100)':'#fff',pbd:active?'var(--blue-500)':'var(--border-subtle)',
+        nbg:active?'var(--blue-500)':done?'var(--primary-900)':'var(--sky-100)',nfg:active?'var(--primary-900)':done?'#fff':'var(--primary-900)',
+        items:idxs.map(i=>({t:SCR[i].t,go:()=>this.go(i),bg:i===s.screen?'#fff':'transparent',fw:i===s.screen?'700':'400',dot:i===s.screen?'var(--blue-500)':s.visited[i]?'var(--primary-900)':'var(--neutral-300)'}))};
+    });
+    const over=cur.m===0?'Estudio Nexo · Misión 3':'Paso '+cur.m+' de 7 · '+MOM[cur.m].n;
+    let spot={top:'0px',left:'0px',w:'0px',h:'0px'},tip={top:'0px',left:'0px'};
+    if(s.tour!==null&&s.rect){const r=s.rect,pad=6,W=window.innerWidth,H=window.innerHeight;
+      spot={top:(r.y-pad)+'px',left:(r.x-pad)+'px',w:(r.w+pad*2)+'px',h:(r.h+pad*2)+'px'};
+      let tx,ty;if(r.y+r.h+240<H){ty=r.y+r.h+16;tx=Math.min(Math.max(16,r.x+r.w/2-160),W-336);}else{ty=Math.max(16,r.y-250);tx=Math.min(Math.max(16,r.x+r.w/2-160),W-336);}
+      tip={top:ty+'px',left:tx+'px'};}
+    const ti=s.tour===null?0:s.tour;const endTour=()=>this.setState({tour:null});
+    const fbk=(ok)=>ok?'var(--color-success-100)':'var(--orange-100)';
+    const chatLog=s.log.map(m=>({t:m.t,side:m.u?'flex-end':'flex-start',bg:m.u?'var(--primary-900)':'#fff',fg:m.u?'#fff':'var(--primary-900)',rad:m.u?'16px 16px 4px 16px':'16px 16px 16px 4px'}));
+    const sugs=SUG.map((q,i)=>this.chip(q[0],false,()=>this.ask(i)));
+    const secrets=SEC.map(([k,e,t,d,ok])=>{const f=!!s.found[k];return {icon:f?'✅':e,t,d:f?ok:d,bg:f?'var(--color-success-100)':'var(--sky-100)'};});
+    const pc=PIECES[s.pSel];
+    const pieces=PIECES.map((p,i)=>({e:p.e,k:p.k,on:()=>{this.sfx('pop');this.setState({pSel:i});},bg:i===s.pSel?'var(--blue-500)':'#fff',bd:i===s.pSel?'var(--blue-500)':'var(--sky-500)'}));
+    const zones=ZONES.map((z,i)=>({n:z[0],k:z[1],d:z[2],bd:i===pc.z?'var(--blue-500)':'var(--sky-100)',bg:i===pc.z?'var(--blue-100)':'#fff'}));
+    const steps=STEPS.map((p,i)=>{const on=i===s.step,dn=!!s.sDone[i];return {n:dn?'✓':String(i+1),t:p.e+' '+p.t,go:()=>{this.sfx('pop');this.setState({step:i});},bg:on?'var(--sky-100)':'#fff',bd:on?'var(--blue-500)':'var(--sky-500)',nbg:dn?'var(--color-success-700)':on?'var(--blue-500)':'var(--sky-100)',nfg:dn?'#fff':'var(--primary-900)'};});
+    const sp=STEPS[s.step],nDone=Object.keys(s.sDone).length;
+    const st={...sp,n:String(s.step+1),cap:'cap-paso-'+(s.step+1),capSrc:'assets/img/cap-paso-'+(s.step+1)+'.png',capPh:sp.ph,btn:s.sDone[s.step]?(s.step<5?'Siguiente paso ➡️':'¡Todo listo! 🎉'):'✅ Ya lo hice'};
+    const faqTemas=TEMAS.map((t,i)=>this.chip(t,s.ft===i,()=>this.setState({ft:i})));
+    const faqPrompt='Actúa como experto en '+TEMAS[s.ft]+'. Escribe 12 preguntas frecuentes que haría [público] sobre '+TEMAS[s.ft]+'. Para cada una, da una respuesta corta (máximo 3 líneas) y fácil de entender. Usa este formato:\nP: [pregunta]\nR: [respuesta]\nNo inventes datos. Si no estás seguro de algo, márcalo con (verificar).';
+    const hu=HUNT[s.hu],hp=s.huA[s.hu];
+    const huS=hu.s.map((t,k)=>({t,on:()=>{if(hp!==undefined)return;this.sfx(k===hu.w?'ok':'bad');this.setState(st2=>({huA:{...st2.huA,[st2.hu]:k}}));},bg:hp===undefined?'#fff':k===hu.w?'var(--orange-100)':k===hp?'var(--neutral-100)':'#fff',bd:hp===undefined?'var(--sky-500)':k===hu.w?'var(--orange-700)':'var(--sky-500)'}));
+    const welS=WELS.map((x,i)=>this.chip(x,s.ws===i,()=>this.setState({ws:i})));
+    const welQ=WELQ.map((x,i)=>this.chip(x,s.wq===i,()=>this.setState({wq:i})));
+    const welE=WELE.map((x,i)=>this.chip(x[0],s.we===i,()=>this.setState({we:i})));
+    const welTxt=this.welcome();const welLine='En tu primer mensaje, saluda así: «'+welTxt+'»';
+    const desC=DES.map((x,i)=>this.chip(x[0],s.des===i,()=>this.setState({des:i})));
+    const retoTabs=['r1','conoc','r2','r3'].map((id,i)=>{const on=s.screen===IDX[id];return {t:SCR[IDX[id]].t,layer:['BASE','BASE','BASE','PRO · PLUS'][i],go:()=>this.go(IDX[id]),bg:on?'var(--sky-100)':'#fff',bd:on?'var(--blue-500)':'var(--sky-500)',lbg:i===3?'var(--primary-900)':'var(--blue-500)',lfg:i===3?'var(--sky-500)':'var(--primary-900)'};});
+    const tests=TESTS.map((t,i)=>{const r=s.tRes[i];const mk=(k,col)=>({bg:r===k?col:'#fff',fg:r===k?'#fff':'var(--primary-900)',bd:r===k?col:'var(--sky-500)'});const P=mk('p','var(--color-success-700)'),F=mk('f','var(--orange-700)');
+      return {e:t[0],k:t[1],q:t[2],ok:t[3],fix:t[4],failed:r==='f',bd:r==='p'?'var(--color-success-700)':r==='f'?'var(--orange-700)':'transparent',cl:s.cp==='t'+i?'✅ Copiada':'📋 Copiar',copy:()=>{this.copy(t[2],'_x');this.setState({cp:'t'+i});setTimeout(()=>this.setState({cp:''}),1800);},
+        pass:()=>{this.sfx('ok');this.setState(st2=>({tRes:{...st2.tRes,[i]:'p'}}));},fail:()=>{this.sfx('bad');this.setState(st2=>({tRes:{...st2.tRes,[i]:'f'}}));},pbg:P.bg,pfg:P.fg,pbd:P.bd,fbg:F.bg,ffg:F.fg,fbd:F.bd};});
+    const tOk=Object.values(s.tRes).filter(x=>x==='p').length;
+    const kn=KN.map((k,i)=>{const on=!!s.kn[i];return {...k,bl:on?'✅ En mi documento':'➕ Agregar',bd:on?'var(--blue-500)':'var(--sky-500)',bbg:on?'var(--blue-100)':'#fff',on:()=>{this.sfx(on?'pop':'ok');this.setState(st2=>({kn:{...st2.kn,[i]:!st2.kn[i]}}));}};});
+    const knN=Object.values(s.kn).filter(Boolean).length;
+    const knSel=KN.filter((k,i)=>s.kn[i]);
+    const knPrompt='Ayúdame a armar el documento de conocimiento de mi chatbot sobre [tema], para [público]. Escribe estas secciones, en lenguaje simple y sin inventar datos (si no estás seguro de algo, márcalo con «verificar»):\n'+(knSel.length?knSel.map((k,i)=>(i+1)+'. '+k.k.toUpperCase()+': '+k.pr).join('\n'):'[agrega piezas a la izquierda]')+'\nNo incluyas datos personales de nadie.';
+    const BTN=[['si','✅ Sí'],['casi','🤏 Casi'],['no','🔄 Aún no']];
+    const checks=CHECK.map((c,i)=>{const v=s.check[i];return {n:String(i+1),t:c.t,tip:c.tip,showTip:v==='casi'||v==='no',fix:()=>this.go(IDX[c.go]),
+      btns:BTN.map(([k,l])=>{const sel=v===k,col=k==='si'?'var(--color-success-700)':k==='casi'?'var(--orange-700)':'var(--neutral-700)';return {label:l,on:()=>{this.sfx('pop');this.setState(st2=>({check:{...st2.check,[i]:k}}));},bg:sel?col:'#fff',fg:sel?'#fff':'var(--primary-900)',bd:sel?col:'var(--sky-500)'};})};});
+    const neg=NEG.map(([e,t,ok],i)=>{const sel=!!s.neg[i];let bg=sel?'var(--blue-100)':'#fff',bd=sel?'var(--blue-500)':'var(--sky-500)',fb=sel?'⭐ Elegida':'Toca para elegir';
+      if(s.negC){const right=sel===!!ok;bg=right?'var(--color-success-100)':'var(--orange-100)';bd=right?'var(--color-success-700)':'var(--orange-700)';fb=NEGW[ok]+(right?'':(sel?' No debiste elegirla.':' Te faltó elegirla.'));}
+      return {e,t,fb,bg,bd,on:()=>{if(s.negC)return;this.sfx('pop');this.setState(st2=>({neg:{...st2.neg,[i]:!st2.neg[i]}}));}};});
+    const negScore=NEG.filter(([e,t,ok],i)=>!!s.neg[i]===!!ok).length;
+    return {
+      atStart:s.screen===0,atEnd:s.screen===SCR.length-1,navLabel:(s.screen+1)+' de '+SCR.length+' · '+cur.t,navPct:(((s.screen+1)/SCR.length)*100)+'%',
+      tourOn:s.tour!==null&&!!s.rect,spot,tip,tour:{step:(ti+1)+' de '+TOUR.length,t:TOUR[ti].t,d:TOUR[ti].d,btn:ti===TOUR.length-1?'¡Listo! 🚀':'Siguiente'},
+      zoomV:String(ZS[s.zoom]),zoomLabel:Math.round(ZS[s.zoom]*100)+'%',rootH:'calc(100vh / '+ZS[s.zoom]+')',
+      muted:!!s.mute,muteTitle:s.mute?'Activar sonido':'Silenciar',muteIcon:s.mute?'ph ph-speaker-slash':'ph ph-speaker-high',
+      fullTitle:s.full?'Salir de pantalla completa':'Pantalla completa',fullIcon:s.full?'ph ph-corners-in':'ph ph-corners-out',
+      navRef:this.navRef,mainRef:this.mainRef,menu,over,curItems:menu[cur.m].items,is,helpOpen:s.help,copiedHelp:s.ch,
+      chatRef:this.chatRef,chatLog,sugs,secrets,allFound:Object.keys(s.found).length>=3,welBd:s.found.wel?'var(--color-success-700)':'var(--blue-500)',
+      pieces,zones,pc,steps,st,stepsDone:String(nDone),stepsPct:(nDone/6*100)+'%',
+      isReto:['r1','conoc','r2','r3'].includes(cur.id),retoTitle:cur.t,retoTabs,faqTemas,faqPrompt,copiedFaq:s.cp==='faq'?'✅ ¡Copiado!':'',
+      hu,huN:String(s.hu+1),huS,huAns:hp!==undefined,huFb:hp===hu.w?'🎉 ¡Cazado! Esa frase es falsa. Siempre revisa lo que escribe la IA.':'😅 Esa frase es correcta. La falsa está marcada en naranja.',huFbBg:fbk(hp===hu.w),huNextLabel:s.hu<2?'Siguiente ➡️':'🔄 Otra vez',
+      welS,welQ,welE,welTxt,welLine,welQok:'✅ Invita a conversar',copiedWel:s.cp==='wel'?'✅ ¡Copiado!':'',desC,desTxt:DES[s.des][1],
+      tests,tOk:String(tOk),tPct:(tOk/8*100)+'%',kn,knN:String(knN),knLevel:knN>=5?'🏅 Pro':s.kn[0]&&knN>=3?'✅ Base lista':'Base: guion + 2 más',knPrompt,copiedKn:s.cp==='kn'?'✅ ¡Copiado!':'',checks,neg,negChecked:s.negC,negCount:String(Object.values(s.neg).filter(Boolean).length),negScore:String(negScore),
+      negMsg:negScore===10?'🏆 ¡Perfecto! Un chatbot necesita información pública y útil, nunca datos privados de clientes ni secretos del negocio.':negScore>=7?'💪 ¡Muy bien! Revisa las tarjetas en naranja: ahí está la diferencia entre información útil y privada.':'📚 Regla de oro: el chatbot solo necesita lo que un cliente podría preguntar. Lo privado o secreto, nunca.',
+      h:{
+        zoomIn:()=>{this.sfx('pop');this.setState(st=>({zoom:Math.min(3,st.zoom+1)}));},zoomOut:()=>{this.sfx('pop');this.setState(st=>({zoom:Math.max(0,st.zoom-1)}));},zoomReset:()=>{this.sfx('pop');this.setState({zoom:1});},
+        toggleMute:()=>{const m=!this.state.mute;this.setState({mute:m},()=>{if(!m)this.sfx('pop');});},
+        toggleFull:()=>{this.sfx('pop');try{const d=document,el=d.documentElement;if(d.fullscreenElement||d.webkitFullscreenElement)(d.exitFullscreen||d.webkitExitFullscreen).call(d);else (el.requestFullscreen||el.webkitRequestFullscreen).call(el);}catch(e){}},
+        next:()=>this.go(s.screen+1),prev:()=>this.go(s.screen-1),toggleHelp:()=>this.setState(st=>({help:!st.help})),startTour:()=>this.setTour(0),
+        tourNext:()=>{if(ti>=TOUR.length-1)endTour();else this.setTour(ti+1);},tourSkip:endTour,
+        findWelcome:()=>this.find('wel'),
+        stepDone:()=>{if(s.sDone[s.step]){if(s.step<5)this.setState({step:s.step+1});this.sfx('nav');return;}this.sfx('ok');this.setState(st2=>({sDone:{...st2.sDone,[st2.step]:true}}));},
+        copyKn:()=>{this.copy(knPrompt,'_x');this.setState({cp:'kn'});setTimeout(()=>this.setState({cp:''}),1800);},
+        copyFaq:()=>{this.copy(faqPrompt,'_x');this.setState({cp:'faq'});setTimeout(()=>this.setState({cp:''}),1800);},
+        copyWel:()=>{this.copy(welLine,'_x');this.setState({cp:'wel'});setTimeout(()=>this.setState({cp:''}),1800);},
+        huNext:()=>{this.sfx('nav');if(s.hu<2)this.setState({hu:s.hu+1});else this.setState({hu:0,huA:{}});},
+        negCheck:()=>{this.sfx(negScore===10?'win':'ok');this.setState({negC:true});},negReset:()=>{this.sfx('pop');this.setState({negC:false,neg:{}});},
+        copyHelp:()=>this.copy('Estas son las instrucciones y las preguntas frecuentes de mi chatbot. Dime si alguna respuesta parece inventada o incorrecta, sin reescribirlas por mí: [pega aquí]','ch')
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

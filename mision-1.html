@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Misión 1 · Crea la idea y personalidad de tu chatbot</title>
+<link rel="stylesheet" href="ds/tokens/colors.css">
+<link rel="stylesheet" href="ds/tokens/typography.css">
+<link rel="stylesheet" href="ds/tokens/spacing.css">
+<link rel="stylesheet" href="ds/tokens/effects.css">
+<link rel="stylesheet" href="ds/tokens/base.css">
+<link rel="stylesheet" href="ds/styles.css">
+<script src="ds/_ds_bundle.js"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<script src="./image-slot.js"></script>
+<style>
+body{--mint-500:#5691FF;--mint-600:#3771DB;--mint-700:#1F52B8;}
+html,body{margin:0;height:100%;background:#EAF7FF;font-family:"NT Bau",-apple-system,sans-serif;color:#101613;}
+*{box-sizing:border-box;}
+a{color:#1F52B8;}
+a:hover{color:#001F19;}
+button:focus-visible{outline:3px solid #5691FF;outline-offset:2px;}
+</style>
+</helmet>
+
+<div style="zoom:{{ zoomV }};height:{{ rootH }};display:grid;grid-template-rows:56px auto minmax(0,1fr);grid-template-columns:minmax(0,1fr);background:var(--sky-100);">
+
+  <header style="background:var(--blue-700);color:#fff;display:flex;align-items:center;gap:16px;padding:0 clamp(12px,2vw,24px);min-width:0;gap:12px;">
+    <img src="assets/ctc-logotipo-white.png" alt="Crack the Code" style="height:20px;display:block;flex:none;">
+    <div style="width:1px;height:28px;background:rgba(255,255,255,.2);flex:none;"></div>
+    <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 auto;overflow:hidden;">
+      <span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--sky-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Estudio Nexo · Misión 1 de 8</span>
+      <span style="font-size:15px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Crea la idea y personalidad de tu chatbot</span>
+    </div>
+    
+    <div data-tour="nivel" title="Meta de hoy: Nivel 1 · Estratega de producto junior" style="flex:none;display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:var(--sky-500);color:var(--primary-900);font-size:13px;font-weight:700;white-space:nowrap;">
+      <i class="ph ph-trophy" style="font-size:18px;flex:none;"></i><span style="overflow:hidden;text-overflow:ellipsis;">Nivel 1</span>
+    </div>
+    <div data-tour="tools" style="flex:none;display:flex;align-items:center;gap:0;padding:2px 2px 2px 10px;border:1px solid rgba(255,255,255,.25);border-radius:999px;">
+      <span title="Lupa: agranda o achica la pantalla" style="display:flex;align-items:center;gap:4px;font-size:16px;">🔍</span>
+      <button onClick="{{ h.zoomOut }}" title="Achicar pantalla" aria-label="Achicar pantalla"  style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:transparent;color:#fff;cursor:pointer;font-family:inherit;" style-hover="background:rgba(255,255,255,.12);"><i class="ph ph-minus" style="font-size:18px;"></i></button>
+      <button onClick="{{ h.zoomReset }}" title="Tamaño normal" aria-label="Tamaño normal" style="flex:none;min-width:42px;height:32px;border:none;border-radius:999px;background:transparent;color:#fff;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;" style-hover="background:rgba(255,255,255,.12);">{{ zoomLabel }}</button>
+      <button onClick="{{ h.zoomIn }}" title="Agrandar pantalla" aria-label="Agrandar pantalla"  style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:transparent;color:#fff;cursor:pointer;font-family:inherit;" style-hover="background:rgba(255,255,255,.12);"><i class="ph ph-plus" style="font-size:18px;"></i></button>
+      <span style="width:1px;height:20px;background:rgba(255,255,255,.25);margin:0 2px;"></span>
+      
+      <button onClick="{{ h.toggleMute }}" title="{{ muteTitle }}" aria-label="{{ muteTitle }}" aria-pressed="{{ muted }}" style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:transparent;color:#fff;cursor:pointer;" style-hover="background:rgba(255,255,255,.12);"><i class="{{ muteIcon }}" style="font-size:18px;"></i></button>
+      <button onClick="{{ h.toggleFull }}" title="{{ fullTitle }}" aria-label="{{ fullTitle }}" style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:transparent;color:#fff;cursor:pointer;" style-hover="background:rgba(255,255,255,.12);"><i class="{{ fullIcon }}" style="font-size:18px;"></i></button>
+    </div>
+    <button data-tour="ayuda" title="Si te bloqueas" onClick="{{ h.toggleHelp }}" style="flex:none;white-space:nowrap;display:flex;align-items:center;gap:8px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:7px 12px;font-family:inherit;font-size:13px;cursor:pointer;" style-hover="background:rgba(255,255,255,.08);">
+      <i class="ph ph-lifebuoy" style="font-size:18px;"></i>Ayuda
+    </button>
+    <button onClick="{{ h.startTour }}" title="Ver recorrido guiado" aria-label="Ver recorrido guiado" style="flex:none;display:flex;align-items:center;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:7px 10px;font-family:inherit;cursor:pointer;" style-hover="background:rgba(255,255,255,.08);">
+      <i class="ph ph-compass" style="font-size:18px;"></i>
+    </button>
+  </header>
+
+  <nav data-tour="menu" ref="{{ navRef }}" style="background:#fff;border-bottom:1px solid var(--sky-500);display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:4px;padding:8px 12px;overflow:hidden;">
+    <sc-for list="{{ menu }}" as="m" hint-placeholder-count="8">
+      <button onClick="{{ m.go }}" title="{{ m.full }}" aria-label="{{ m.full }}" style="flex:0 1 auto;min-width:0;display:flex;align-items:center;gap:6px;padding:4px {{ m.pr }} 4px 4px;border-radius:999px;border:1px solid {{ m.pbd }};background:{{ m.pbg }};color:var(--primary-900);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;" style-hover="border-color:var(--blue-500);">
+        <span style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:{{ m.nbg }};color:{{ m.nfg }};">{{ m.num }}</span><span style="overflow:hidden;text-overflow:ellipsis;">{{ m.name }}</span><sc-if value="{{ m.showTime }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;color:var(--neutral-600);">{{ m.time }}</span></sc-if>
+      </button>
+    </sc-for>
+  </nav>
+
+  <div style="display:grid;grid-template-rows:minmax(0,1fr) auto;min-height:0;">
+    <main ref="{{ mainRef }}" style="overflow-y:auto;padding:28px clamp(20px,4vw,48px) 56px;">
+      <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:26px;">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--primary-900);background:var(--blue-500);padding:7px 16px;border-radius:999px;transform:rotate(-2deg);">{{ over }}</span>
+          <sc-for list="{{ curItems }}" as="it" hint-placeholder-count="2">
+            <button onClick="{{ it.go }}" style="display:flex;align-items:center;gap:8px;padding:6px 12px;border:none;border-radius:999px;background:{{ it.bg }};color:var(--primary-900);font-family:inherit;font-size:13px;font-weight:{{ it.fw }};cursor:pointer;" style-hover="background:#fff;">
+              <span style="width:8px;height:8px;border-radius:50%;background:{{ it.dot }};flex:none;"></span>{{ it.t }}
+            </button>
+          </sc-for>
+        </div>
+
+        <!-- INICIO -->
+        <sc-if value="{{ is.inicio }}" hint-placeholder-val="{{ true }}">
+          <div style="background:var(--blue-500);color:var(--primary-900);border-radius:22px;padding:20px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;"><span style="width:56px;height:56px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;">🎓</span><div style="display:flex;flex-direction:column;gap:4px;flex:1 1 280px;"><strong style="font-size:17px;">Antes de empezar: entra a Campus CTC</strong><span style="font-size:15px;line-height:1.5;">Abre Campus CTC y responde el cuestionario indicado por tu profe. Cuando termines, vuelve aquí y empieza la misión.</span></div></div>
+          <div onMouseMove="{{ h.tilt }}" onMouseLeave="{{ h.untilt }}" style="background:var(--primary-900);color:#fff;border-radius:24px;padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:48px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:24px;">
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4vw,56px);line-height:1.05;letter-spacing:-.02em;margin:0;">Crea la idea y <span style="color:var(--sky-500);">personalidad</span> de tu chatbot</h1>
+              <p style="font-size:18px;line-height:1.55;margin:0;color:#fff;max-width:520px;text-wrap:pretty;">Hoy decides de qué trata tu chatbot, para quién es y cómo habla. Al final tendrás tu Ficha del chatbot lista para tu Bitácora.</p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:14px;">
+                <span style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);padding:7px 14px;border-radius:999px;"><i class="ph ph-clock" style="font-size:18px;color:var(--sky-500);"></i>90 minutos</span>
+                <span style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);padding:7px 14px;border-radius:999px;"><i class="ph ph-path" style="font-size:18px;color:var(--sky-500);"></i>7 pasos</span>
+                <span style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);padding:7px 14px;border-radius:999px;"><i class="ph ph-trophy" style="font-size:18px;color:var(--sky-500);"></i>Desbloqueas el Nivel 1</span>
+              </div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" size="lg" onClick="{{ h.next }}" hint-size="200px,52px">Empezar la misión 🚀</x-import>
+                <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" size="lg" variant="inverse" onClick="{{ h.startTour }}" hint-size="200px,52px">Ver recorrido 🧭</x-import>
+              </div>
+            </div>
+            <div style="perspective:1000px;height:420px;display:flex;align-items:center;justify-content:center;">
+              <div style="position:relative;width:min(340px,80%);height:380px;transform-style:preserve-3d;transform:{{ heroTf }};transition:transform 200ms ease-out;">
+                <div style="position:absolute;width:150px;height:150px;left:-56px;bottom:-46px;transform:translateZ(60px);z-index:2;"><image-slot id="img-rai" src="assets/img/img-rai.png" shape="circle" placeholder="Rai" style="width:100%;height:100%;"></image-slot></div>
+                <div style="position:absolute;inset:0;transform:translate3d(36px,-28px,-80px);background:var(--blue-500);border-radius:24px;"></div>
+                <div style="position:absolute;inset:0;transform:translate3d(-30px,30px,-40px);background:var(--sky-500);border-radius:24px;"></div>
+                <div style="position:absolute;inset:0;background:#fff;border-radius:24px;color:var(--neutral-900);display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-lg);">
+                  <div style="display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border-subtle);">
+                    <span style="width:34px;height:34px;border-radius:50%;background:var(--primary-900);color:var(--sky-500);display:flex;align-items:center;justify-content:center;font-weight:700;">R</span>
+                    <div style="display:flex;flex-direction:column;"><strong style="font-size:14px;">Rai</strong><span style="font-size:11px;color:var(--neutral-600);">Asistente de IA · Huertos en casa</span></div>
+                  </div>
+                  <div style="flex:1;padding:16px;display:flex;flex-direction:column;gap:10px;font-size:13px;line-height:1.45;background:var(--sky-100);">
+                    <div style="align-self:flex-start;max-width:82%;background:#fff;padding:10px 12px;border-radius:14px 14px 14px 4px;">¡Hola! Soy Rai, un chatbot de IA. Te ayudo a tener tu primer huerto en casa. ¿Cuánto espacio tienes?</div>
+                    <div style="align-self:flex-end;max-width:70%;background:var(--primary-900);color:#fff;padding:10px 12px;border-radius:14px 14px 4px 14px;">Solo una ventana en mi cuarto</div>
+                    <div style="align-self:flex-start;max-width:82%;background:#fff;padding:10px 12px;border-radius:14px 14px 14px 4px;">¡Perfecto para empezar! 1) Elige albahaca o menta. 2) Usa una maceta con agujeros. 3) Riega cuando la tierra esté seca. ¿Cuál te gusta más?</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;">
+            <div style="background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px;">
+              <span style="width:48px;height:48px;border-radius:50%;background:var(--sky-500);display:flex;align-items:center;justify-content:center;"><i class="ph ph-backpack" style="font-size:24px;color:var(--primary-900);"></i></span>
+              <strong style="font-size:16px;">🎒 Ten a mano</strong>
+              <span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">Tu dispositivo, tu Bitácora y una cuenta gratis de ChatGPT o Gemini con tu correo personal. Más adelante construirás tu chatbot completo en Claude.</span>
+            </div>
+            <div style="background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px;">
+              <span style="width:48px;height:48px;border-radius:50%;background:var(--blue-500);display:flex;align-items:center;justify-content:center;"><i class="ph ph-notebook" style="font-size:24px;color:var(--primary-900);"></i></span>
+              <strong style="font-size:16px;">📒 Tu Bitácora ya viene armada</strong>
+              <span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">Tiene las entradas listas. Hoy solo completas una, al final. Si quieres, úsala también para tus notas.</span>
+            </div>
+            <div style="background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px;">
+              <span style="width:48px;height:48px;border-radius:50%;background:var(--sky-500);display:flex;align-items:center;justify-content:center;"><i class="ph ph-person-simple-run" style="font-size:24px;color:var(--primary-900);"></i></span>
+              <strong style="font-size:16px;">🏃 ¿Vas a tu ritmo o faltaste?</strong>
+              <span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">Todo está aquí. Si vas con poco tiempo, haz al menos lo marcado como BASE.</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- JUEGO -->
+        <sc-if value="{{ is.juego }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);">🔥 Calentamiento</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">¿Humano o chatbot?</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Alguien preguntó en un foro: <strong style="color:var(--sky-500);">«¿Qué me recomiendas para entrenar en casa?»</strong> Llegaron 4 respuestas. ¿Quién escribió cada una?</p>
+            </div>
+            <div style="height:220px;"><image-slot id="img-juego" src="assets/img/img-juego.png" shape="rounded" radius="22" placeholder="Chat con burbujas: una persona y un robot" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px;">
+            <sc-for list="{{ game }}" as="g" hint-placeholder-count="4">
+              <div style="background:#fff;border:2px solid var(--sky-500);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:16px;transition:transform 200ms ease-out;" style-hover="transform:translateY(-3px);">
+                <div style="display:flex;gap:12px;align-items:flex-start;">
+                  <span style="flex:none;width:40px;height:40px;border-radius:50%;background:var(--blue-500);color:var(--primary-900);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;">{{ g.id }}</span>
+                  <p style="margin:0;font-size:16px;line-height:1.55;">{{ g.txt }}</p>
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <button onClick="{{ g.hBtn.on }}" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:999px;border:2px solid {{ g.hBtn.bd }};background:{{ g.hBtn.bg }};color:var(--primary-900);font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;"><i class="ph ph-user" style="font-size:18px;"></i>Humano</button>
+                  <button onClick="{{ g.cBtn.on }}" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:999px;border:2px solid {{ g.cBtn.bd }};background:{{ g.cBtn.bg }};color:var(--primary-900);font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;"><i class="ph ph-robot" style="font-size:18px;"></i>Chatbot</button>
+                </div>
+                <sc-if value="{{ g.answered }}" hint-placeholder-val="{{ false }}">
+                  <div style="background:{{ g.rbg }};border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.5;display:flex;flex-direction:column;gap:4px;">
+                    <strong>{{ g.res }}</strong>
+                    <span>{{ g.why }}</span>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ gameDone }}" hint-placeholder-val="{{ false }}">
+            <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:28px 32px;display:flex;flex-wrap:wrap;gap:28px;align-items:center;">
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <span style="font-family:var(--font-emotional);font-size:56px;line-height:1;color:var(--sky-500);">{{ gameScore }}/4</span>
+                <span style="font-size:13px;">aciertos</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;flex:1 1 320px;">
+                <strong style="font-size:18px;">👀 ¿Te diste cuenta?</strong>
+                <span style="font-size:16px;line-height:1.55;">La respuesta B era un chatbot y sonaba muy natural, pero no lo decía. La C sí se presentó como asistente y marcó un límite. Por eso tu chatbot siempre dirá que es una IA desde su primer mensaje.</span>
+              </div>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <!-- USOS -->
+        <sc-if value="{{ is.usos }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--blue-500);color:var(--primary-900);border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:#fff;color:var(--primary-900);transform:rotate(-3deg);">⚡ Dato rápido</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">¿Dónde viven los chatbots?</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Un chatbot es un programa que conversa contigo y responde según las instrucciones que alguien le dio.</p>
+            </div>
+            <div style="height:220px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:88px;line-height:1;">💬</span></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;">
+            <div style="background:var(--sky-500);color:var(--primary-900);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:12px;transform:rotate(-1.5deg);transition:transform 200ms ease-out;" style-hover="transform:rotate(0deg) scale(1.02);">
+              <div style="height:150px;margin:-8px -8px 4px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:64px;line-height:1;">🛍️</div></div>
+              <strong style="font-size:20px;">🛍️ Atención al cliente</strong>
+              <span style="font-size:15px;line-height:1.5;">Responde horarios, precios o pedidos, a cualquier hora.</span>
+            </div>
+            <div style="background:var(--blue-500);color:var(--primary-900);border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:12px;transform:rotate(1deg);transition:transform 200ms ease-out;" style-hover="transform:rotate(0deg) scale(1.02);">
+              <div style="height:150px;margin:-8px -8px 4px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:64px;line-height:1;">📚</div></div>
+              <strong style="font-size:20px;">📚 Tutorías</strong>
+              <span style="font-size:15px;line-height:1.5;">Te explica paso a paso y te pregunta si entendiste.</span>
+            </div>
+            <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:12px;transform:rotate(-1deg);transition:transform 200ms ease-out;" style-hover="transform:rotate(0deg) scale(1.02);">
+              <div style="height:150px;margin:-8px -8px 4px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:64px;line-height:1;">🎮</div></div>
+              <strong style="font-size:20px;">🎮 Entretenimiento</strong>
+              <span style="font-size:15px;line-height:1.5;">Te recomienda juegos, series o música.</span>
+            </div>
+          </div>
+          <div style="background:#fff;border-radius:22px;padding:24px 28px;display:flex;gap:16px;align-items:center;">
+            <span style="width:52px;height:52px;border-radius:50%;background:var(--sky-500);display:flex;align-items:center;justify-content:center;flex:none;"><i class="ph ph-lightbulb" style="font-size:26px;color:var(--primary-900);"></i></span>
+            <span style="font-size:17px;line-height:1.55;">Todos tienen algo en común: alguien decidió <strong>de qué hablan, para quién son y cómo suenan</strong>. Hoy esas decisiones las tomas tú.</span>
+          </div>
+        </sc-if>
+
+        <!-- LU -->
+        <sc-if value="{{ is.lu }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:32px;align-items:stretch;">
+            <div style="min-height:400px;background:var(--sky-500);">
+              <image-slot id="lu-retrato" src="assets/img/lu-retrato.png" shape="rect" placeholder="Ilustración o foto de Lu, directora creativa de Estudio Nexo" style="width:100%;height:100%;"></image-slot>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:20px;">
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(34px,4vw,44px);line-height:1.1;letter-spacing:-.02em;margin:0;color:var(--primary-900);">Llegó un encargo 📩</h1>
+                <span style="font-size:15px;color:var(--neutral-600);">Lu · Directora creativa de Estudio Nexo</span>
+              </div>
+              <div style="background:#fff;border-radius:24px 24px 24px 6px;padding:24px 28px;font-size:17px;line-height:1.6;display:flex;flex-direction:column;gap:12px;">
+                <span>Hola, soy Lu. En Estudio Nexo lanzamos marcas con IA y acaba de llegar un encargo: crear un chatbot que ayude a una comunidad con un tema que le apasiona, y lanzarlo en redes.</span>
+                <span>El cliente eres tú, y el tema lo eliges tú. Antes de construir nada necesito la idea: de qué trata, para quién es y cómo habla. Eso va en tu <strong>Ficha del chatbot</strong>.</span>
+              </div>
+              <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:24px 28px;display:flex;flex-direction:column;gap:14px;">
+                <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--sky-500);">🎯 Lo lograste si tu ficha cumple</span>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px 24px;font-size:15px;">
+                  <span style="display:flex;gap:8px;"><i class="ph ph-check-circle" style="color:var(--sky-500);font-size:18px;"></i>El problema está en una frase</span>
+                  <span style="display:flex;gap:8px;"><i class="ph ph-check-circle" style="color:var(--sky-500);font-size:18px;"></i>Mi público tiene edad, intereses y una necesidad</span>
+                  <span style="display:flex;gap:8px;"><i class="ph ph-check-circle" style="color:var(--sky-500);font-size:18px;"></i>El nombre es fácil de recordar</span>
+                  <span style="display:flex;gap:8px;"><i class="ph ph-check-circle" style="color:var(--sky-500);font-size:18px;"></i>Mis 3 rasgos son distintos entre sí</span>
+                  <span style="display:flex;gap:8px;"><i class="ph ph-check-circle" style="color:var(--sky-500);font-size:18px;"></i>El tono encaja con mi público</span>
+                  <span style="display:flex;gap:8px;"><i class="ph ph-check-circle" style="color:var(--sky-500);font-size:18px;"></i>Anoté qué ideas de la IA usé y qué cambié</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- KIT -->
+        <sc-if value="{{ is.kit }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--sky-500);color:var(--primary-900);border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:#fff;color:var(--primary-900);transform:rotate(-3deg);">🎯 Tu meta</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Lo que vas a construir</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">8 misiones, 1 kit: tu chatbot, su marca y su campaña. Hoy va la primera pieza.</p>
+            </div>
+            <div style="height:220px;"><image-slot id="img-kit" src="assets/img/img-kit.png" shape="rounded" radius="22" placeholder="Caja o kit abierto con piezas digitales" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;">
+            <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:6px;min-height:120px;transform:rotate(-2deg);"><span style="font-size:12px;font-weight:700;color:var(--sky-500);">S1 · HOY</span><span style="font-size:14px;line-height:1.35;">Ficha del chatbot</span></div>
+            <div style="background:#fff;border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:700;color:var(--blue-700);">S2</span><span style="font-size:14px;line-height:1.35;">Instrucciones</span></div>
+            <div style="background:#fff;border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:700;color:var(--blue-700);">S3</span><span style="font-size:14px;line-height:1.35;">Chatbot v1</span></div>
+            <div style="background:#fff;border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:700;color:var(--blue-700);">S4</span><span style="font-size:14px;line-height:1.35;">Chatbot v2 + pruebas</span></div>
+            <div style="background:#fff;border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:700;color:var(--blue-700);">S5</span><span style="font-size:14px;line-height:1.35;">Marca + avatar</span></div>
+            <div style="background:#fff;border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:700;color:var(--blue-700);">S6</span><span style="font-size:14px;line-height:1.35;">Publicaciones</span></div>
+            <div style="background:#fff;border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:700;color:var(--blue-700);">S7</span><span style="font-size:14px;line-height:1.35;">Campaña + video</span></div>
+            <div style="background:#fff;border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:6px;"><span style="font-size:12px;font-weight:700;color:var(--blue-700);">S8</span><span style="font-size:14px;line-height:1.35;">Lanzamiento</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;">
+            <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+              <strong style="font-size:18px;color:var(--primary-900);">🏅 Sube de nivel en la agencia</strong>
+              <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;">
+                <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;border-radius:999px;background:var(--blue-500);"><i class="ph ph-trophy" style="font-size:18px;"></i><strong style="flex:1;">Nivel 1 · Estratega de producto junior</strong><span style="font-size:12px;font-weight:700;">HOY</span></div>
+                <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;"><i class="ph ph-lock-simple" style="font-size:18px;color:var(--neutral-500);"></i><span style="flex:1;">Nivel 2 · Diseñador/a conversacional</span></div>
+                <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;"><i class="ph ph-lock-simple" style="font-size:18px;color:var(--neutral-500);"></i><span style="flex:1;">Nivel 3 · Tester de IA</span></div>
+                <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;"><i class="ph ph-lock-simple" style="font-size:18px;color:var(--neutral-500);"></i><span style="flex:1;">Nivel 4 · Diseñador/a de marca y creador/a de contenido</span></div>
+                <div style="display:flex;gap:12px;align-items:center;padding:10px 14px;"><i class="ph ph-lock-simple" style="font-size:18px;color:var(--neutral-500);"></i><span style="flex:1;">Nivel 5 · Director/a de lanzamiento digital</span></div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div style="background:var(--sky-500);color:var(--primary-900);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px;">
+                <strong style="font-size:18px;">🎚️ Cada reto tiene 3 niveles de dificultad</strong>
+                <span style="font-size:15px;line-height:1.5;"><strong>BASE</strong> · lo que todos hacen para avanzar.</span>
+                <span style="font-size:15px;line-height:1.5;"><strong>PRO</strong> · para que tu chatbot quede mejor.</span>
+                <span style="font-size:15px;line-height:1.5;"><strong>PLUS</strong> · si terminas antes y quieres más.</span>
+              </div>
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.5;">
+                <strong style="font-size:18px;color:var(--primary-900);">📏 Reglas simples</strong>
+                <span>No hay ranking: cada quien va a su ritmo.</span>
+                <span>Si algo te sale «Aún no», lo corriges y listo. Equivocarse es parte del juego.</span>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- GALERIA -->
+        <sc-if value="{{ is.galeria }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);">✨ Inspiración</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">5 chatbots, 5 mundos</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Tu chatbot puede ser de lo que tú quieras. Gira la galería y mira qué resuelve cada uno.</p>
+            </div>
+            <div style="height:220px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:88px;line-height:1;">🌍</span></div></div>
+          </div>
+          <div style="background:#fff;border-radius:24px;padding:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px;align-items:center;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+              <div style="perspective:1100px;width:100%;height:340px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                <div style="position:relative;width:220px;height:280px;transform-style:preserve-3d;transform:{{ ringTf }};transition:transform 450ms ease-out;">
+                  <sc-for list="{{ gal }}" as="c" hint-placeholder-count="5">
+                    <button onClick="{{ c.go }}" style="position:absolute;inset:0;transform:{{ c.tf }};opacity:{{ c.op }};transition:opacity 300ms ease-out;background:{{ c.bg }};color:{{ c.fg }};border:none;border-radius:24px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;font-family:inherit;cursor:pointer;backface-visibility:hidden;">
+                      <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;">{{ c.tema }}</span>
+                      <span style="font-family:var(--font-emotional);font-size:40px;line-height:1;">{{ c.n }}</span>
+                      <div style="height:120px;pointer-events:none;"><image-slot id="{{ c.imgId }}" src="assets/img/{{ c.imgId }}.png" shape="rounded" radius="16" placeholder="{{ c.n }}" style="width:100%;height:100%;"></image-slot></div>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:flex;gap:12px;align-items:center;">
+                <button onClick="{{ h.galPrev }}" aria-label="Anterior" style="width:48px;height:48px;border-radius:50%;border:none;background:var(--blue-500);cursor:pointer;display:flex;align-items:center;justify-content:center;"><i class="ph ph-arrow-left" style="font-size:20px;color:var(--primary-900);"></i></button>
+                <span style="font-size:14px;color:var(--neutral-600);min-width:80px;text-align:center;">{{ galPos }}</span>
+                <button onClick="{{ h.galNext }}" aria-label="Siguiente" style="width:48px;height:48px;border-radius:50%;border:none;background:var(--blue-500);cursor:pointer;display:flex;align-items:center;justify-content:center;"><i class="ph ph-arrow-right" style="font-size:20px;color:var(--primary-900);"></i></button>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div style="display:flex;align-items:baseline;gap:12px;">
+                <span style="font-family:var(--font-emotional);font-size:40px;line-height:1;color:var(--primary-900);">{{ gc.n }}</span>
+                <span style="font-size:14px;color:var(--neutral-600);">{{ gc.tema }}</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:12px;font-size:15px;line-height:1.5;">
+                <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--blue-700);">Problema que resuelve</span><span>{{ gc.prob }}</span></div>
+                <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--blue-700);">Para quién</span><span>{{ gc.pub }}</span></div>
+                <div style="display:flex;flex-direction:column;gap:2px;"><span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--blue-700);">Personalidad y tono</span><span>{{ gc.tono }}</span></div>
+              </div>
+              <div style="background:var(--sky-100);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:8px;">
+                <span style="font-size:12px;color:var(--neutral-600);">Así saluda:</span>
+                <div style="background:#fff;padding:12px 14px;border-radius:14px 14px 14px 4px;font-size:14px;line-height:1.5;">{{ gc.saludo }}</div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- RAI -->
+        <sc-if value="{{ is.rai }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--blue-500);color:var(--primary-900);border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:#fff;color:var(--primary-900);transform:rotate(-3deg);">🌱 Conoce a Rai</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Rai por dentro</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Rai ayuda a jóvenes a tener un huerto en casa. Toca cada pieza de su ficha.</p>
+            </div>
+            <div style="height:220px;"><image-slot id="img-rai" src="assets/img/img-rai.png" shape="rounded" radius="22" placeholder="Rai, robot mascota con un brote de planta" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">
+            <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 240px;max-width:100%;">
+              <sc-for list="{{ raiList }}" as="r" hint-placeholder-count="7">
+                <button onClick="{{ r.on }}" style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:999px;border:2px solid {{ r.bd }};background:{{ r.bg }};color:var(--primary-900);font-family:inherit;font-size:15px;font-weight:700;text-align:left;cursor:pointer;">
+                  <span style="width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:#fff;">{{ r.n }}</span>{{ r.k }}
+                </button>
+              </sc-for>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;flex:999 1 520px;min-width:0;">
+              <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:28px;display:flex;flex-direction:column;gap:18px;">
+                <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--sky-500);">{{ raiCur.k }}</span>
+                <span style="font-family:var(--font-emotional);font-size:28px;line-height:1.25;">{{ raiCur.v }}</span>
+                <div style="display:flex;flex-direction:column;gap:4px;border-top:1px solid rgba(255,255,255,.2);padding-top:16px;">
+                  <span style="font-size:13px;color:var(--sky-500);font-weight:700;">La pregunta que responde</span>
+                  <span style="font-size:15px;line-height:1.5;">{{ raiCur.q }}</span>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:16px;">
+                <div style="background:var(--blue-100);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:6px;">
+                  <span style="display:flex;gap:8px;align-items:center;font-size:14px;font-weight:700;color:var(--primary-900);"><i class="ph ph-warning-circle" style="font-size:18px;"></i>Ojo con esto</span>
+                  <span style="font-size:15px;line-height:1.5;">{{ raiCur.err }}</span>
+                </div>
+                <div style="background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:6px;">
+                  <span style="display:flex;gap:8px;align-items:center;font-size:14px;font-weight:700;color:var(--primary-900);"><i class="ph ph-check-circle" style="font-size:18px;color:var(--blue-700);"></i>Está bien si…</span>
+                  <span style="font-size:15px;line-height:1.5;">{{ raiCur.ok }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- REGLA -->
+        <sc-if value="{{ is.regla }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--sky-500);color:var(--primary-900);border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:#fff;color:var(--primary-900);transform:rotate(-3deg);">⭐ Regla de oro</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">La IA propone, tú decides</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Todo lo que hagas con IA pasa por 3 pasos antes de entrar a tu kit.</p>
+            </div>
+            <div style="height:220px;"><image-slot id="img-regla" src="assets/img/img-regla.png" shape="rounded" radius="22" placeholder="Mano humana y mano robot eligiendo una idea" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;">
+            <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:10px;">
+              <span style="width:52px;height:52px;border-radius:50%;background:var(--sky-500);display:flex;align-items:center;justify-content:center;font-family:var(--font-emotional);font-size:28px;color:var(--primary-900);">1</span>
+              <strong style="font-size:18px;">👀 Revisar</strong>
+              <span style="font-size:15px;line-height:1.5;color:var(--neutral-700);">¿Es verdad? ¿Suena a mi idea? ¿Es respetuoso?</span>
+            </div>
+            <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:10px;">
+              <span style="width:52px;height:52px;border-radius:50%;background:var(--blue-500);display:flex;align-items:center;justify-content:center;font-family:var(--font-emotional);font-size:28px;color:var(--primary-900);">2</span>
+              <strong style="font-size:18px;">✏️ Editar</strong>
+              <span style="font-size:15px;line-height:1.5;color:var(--neutral-700);">Cambia al menos una parte con tu propio criterio.</span>
+            </div>
+            <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:10px;">
+              <span style="width:52px;height:52px;border-radius:50%;background:var(--primary-900);display:flex;align-items:center;justify-content:center;font-family:var(--font-emotional);font-size:28px;color:var(--sky-500);">3</span>
+              <strong style="font-size:18px;">📢 Declarar</strong>
+              <span style="font-size:15px;line-height:1.5;color:var(--neutral-700);">Di qué herramienta usaste y qué cambiaste. Lo pondrás en una línea de tu ficha.</span>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;">
+            <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:26px;display:flex;flex-direction:column;gap:12px;">
+              <span style="display:flex;gap:10px;align-items:center;font-size:18px;font-weight:700;"><i class="ph ph-shield-check" style="font-size:26px;color:var(--sky-500);"></i>Tu privacidad primero 🔒</span>
+              <span style="font-size:15px;line-height:1.5;">Nunca subas a ninguna herramienta:</span>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                <span style="font-size:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);">Fotos tuyas o de compañeros</span>
+                <span style="font-size:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);">Nombres completos</span>
+                <span style="font-size:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);">Tu colegio</span>
+                <span style="font-size:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);">Tu dirección</span>
+                <span style="font-size:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);">Tu teléfono</span>
+              </div>
+              <span style="font-size:15px;line-height:1.5;color:var(--sky-500);">Tu chatbot trata sobre un tema, no sobre tu vida ni la de otra persona.</span>
+            </div>
+                      </div>
+        </sc-if>
+
+        <!-- IDEAS -->
+        <sc-if value="{{ is.ideas }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);">💡 Lluvia de ideas</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">De lo que te gusta a 5 ideas</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Elige un tema y pídele ideas a ChatGPT o a Gemini.</p>
+            </div>
+            <div style="height:220px;"><image-slot id="img-ideas" src="assets/img/img-ideas.png" shape="rounded" radius="22" placeholder="Bombillas e íconos de hobbies saliendo de una cabeza" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;">
+            <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+              <span style="display:flex;gap:10px;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--blue-500);color:var(--primary-900);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;">1</span><strong style="font-size:17px;">❤️ ¿Qué te gusta?</strong></span>
+              <span style="font-size:14px;color:var(--neutral-600);">Toca un tema. ¿El tuyo no está? Cámbialo directo en el prompt.</span>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <sc-for list="{{ intChips }}" as="c" hint-placeholder-count="13">
+                  <button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+              <span style="display:flex;gap:10px;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--blue-500);color:var(--primary-900);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;">2</span><strong style="font-size:17px;">📋 Copia el prompt y pégalo en ChatGPT o Gemini</strong></span>
+              <div style="background:var(--sky-100);border-radius:14px;padding:16px;font-family:ui-monospace,Menlo,monospace;font-size:14px;line-height:1.6;color:var(--neutral-800);white-space:pre-wrap;">{{ prompt }}</div>
+              <div style="display:flex;gap:12px;align-items:center;">
+                <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" onClick="{{ h.copyPrompt }}" hint-size="160px,44px">📋 Copiar prompt</x-import>
+                <span style="font-size:14px;color:var(--blue-700);font-weight:700;">{{ copiedPrompt }}</span>
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <a href="https://chatgpt.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--primary-900);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">💬 Abrir ChatGPT<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a>
+                <a href="https://gemini.google.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--primary-900);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">✨ Abrir Gemini<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a>
+              </div>
+              <span style="font-size:13px;line-height:1.5;color:var(--neutral-600);">🔒 Entra con tu correo personal (cuenta gratis). Nunca escribas tu nombre completo, colegio, dirección ni teléfono.</span>
+            </div>
+          </div>
+          <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:20px 24px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+            <span style="width:32px;height:32px;border-radius:50%;background:var(--sky-500);color:var(--primary-900);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex:none;">3</span>
+            <span style="font-size:16px;line-height:1.5;flex:1 1 300px;">Lee las 5 ideas que te dio la IA y quédate con las 3 que más te gusten. En la siguiente pantalla aprendes a descartar.</span>
+          </div>
+                  </sc-if>
+
+        <!-- FILTRO -->
+        <sc-if value="{{ is.filtro }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--blue-500);color:var(--primary-900);border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:#fff;color:var(--primary-900);transform:rotate(-3deg);">🎮 Mini juego</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">El filtro de ideas</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">No todas las ideas sirven. ¿Estas 5 pasan el filtro o no?</p>
+            </div>
+            <div style="height:220px;"><image-slot id="img-filtro" src="assets/img/img-filtro.png" shape="rounded" radius="22" placeholder="Embudo que filtra bombillas de ideas" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;">
+            <div style="display:flex;flex-direction:column;gap:10px;flex:999 1 440px;min-width:0;">
+              <sc-for list="{{ filt }}" as="d" hint-placeholder-count="5">
+                <div style="background:#fff;border-radius:22px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;">
+                  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+                    <span style="flex:1 1 240px;font-size:16px;line-height:1.45;">{{ d.t }}</span>
+                    <button onClick="{{ d.si.on }}" style="display:flex;gap:6px;align-items:center;padding:7px 14px;border-radius:999px;border:2px solid {{ d.si.bd }};background:{{ d.si.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;">👍 Pasa</button>
+                    <button onClick="{{ d.no.on }}" style="display:flex;gap:6px;align-items:center;padding:7px 14px;border-radius:999px;border:2px solid {{ d.no.bd }};background:{{ d.no.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;">👎 No pasa</button>
+                  </div>
+                  <sc-if value="{{ d.answered }}" hint-placeholder-val="{{ false }}">
+                    <span style="font-size:14px;line-height:1.45;padding:8px 12px;border-radius:12px;background:{{ d.rbg }};">{{ d.res }}</span>
+                  </sc-if>
+                </div>
+              </sc-for>
+              <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:20px 24px;display:flex;flex-direction:column;gap:10px;">
+                <strong style="font-size:16px;color:var(--sky-500);">✅ Una idea pasa el filtro si:</strong>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                  <span style="font-size:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);">Resuelve un problema real</span>
+                  <span style="font-size:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);">Tiene un público claro</span>
+                  <span style="font-size:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);">No usa datos personales</span>
+                  <span style="font-size:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);">No copia marcas ni personajes</span>
+                  <span style="font-size:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.12);">Te entusiasma</span>
+                </div>
+              </div>
+            </div>
+            <div style="background:var(--sky-500);border-radius:24px;padding:22px;display:flex;flex-direction:column;gap:14px;flex:1 1 300px;max-width:100%;">
+              <div style="display:flex;flex-direction:column;gap:4px;">
+                <strong style="font-size:18px;color:var(--primary-900);">🎰 ¿Sin IA o sin ideas? Gira la ruleta</strong>
+                <span style="font-size:14px;line-height:1.5;color:var(--primary-900);">Combina tema, público y problema. Gira hasta que algo te guste.</span>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:8px;perspective:600px;">
+                <sc-for list="{{ reels }}" as="r" hint-placeholder-count="3">
+                  <div style="background:#fff;border-radius:14px;padding:10px 14px;display:flex;flex-direction:column;gap:2px;transform:{{ r.tf }};transition:transform 120ms ease-out;">
+                    <span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--blue-700);">{{ r.label }}</span>
+                    <span style="font-size:16px;font-weight:500;color:var(--primary-900);">{{ r.v }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <span style="font-family:var(--font-emotional);font-size:20px;line-height:1.35;color:var(--primary-900);">{{ genSentence }}</span>
+              <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="secondary" onClick="{{ h.spin }}" fullWidth="{{ true }}" hint-size="100%,44px">🎰 Girar la ruleta</x-import>
+            </div>
+          </div>
+          <div style="background:#fff;border:2px dashed var(--blue-500);border-radius:22px;padding:16px 20px;display:flex;gap:14px;align-items:center;">
+            <span style="width:48px;height:48px;border-radius:50%;background:var(--blue-500);display:flex;align-items:center;justify-content:center;flex:none;"><i class="ph ph-funnel" style="font-size:24px;color:var(--primary-900);"></i></span>
+            <div style="display:flex;flex-direction:column;gap:2px;"><strong style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-700);">Ahora con las tuyas</strong><span style="font-size:15px;line-height:1.5;">Pasa tus ideas por el filtro, en voz alta o con un compañero, y quédate con la que vas a construir.</span></div>
+          </div>
+        </sc-if>
+
+        <!-- RETO -->
+        <sc-if value="{{ isReto }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:22px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+              <div style="width:140px;height:140px;flex:none;"><image-slot id="img-rai" src="assets/img/img-rai.png" shape="circle" placeholder="Rai" style="width:100%;height:100%;"></image-slot></div>
+              <div style="display:flex;flex-direction:column;gap:8px;flex:1 1 300px;">
+                <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);">🛠️ Crea tu chatbot</span>
+                <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(32px,4vw,44px);line-height:1.05;letter-spacing:-.02em;margin:0;">{{ retoTitle }}</h1>
+                <span style="font-size:16px;line-height:1.45;">Elige opciones y mira a tu chatbot cobrar vida a la derecha.</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <sc-for list="{{ retoTabs }}" as="t" hint-placeholder-count="4">
+                <button onClick="{{ t.go }}" style="display:flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:999px;border:2px solid {{ t.bd }};background:{{ t.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;">
+                  <span style="font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:999px;background:{{ t.lbg }};color:{{ t.lfg }};">{{ t.layer }}</span>{{ t.t }}
+                </button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">
+            <div style="display:flex;flex-direction:column;gap:16px;flex:999 1 440px;min-width:0;">
+
+              <sc-if value="{{ is.r1 }}" hint-placeholder-val="{{ false }}">
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+                  <strong style="font-size:17px;color:var(--primary-900);">🗂️ ¿De qué trata?</strong>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <sc-for list="{{ temaChips }}" as="c" hint-placeholder-count="14">
+                      <button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button>
+                    </sc-for>
+                  </div>
+                  <sc-if value="{{ temaOtroShow }}" hint-placeholder-val="{{ false }}">
+                    <span style="font-size:14px;color:var(--blue-700);">Perfecto: lo escribirás en tu ficha al final. Aquí sigue eligiendo el resto.</span>
+                  </sc-if>
+                </div>
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <strong style="font-size:17px;color:var(--primary-900);">😩 ¿Qué le pasa a tu público?</strong>
+                    <span style="font-size:14px;color:var(--neutral-600);">Elige el problema que más se parece al de tu idea.</span>
+                  </div>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <sc-for list="{{ probChips }}" as="c" hint-placeholder-count="6">
+                      <button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button>
+                    </sc-for>
+                  </div>
+                  <sc-if value="{{ hasProb }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-direction:column;gap:8px;">
+                      <span style="font-family:var(--font-emotional);font-size:22px;line-height:1.35;color:var(--primary-900);">{{ probText }}</span>
+                      <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-radius:12px;background:var(--blue-100);font-size:14px;line-height:1.5;"><i class="ph ph-pencil-simple" style="font-size:18px;flex:none;"></i>Cuando lo pases a tu ficha, hazlo tuyo: agrégale un detalle concreto, como hizo Rai con «viven en espacios pequeños».</div>
+                    </div>
+                  </sc-if>
+                </div>
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+                  <strong style="font-size:17px;color:var(--primary-900);">👥 ¿Para quién es?</strong>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <span style="font-size:14px;color:var(--neutral-600);">Edad</span>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                      <sc-for list="{{ edadChips }}" as="c" hint-placeholder-count="5">
+                        <button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button>
+                      </sc-for>
+                    </div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <span style="font-size:14px;color:var(--neutral-600);">¿Qué le interesa?</span>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                      <sc-for list="{{ pubChips }}" as="c" hint-placeholder-count="6">
+                        <button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button>
+                      </sc-for>
+                    </div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:8px;">
+                    <span style="font-size:14px;color:var(--neutral-600);">¿Qué necesita?</span>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                      <sc-for list="{{ necChips }}" as="c" hint-placeholder-count="5">
+                        <button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button>
+                      </sc-for>
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ is.r2 }}" hint-placeholder-val="{{ false }}">
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:16px;">
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <strong style="font-size:17px;color:var(--primary-900);">🏷️ 3 trucos para inventar un nombre</strong>
+                    <span style="font-size:14px;color:var(--neutral-600);">Un buen nombre es corto, fácil de decir y no existe como marca o personaje.</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:10px;">
+                    <div style="background:var(--sky-100);border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:6px;">
+                      <strong style="font-size:15px;">Recorta una palabra</strong>
+                      <span style="font-size:14px;line-height:1.45;color:var(--neutral-700);">Raíz → <strong>Rai</strong></span>
+                    </div>
+                    <div style="background:var(--sky-100);border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:6px;">
+                      <strong style="font-size:15px;">Usa una acción o un sonido</strong>
+                      <span style="font-size:14px;line-height:1.45;color:var(--neutral-700);">Brillar → <strong>Glow</strong> · Volver a jugar → <strong>Respawn</strong></span>
+                    </div>
+                    <div style="background:var(--sky-100);border-radius:22px;padding:16px;display:flex;flex-direction:column;gap:6px;">
+                      <strong style="font-size:15px;">Junta dos palabras cortas</strong>
+                      <span style="font-size:14px;line-height:1.45;color:var(--neutral-700);"><strong>Mesa Lista</strong> · <strong>Coach Gol</strong></span>
+                    </div>
+                  </div>
+                  <div style="display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:var(--blue-100);font-size:14px;line-height:1.5;"><i class="ph ph-microphone" style="font-size:18px;flex:none;"></i>Prueba: di el nombre en voz alta 3 veces. Si te trabas, acórtalo. Ese nombre va en tu ficha.</div>
+                </div>
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <strong style="font-size:17px;color:var(--primary-900);">🎯 ¿Qué hace por quien lo usa?</strong>
+                    <span style="font-size:14px;color:var(--neutral-600);">Elige uno. Un chatbot que hace de todo no hace nada bien.</span>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;">
+                    <sc-for list="{{ propChips }}" as="c" hint-placeholder-count="5">
+                      <button onClick="{{ c.on }}" style="display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:18px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;text-align:left;cursor:pointer;">
+                        <strong style="font-size:15px;">{{ c.label }}</strong>
+                        <span style="font-size:13px;line-height:1.4;">{{ c.desc }}</span>
+                      </button>
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ is.r3 }}" hint-placeholder-val="{{ false }}">
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <strong style="font-size:17px;color:var(--primary-900);">🎭 Elige 3 rasgos ({{ rasgoCount }}/3)</strong>
+                    <span style="font-size:14px;color:var(--neutral-600);">Rai es curioso, paciente y divertido: tres rasgos que no se repiten.</span>
+                  </div>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <sc-for list="{{ rasgoChips }}" as="c" hint-placeholder-count="14">
+                      <button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);opacity:{{ c.op }};font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button>
+                    </sc-for>
+                  </div>
+                  <sc-if value="{{ rasgoFb.show }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-radius:12px;background:{{ rasgoFb.bg }};font-size:14px;line-height:1.5;"><i class="{{ rasgoFb.icon }}" style="font-size:18px;flex:none;"></i>{{ rasgoFb.txt }}</div>
+                  </sc-if>
+                </div>
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:18px;">
+                  <div style="display:flex;flex-direction:column;gap:4px;">
+                    <strong style="font-size:17px;color:var(--primary-900);">🎙️ ¿Cómo suena?</strong>
+                    <span style="font-size:14px;color:var(--neutral-600);">Mueve los controles y mira cómo cambia el saludo en la vista previa.</span>
+                  </div>
+                  <sc-for list="{{ sliders }}" as="sl" hint-placeholder-count="3">
+                    <div style="display:grid;grid-template-columns:90px minmax(0,1fr) 90px;gap:14px;align-items:center;">
+                      <span style="font-size:14px;text-align:right;color:var(--neutral-700);">{{ sl.l }}</span>
+                      <input type="range" min="1" max="5" step="1" value="{{ sl.v }}" onChange="{{ sl.on }}" style="width:100%;accent-color:#5691FF;">
+                      <span style="font-size:14px;color:var(--neutral-700);">{{ sl.r }}</span>
+                    </div>
+                  </sc-for>
+                  <div style="display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-radius:12px;background:{{ tonoFb.bg }};font-size:14px;line-height:1.5;"><i class="{{ tonoFb.icon }}" style="font-size:18px;flex:none;"></i>{{ tonoFb.txt }}</div>
+                </div>
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:10px;">
+                  <strong style="font-size:17px;color:var(--primary-900);">💬 ¿De qué le encanta hablar?</strong>
+                  <span style="font-size:15px;line-height:1.5;">Piensa en 2 o 3 subtemas que tu chatbot domina. Rai: <strong>semillas, plantas aromáticas y macetas recicladas</strong>. Van en tu ficha.</span>
+                </div>
+              </sc-if>
+
+              <sc-if value="{{ is.r4 }}" hint-placeholder-val="{{ false }}">
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);">PRO</span>
+                    <strong style="font-size:17px;color:var(--primary-900);">👋 3 saludos, un mismo chatbot</strong>
+                  </div>
+                  <span style="font-size:15px;line-height:1.5;">Para tu ficha, piensa cómo saludaría tu chatbot en estas tres situaciones. Debe sonar igual en las tres y decir que es una IA. Así lo hizo Rai:</span>
+                  <div style="display:flex;flex-direction:column;gap:10px;">
+                    <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:13px;font-weight:700;color:var(--blue-700);">Alguien llega por primera vez</span><span style="align-self:flex-start;background:var(--sky-100);padding:10px 14px;border-radius:14px 14px 14px 4px;font-size:15px;">¡Hola! Soy Rai, un chatbot de IA. ¿Empezamos tu primer huerto?</span></div>
+                    <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:13px;font-weight:700;color:var(--blue-700);">Alguien vuelve otro día</span><span style="align-self:flex-start;background:var(--sky-100);padding:10px 14px;border-radius:14px 14px 14px 4px;font-size:15px;">¡Volviste! Soy Rai, tu asistente de IA. ¿Cómo va esa albahaca?</span></div>
+                    <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:13px;font-weight:700;color:var(--blue-700);">Alguien tiene prisa</span><span style="align-self:flex-start;background:var(--sky-100);padding:10px 14px;border-radius:14px 14px 14px 4px;font-size:15px;">Hola, soy Rai (IA). Dime tu duda y voy al grano.</span></div>
+                  </div>
+                </div>
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:12px;">
+                  <div style="display:flex;gap:10px;align-items:center;">
+                    <span style="font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--primary-900);color:var(--sky-500);">PLUS</span>
+                    <strong style="font-size:17px;color:var(--primary-900);">💥 Su frase característica</strong>
+                  </div>
+                  <span style="font-size:15px;line-height:1.5;">Una frase corta que tu chatbot repite y la gente recuerda.</span>
+                  <span style="font-family:var(--font-emotional);font-size:24px;line-height:1.3;color:var(--primary-900);">«¡Todo gran huerto empieza con una semilla!»</span>
+                </div>
+              </sc-if>
+            </div>
+
+            <aside style="position:sticky;top:0;display:flex;flex-direction:column;gap:14px;flex:1 1 300px;max-width:100%;">
+              <div style="background:#fff;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-sm);">
+                <div style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--primary-900);color:#fff;">
+                  <span style="width:38px;height:38px;border-radius:50%;background:var(--blue-500);color:var(--primary-900);display:flex;align-items:center;justify-content:center;"><i class="ph ph-robot" style="font-size:20px;"></i></span>
+                  <div style="display:flex;flex-direction:column;min-width:0;"><strong style="font-size:15px;">Tu chatbot</strong><span style="font-size:11px;color:var(--sky-500);">Asistente de IA · {{ pv.tema }}</span></div>
+                </div>
+                <div style="padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--sky-100);font-size:14px;line-height:1.45;min-height:200px;">
+                  <div style="align-self:flex-start;max-width:90%;background:#fff;padding:10px 12px;border-radius:14px 14px 14px 4px;">{{ pv.greet }}</div>
+                  <div style="align-self:flex-end;max-width:75%;background:var(--primary-900);color:#fff;padding:10px 12px;border-radius:14px 14px 4px 14px;">¿Por dónde empiezo?</div>
+                  <div style="align-self:flex-start;max-width:90%;background:var(--blue-100);padding:10px 12px;border-radius:14px 14px 14px 4px;font-size:13px;color:var(--primary-900);">{{ pv.style }}</div>
+                </div>
+              </div>
+              <div style="background:#fff;border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:8px;">
+                <strong style="font-size:14px;color:var(--primary-900);">🧩 Las 7 piezas de tu ficha</strong>
+                <sc-for list="{{ pv.fields }}" as="fd" hint-placeholder-count="7">
+                  <button onClick="{{ fd.go }}" style="display:flex;gap:8px;align-items:center;font-size:14px;color:var(--neutral-800);background:transparent;border:none;padding:2px 0;font-family:inherit;cursor:pointer;text-align:left;"><i class="{{ fd.icon }}" style="font-size:18px;color:{{ fd.c }};"></i><span style="flex:1;">{{ fd.t }}</span><span style="font-size:12px;color:var(--neutral-600);">{{ fd.note }}</span></button>
+                </sc-for>
+              </div>
+            </aside>
+          </div>
+        </sc-if>
+
+        <!-- CHECK -->
+        <sc-if value="{{ is.check }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--sky-500);color:var(--primary-900);border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:#fff;color:var(--primary-900);transform:rotate(-3deg);">✅ Casi listo</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Revisa y entrega</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Revisa cada punto con honestidad antes de pasar tu ficha a la Bitácora.</p>
+            </div>
+            <div style="height:220px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:88px;line-height:1;">📝</span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <sc-for list="{{ checks }}" as="c" hint-placeholder-count="6">
+              <div style="background:#fff;border-radius:22px;padding:16px 20px;display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+                  <span style="width:36px;height:36px;border-radius:50%;background:var(--sky-500);display:flex;align-items:center;justify-content:center;font-family:var(--font-emotional);font-size:20px;color:var(--primary-900);flex:none;">{{ c.n }}</span>
+                  <strong style="flex:1 1 240px;font-size:16px;">{{ c.t }}</strong>
+                  <div style="display:flex;gap:6px;">
+                    <sc-for list="{{ c.btns }}" as="b" hint-placeholder-count="3">
+                      <button onClick="{{ b.on }}" style="padding:8px 14px;border-radius:999px;border:2px solid {{ b.bd }};background:{{ b.bg }};color:{{ b.fg }};font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;">{{ b.label }}</button>
+                    </sc-for>
+                  </div>
+                </div>
+                <sc-if value="{{ c.showTip }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-left:50px;display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:12px;background:var(--blue-100);font-size:14px;line-height:1.5;flex-wrap:wrap;">
+                    <span style="flex:1 1 240px;">{{ c.tip }}</span>
+                    <button onClick="{{ c.fix }}" style="padding:6px 12px;border-radius:999px;border:2px solid var(--primary-900);background:#fff;color:var(--primary-900);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">Ver ayuda</button>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ allSi }}" hint-placeholder-val="{{ false }}">
+            <div style="background:var(--blue-500);color:var(--primary-900);border-radius:22px;padding:20px 24px;display:flex;gap:14px;align-items:center;">
+              <i class="ph ph-confetti" style="font-size:30px;"></i>
+              <span style="font-size:17px;font-weight:500;">¡Todo en «Sí»! 🎉 Tu ficha está lista para la Bitácora.</span>
+            </div>
+          </sc-if>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;align-items:start;">
+            <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px;">
+              <span style="display:flex;gap:10px;align-items:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--sky-500);"><i class="ph ph-flag-banner" style="font-size:20px;"></i>Hito 1 · Pásalo a tu Bitácora</span>
+              <div style="display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.5;">
+                <span style="display:flex;gap:10px;"><strong style="color:var(--sky-500);">1</strong>Abre tu Bitácora en Google Docs.</span>
+                <span style="display:flex;gap:10px;"><strong style="color:var(--sky-500);">2</strong>Busca la entrada «Misión 1 · Ficha del chatbot».</span>
+                <span style="display:flex;gap:10px;"><strong style="color:var(--sky-500);">3</strong>Completa las 7 piezas.</span>
+                <span style="display:flex;gap:10px;"><strong style="color:var(--sky-500);">4</strong>Agrega una línea sobre la IA: qué herramienta usaste, qué tomaste y qué cambiaste. ¿No usaste IA? Dilo también.</span>
+              </div>
+            </div>
+            <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:12px;">
+              <strong style="font-size:16px;color:var(--primary-900);">🧩 Las 7 piezas de tu ficha</strong>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;">
+                <span style="font-size:14px;padding:6px 12px;border-radius:999px;background:var(--sky-100);">Problema</span>
+                <span style="font-size:14px;padding:6px 12px;border-radius:999px;background:var(--sky-100);">Público</span>
+                <span style="font-size:14px;padding:6px 12px;border-radius:999px;background:var(--sky-100);">Nombre</span>
+                <span style="font-size:14px;padding:6px 12px;border-radius:999px;background:var(--sky-100);">Propósito</span>
+                <span style="font-size:14px;padding:6px 12px;border-radius:999px;background:var(--sky-100);">Personalidad</span>
+                <span style="font-size:14px;padding:6px 12px;border-radius:999px;background:var(--sky-100);">Intereses</span>
+                <span style="font-size:14px;padding:6px 12px;border-radius:999px;background:var(--sky-100);">Tono</span>
+              </div>
+              <span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">La entrada ya tiene un espacio para cada pieza: solo complétalos.</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- QUIZ -->
+        <sc-if value="{{ is.quiz }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);">🏆 Reto final</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">¿Lo dominas?</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">5 situaciones rápidas. No es una nota: es para ti.</p>
+            </div>
+            <div style="height:220px;"><image-slot id="img-rai" src="assets/img/img-rai.png" shape="rounded" radius="22" placeholder="Robot pensando con signos de pregunta" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <sc-for list="{{ finalQ }}" as="q" hint-placeholder-count="5">
+              <div style="background:#fff;border-radius:22px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;gap:12px;align-items:flex-start;">
+                  <span style="flex:none;width:36px;height:36px;border-radius:50%;background:var(--blue-500);display:flex;align-items:center;justify-content:center;font-family:var(--font-emotional);font-size:20px;color:var(--primary-900);">{{ q.n }}</span>
+                  <strong style="font-size:17px;line-height:1.45;padding-top:6px;">{{ q.q }}</strong>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:8px;">
+                  <sc-for list="{{ q.opts }}" as="o" hint-placeholder-count="3">
+                    <button onClick="{{ o.on }}" style="padding:12px 16px;border-radius:18px;border:2px solid {{ o.bd }};background:{{ o.bg }};color:var(--primary-900);font-family:inherit;font-size:15px;line-height:1.4;text-align:left;cursor:pointer;">{{ o.label }}</button>
+                  </sc-for>
+                </div>
+                <sc-if value="{{ q.answered }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 14px;border-radius:12px;background:{{ q.rbg }};font-size:14px;line-height:1.5;">
+                    <span style="flex:1 1 240px;">{{ q.res }}</span>
+                    <sc-if value="{{ q.wrong }}" hint-placeholder-val="{{ false }}">
+                      <button onClick="{{ q.rep }}" style="padding:6px 12px;border-radius:999px;border:2px solid var(--primary-900);background:#fff;color:var(--primary-900);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">Repasar</button>
+                    </sc-if>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ fqDone }}" hint-placeholder-val="{{ false }}">
+            <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:24px 28px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;">
+              <span style="font-family:var(--font-emotional);font-size:56px;line-height:1;color:var(--sky-500);">{{ fqScore }}/5</span>
+              <span style="font-size:16px;line-height:1.55;flex:1 1 300px;">{{ fqMsg }}</span>
+            </div>
+          </sc-if>
+          <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;flex-direction:column;gap:4px;">
+              <strong style="font-size:18px;color:var(--primary-900);">🤔 ¿Qué te costó más hoy?</strong>
+              <span style="font-size:14px;color:var(--neutral-600);">Elige uno y recibe un truco para la próxima misión.</span>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <sc-for list="{{ metaChips }}" as="c" hint-placeholder-count="5">
+                <button onClick="{{ c.on }}" style="padding:8px 16px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button>
+              </sc-for>
+            </div>
+            <sc-if value="{{ hasMeta }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:var(--sky-500);font-size:15px;line-height:1.5;color:var(--primary-900);"><i class="ph ph-lightbulb" style="font-size:22px;flex:none;"></i>{{ metaTip }}</div>
+            </sc-if>
+          </div>
+        </sc-if>
+
+        <!-- FIN -->
+        <sc-if value="{{ is.fin }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--blue-500);color:var(--primary-900);border-radius:28px;padding:clamp(24px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;"><div style="display:flex;flex-direction:column;gap:12px;">
+            <span style="display:flex;gap:8px;align-items:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;"><i class="ph ph-trophy" style="font-size:20px;"></i>Nivel 1</span>
+            <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.6vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Estratega de producto junior</h1>
+            <span style="font-size:17px;line-height:1.55;max-width:680px;">Cuando tu ficha completa esté en tu Bitácora, desbloqueas este nivel. Es la primera pieza de tu Kit de identidad digital.</span>
+          </div><div style="height:220px;"><image-slot id="img-fin" src="assets/img/img-fin.png" shape="rounded" radius="22" placeholder="Insignia o trofeo de Nivel 1" style="width:100%;height:100%;"></image-slot></div></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;align-items:stretch;">
+            <div style="min-height:220px;background:var(--sky-500);">
+              <image-slot id="lu-retrato" src="assets/img/lu-retrato.png" shape="rect" placeholder="Ilustración o foto de Lu" style="width:100%;height:100%;"></image-slot>
+            </div>
+            <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:10px;">
+              <strong style="font-size:15px;color:var(--primary-900);">💬 Lu te dice</strong>
+              <span style="font-size:16px;line-height:1.6;">Buen trabajo. Una idea clara ahorra horas de construcción. En la próxima misión vas a convertir tus 3 rasgos en instrucciones para que tu chatbot suene siempre igual. Trae tu ficha a mano.</span>
+            </div>
+            <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px;">
+              <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--sky-500);">🚀 Próxima · Misión 2</span>
+              <span style="font-family:var(--font-emotional);font-size:28px;line-height:1.2;">Dale personalidad: prompts e instrucciones</span>
+              <span style="font-size:15px;line-height:1.5;">Vas a escribir lo que tu chatbot debe saber, cómo debe hablar y qué responder cuando le preguntan algo que no es de su tema.</span>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </main>
+
+    <div data-tour="nav" style="display:flex;align-items:center;gap:16px;padding:12px clamp(20px,4vw,48px);background:#fff;border-top:1px solid var(--sky-500);">
+      <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="secondary" onClick="{{ h.prev }}" disabled="{{ atStart }}" hint-size="120px,44px">Anterior</x-import>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;">
+        <span style="font-size:13px;color:var(--neutral-600);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;">{{ navLabel }}</span>
+        <div style="width:min(240px,100%);height:6px;background:var(--sky-100);border-radius:999px;overflow:hidden;"><div style="height:100%;width:{{ navPct }};background:var(--blue-500);transition:width 250ms ease-out;"></div></div>
+      </div>
+      <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="primary" onClick="{{ h.next }}" disabled="{{ atEnd }}" hint-size="120px,44px">Siguiente</x-import>
+    </div>
+  </div>
+</div>
+
+<sc-if value="{{ helpOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ h.toggleHelp }}" style="position:fixed;inset:0;background:rgba(8,11,9,.4);z-index:40;"></div>
+  <aside style="position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:#fff;z-index:41;padding:28px;display:flex;flex-direction:column;gap:18px;overflow-y:auto;box-shadow:var(--shadow-lg);">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <strong style="font-size:20px;color:var(--primary-900);">🆘 ¿Te bloqueaste?</strong>
+      <button onClick="{{ h.toggleHelp }}" aria-label="Cerrar" style="width:40px;height:40px;border-radius:50%;border:none;background:var(--sky-100);cursor:pointer;display:flex;align-items:center;justify-content:center;"><i class="ph ph-x" style="font-size:18px;"></i></button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;font-size:15px;line-height:1.5;">
+      <div style="display:flex;flex-direction:column;gap:4px;"><strong>🤷 No se me ocurre ningún tema</strong><span style="color:var(--neutral-700);">Piensa en qué buscas seguido en internet o gira la ruleta en «El filtro de ideas».</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px;"><strong>🧐 ¿Mi idea es demasiado simple?</strong><span style="color:var(--neutral-700);">Simple está bien si resuelve un problema concreto para un público concreto. Compárala con Rai.</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px;"><strong>🙅 ¿Puedo hacer un chatbot sobre mí o mis amigos?</strong><span style="color:var(--neutral-700);">No. Tu chatbot trata sobre un tema, no sobre la vida de nadie, y no usa datos personales.</span></div>
+    </div>
+    <div style="background:var(--sky-100);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:10px;">
+      <strong style="font-size:15px;color:var(--primary-900);">🤖 Pídele ayuda a ChatGPT o Gemini</strong>
+      <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.6;">Revisa la ficha de mi chatbot y dime qué parte está incompleta o es muy genérica, sin reescribirla por mí: [pega tu ficha]</span>
+      <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="secondary" size="sm" onClick="{{ h.copyHelp }}" hint-size="140px,36px">📋 Copiar prompt</x-import>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <a href="https://chatgpt.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--primary-900);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">💬 Abrir ChatGPT<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a>
+                <a href="https://gemini.google.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--primary-900);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">✨ Abrir Gemini<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a>
+              </div>
+      <span style="font-size:13px;color:var(--blue-700);font-weight:700;">{{ copiedHelp }}</span>
+    </div>
+    <span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">¿Sigues con dudas? Compara con el ejemplo de Rai o pregúntale a tu profesor.</span>
+  </aside>
+</sc-if>
+
+
+
+<sc-if value="{{ tourOn }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:50;"></div>
+  <div style="position:fixed;z-index:51;top:{{ spot.top }};left:{{ spot.left }};width:{{ spot.w }};height:{{ spot.h }};border-radius:18px;box-shadow:0 0 0 4px #5691FF, 0 0 0 9999px rgba(8,11,9,.62);transition:all 250ms ease-out;pointer-events:none;"></div>
+  <div style="position:fixed;z-index:52;top:{{ tip.top }};left:{{ tip.left }};width:320px;background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow-lg);transition:all 250ms ease-out;">
+    <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--primary-900);background:var(--sky-500);padding:4px 10px;border-radius:999px;white-space:nowrap;">{{ tour.step }}</span>
+    <strong style="font-size:18px;color:var(--primary-900);">{{ tour.t }}</strong>
+    <span style="font-size:15px;line-height:1.5;color:var(--neutral-700);">{{ tour.d }}</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+      <button onClick="{{ h.tourSkip }}" style="background:transparent;border:none;font-family:inherit;font-size:14px;color:var(--neutral-600);cursor:pointer;text-decoration:underline;">Saltar</button>
+      <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" size="sm" onClick="{{ h.tourNext }}" hint-size="110px,36px">{{ tour.btn }}</x-import>
+    </div>
+  </div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const MOM=[{n:'Inicio',t:''},{n:'¿Humano o bot?',t:'10 min'},{n:'El encargo',t:'5 min'},{n:'Inspiración',t:'15 min'},{n:'Lluvia de ideas',t:'15 min'},{n:'Crea tu chatbot',t:'30 min'},{n:'Revisa y entrega',t:'10 min'},{n:'Reto final',t:'5 min'}];
+const MID=['🏠 Inicio','🤖 ¿Bot?','📩 Encargo','✨ Inspiración','💡 Ideas','🛠️ Chatbot','📤 Entrega','🏆 Reto'];
+const SHORT=['🏠 Inicio','🤖 ¿Humano o bot?','📩 El encargo','✨ Inspiración','💡 Ideas','🛠️ Tu chatbot','📤 Entrega','🏆 Reto final'];
+const SCR=[['inicio',0,'Bienvenida a Estudio Nexo'],['juego',1,'¿Humano o chatbot?'],['usos',1,'¿Dónde viven los chatbots?'],['lu',2,'Llegó un encargo'],['kit',2,'Lo que vas a construir'],['galeria',3,'5 chatbots, 5 mundos'],['rai',3,'Rai por dentro'],['regla',3,'La IA propone, tú decides'],['ideas',4,'De lo que te gusta a 5 ideas'],['filtro',4,'El filtro de ideas'],['r1',5,'¿Qué problema resuelve?'],['r2',5,'Ponle nombre'],['r3',5,'¿Cómo habla?'],['r4',5,'Extra: saludos y frase'],['check',6,'Revisa y entrega'],['quiz',7,'¿Lo dominas?'],['fin',7,'Próxima misión']].map(([id,m,t])=>({id,m,t}));
+const IDX={};SCR.forEach((s,i)=>IDX[s.id]=i);
+const TOUR=[
+{k:'menu',t:'🗺️ Tu ruta',d:'La misión tiene 7 pasos. Toca cualquiera para ir directo. Debajo verás las pantallas del paso en el que estás.'},
+{k:'nivel',t:'🏆 Tu meta',d:'Hoy creas tu Ficha del chatbot. Con tu ficha completa en tu Bitácora desbloqueas el Nivel 1: Estratega de producto junior.'},
+{k:'tools',t:'🔍 Ajusta a tu gusto',d:'Con la lupa agrandas o achicas toda la pantalla. También puedes apagar el sonido 🔊 o pasar a pantalla completa.'},
+{k:'ayuda',t:'🆘 ¿Te bloqueaste?',d:'Aquí tienes respuestas rápidas, un prompt de ayuda y accesos directos a ChatGPT y Gemini.'},
+{k:'nav',t:'👣 Avanza a tu ritmo',d:'Usa Siguiente y Anterior. Aquí exploras y pruebas; al final pasas tu ficha a tu Bitácora.'}];
+const GAME=[
+{id:'A',txt:'jaja yo empecé con sentadillas viendo videos y al principio me dolía todo, pero vale la pena. ¿tienes espacio en tu cuarto?',a:'h',why:'Cuenta algo que le pasó («me dolía todo») y escribe sin cuidar mayúsculas. Un chatbot no tiene cuerpo ni recuerdos.'},
+{id:'B',txt:'¡Buena idea! Para empezar en casa te propongo 3 pasos: 1) Calienta 5 minutos. 2) Haz 3 series de sentadillas y planchas. 3) Estira al final. ¿Prefieres una rutina de 10 o de 20 minutos?',a:'c',why:'Pasos numerados, todo ordenado y una pregunta con opciones al final. Suena natural, pero no dice que es una IA.'},
+{id:'C',txt:'Hola, soy un asistente virtual. Puedo sugerirte rutinas básicas para casa. Si tienes alguna lesión, consulta primero con un profesional de la salud.',a:'c',why:'Se presenta como asistente y manda los temas de salud a un profesional. Tiene límites claros, como los tendrá tu chatbot.'},
+{id:'D',txt:'Depende, ¿para qué quieres entrenar? Mi hermano hace calistenia en el parque y dice que es lo mejor, aunque a mí me aburre un poco.',a:'h',why:'Da su opinión, habla de su hermano y admite que algo le aburre. Muy de persona.'}];
+const GALK=['rai','glow','respawn','mesa','coach'];
+const GAL=[
+{n:'Rai',tema:'Huertos en casa',prob:'“Quiero un huerto, pero vivo en un departamento y no sé qué sembrar.”',pub:'Jóvenes de 14 a 17 años que viven en espacios pequeños',tono:'Curioso, paciente y divertido',saludo:'¡Hola! Soy Rai, un chatbot de IA. Te ayudo a tener tu primer huerto en casa. ¿Cuánto espacio tienes?',bg:'#001F19',fg:'#fff'},
+{n:'Glow',tema:'Maquillaje',prob:'“No sé qué look usar ni por dónde empezar”',pub:'Jóvenes que empiezan a maquillarse',tono:'Entusiasta, cercana, explica paso a paso',saludo:'¡Hola, soy Glow! Soy una IA que te ayuda a crear looks paso a paso. ¿Para qué ocasión es tu look?',bg:'#B6E2FF',fg:'#001F19'},
+{n:'Respawn',tema:'Videojuegos',prob:'“Me atoro en un nivel o no sé qué juego probar”',pub:'Gamers que buscan pistas o un juego nuevo',tono:'Divertido, usa jerga gamer moderada, sin spoilers sin aviso',saludo:'¡GG por llegar! Soy Respawn, un chatbot de IA. ¿Te atoraste en un nivel o buscas juego nuevo? Te aviso antes de cualquier spoiler.',bg:'#5691FF',fg:'#001F19'},
+{n:'Mesa Lista',tema:'Restaurantes',prob:'“No sé qué pedir ni qué tiene el menú”',pub:'Clientes de un restaurante que revisan el menú',tono:'Amable, breve, servicial',saludo:'Hola, soy Mesa Lista, el asistente de IA del menú. ¿Buscas algo dulce, salado o vegetariano?',bg:'#B6E2FF',fg:'#001F19'},
+{n:'Coach Gol',tema:'Deportes',prob:'“Quiero entrenar fútbol en casa y no sé cómo”',pub:'Jóvenes que juegan fútbol y quieren entrenar en casa',tono:'Motivador, enérgico, prioriza la seguridad',saludo:'¡Vamos! Soy Coach Gol, un chatbot de IA. Armemos tu entrenamiento en casa. Primero: ¿ya calentaste?',bg:'#5691FF',fg:'#001F19'}];
+const RAI=[
+{k:'Problema',v:'Muchos jóvenes quieren cultivar, pero viven en espacios pequeños y no saben qué sembrar ni cómo cuidarlo.',q:'¿Qué dificultad real tiene alguien con este tema?',err:'Escribir algo genérico como «ayudar a las personas». No dice a quién ni con qué problema.',ok:'Cabe en una frase y tiene un detalle concreto («espacios pequeños»).'},
+{k:'Público',v:'Jóvenes de 14 a 17 años, interesados en la naturaleza y la cocina, que necesitan empezar desde cero.',q:'¿Quién lo va a usar? Edad, intereses y necesidad.',err:'Poner «todo el mundo». Si es para todos, no conecta con nadie.',ok:'Tiene edad, intereses y una necesidad.'},
+{k:'Nombre',v:'Rai, de «raíz».',q:'¿Cómo lo van a recordar?',err:'Un nombre largo, difícil de escribir o igual al de una marca o personaje que ya existe.',ok:'Es corto, se dice fácil y se conecta con el tema.'},
+{k:'Propósito',v:'Guiar paso a paso para elegir, sembrar y cuidar un huerto en casa.',q:'¿Qué hace por quien lo usa?',err:'Listar muchas funciones. Mejor una sola acción principal.',ok:'Empieza con un verbo y se entiende qué gana el usuario.'},
+{k:'Personalidad',v:'Curioso · Paciente · Divertido',q:'¿Cómo es su forma de ser? Tres rasgos.',err:'Elegir rasgos que significan lo mismo, como «amable» y «cercano».',ok:'Los 3 rasgos son distintos y se notan en cómo responde.'},
+{k:'Intereses',v:'Semillas y germinación · Plantas aromáticas · Macetas con material reciclado',q:'¿De qué sabe y le gusta hablar?',err:'Intereses que no tienen que ver con el tema del chatbot.',ok:'Son subtemas de su tema: le dan de qué conversar.'},
+{k:'Tono',v:'Cercano e informal, con humor ligero. Respuestas cortas, en pasos, que terminan con una pregunta.',q:'¿Cómo suena cuando habla?',err:'Un tono que no encaja con el público, como muy formal para adolescentes.',ok:'Refleja los 3 rasgos y encaja con su público.'}];
+const QUIZ=[
+{q:'Pedirle a la IA 5 ideas de chatbot sobre anime.',a:'si',why:'Usas la IA para explorar ideas sobre un tema. Tú decides cuál construir.'},
+{q:'Subir una foto de tu grupo de amigos para crear el avatar.',a:'no',why:'No se suben fotos propias ni de compañeros a ninguna herramienta.'},
+{q:'Un chatbot que responde preguntas sobre tu mejor amiga.',a:'no',why:'Tu chatbot trata sobre un tema, no sobre la vida de una persona real.'},
+{q:'Usar la idea de la IA tal cual, sin cambiar nada.',a:'no',why:'Revisa, cambia al menos una parte y anota qué usaste.'}];
+const FILT=[
+{t:'Un chatbot que recomienda anime según tu estado de ánimo.',a:'si',why:'Tiene público (fans del anime), un problema real (no saber qué ver) y no usa datos personales.'},
+{t:'Un chatbot que guarda los horarios y direcciones de tus amigos.',a:'no',why:'Usa datos personales de otras personas. Descartada.'},
+{t:'Un chatbot que habla igual que un personaje famoso de una serie.',a:'no',why:'Copia un personaje que ya existe. Mejor crea uno propio.'},
+{t:'Un chatbot para ayudar a las personas.',a:'no',why:'No dice a quién ni con qué problema. Muy genérica.'},
+{t:'Un chatbot que te dice qué plantas sobreviven en un cuarto con poca luz.',a:'si',why:'Problema concreto, público claro y nada de datos personales.'}];
+const TEMAS=['Maquillaje','Videojuegos','Restaurantes','Deportes','Música','Mascotas','Anime','Huertos','Cocina','Moda','Libros','Ciencia','Fotografía','Otro tema'];
+const PROBS=['no sabe por dónde empezar','se pierde entre tantas opciones','se atora y no encuentra ayuda rápida','encuentra información confusa o poco confiable','empieza con ganas y luego lo abandona','no tiene a quién preguntar'];
+const PROBS_PL=['no saben por dónde empezar','se pierden entre tantas opciones','se atoran y no encuentran ayuda rápida','encuentran información confusa','empiezan con ganas y luego lo abandonan','no tienen a quién preguntar'];
+const PROB_L=['No sabe por dónde empezar','Muchas opciones','Se atora','Información confusa','Lo abandona','No tiene a quién preguntar'];
+const EDADES=['10 a 13 años','14 a 17 años','18 a 25 años','Familias','Todas las edades'];
+const PUBI=['Aprender cosas nuevas','Divertirse','Ahorrar tiempo','Ahorrar dinero','Crear cosas','Cuidarse'];
+const NECS=['Aprender desde cero','Decidir rápido qué elegir','Resolver una duda puntual','Mantener un hábito','Inspirarse con ideas nuevas'];
+const PROPS=[{l:'Enseñar paso a paso',d:'Explica un proceso en pasos cortos.',v:'aprender paso a paso'},{l:'Recomendar opciones',d:'Sugiere qué elegir según lo que buscas.',v:'elegir la mejor opción'},{l:'Resolver dudas rápidas',d:'Responde preguntas frecuentes al instante.',v:'resolver tus dudas rápido'},{l:'Motivar y acompañar',d:'Te anima a seguir y celebra tu avance.',v:'mantener la motivación'},{l:'Planificar',d:'Arma contigo un plan o una rutina.',v:'armar un plan'}];
+const RASGOS=['Curioso','Paciente','Divertido','Entusiasta','Cercano','Amable','Motivador','Enérgico','Tranquilo','Creativo','Directo','Ordenado','Servicial','Ingenioso'];
+const SIMIL=[['Cercano','Amable','Servicial'],['Entusiasta','Enérgico','Motivador'],['Tranquilo','Paciente'],['Directo','Ordenado'],['Creativo','Ingenioso']];
+const CONTRA=[['Tranquilo','Enérgico'],['Tranquilo','Entusiasta']];
+const GEN_P=['jóvenes que recién empiezan','estudiantes con poco tiempo','familias con niños pequeños','personas con poco presupuesto','principiantes absolutos','fans que quieren saber más'];
+const CHECK=[
+{t:'El problema está en una frase',tip:'Recorta tu problema hasta que se lea de un tirón y agrégale un detalle concreto, como hizo Rai con «espacios pequeños».',go:'r1'},
+{t:'Mi público tiene edad, intereses y una necesidad',tip:'Revisa que escribiste los tres datos del público: edad, qué le interesa y qué necesita.',go:'r1'},
+{t:'El nombre es fácil de recordar',tip:'Prueba un nombre más corto: máximo 2 palabras. Dilo en voz alta: si te trabas, cámbialo.',go:'r2'},
+{t:'Mis 3 rasgos son distintos entre sí',tip:'Si dos rasgos significan casi lo mismo, cambia uno para que tu chatbot tenga más matices.',go:'r3'},
+{t:'El tono encaja con mi público',tip:'Imagina a tu público leyendo el saludo de la vista previa. Mueve los controles de tono hasta que suene para esa persona.',go:'r3'},
+{t:'Anoté qué ideas de la IA usé y qué cambié',tip:'Agrega en tu ficha una línea: qué herramienta usaste, qué tomaste y qué cambiaste.',go:'regla'}];
+const FINAL=[
+{q:'Tu chatbot saluda: «¡Hola! ¿Qué receta quieres hoy?». ¿Qué le falta?',o:['Más emojis','Decir que es un chatbot de IA','Un saludo más largo'],a:1,ok:'Exacto. Tu chatbot siempre se presenta como IA en su primer mensaje.',rep:'juego',repT:'¿Humano o chatbot?'},
+{q:'¿Cuál problema está mejor escrito?',o:['Ayudar a las personas con la cocina','Un chatbot de recetas','Quien cocina por primera vez no sabe qué preparar con lo que tiene en casa'],a:2,ok:'Sí: dice quién tiene el problema y cuál es, con un detalle concreto.',rep:'rai',repT:'Rai por dentro'},
+{q:'Elegiste los rasgos amable, cercano y servicial. ¿Qué pasa?',o:['Está perfecto','Se parecen mucho: tu chatbot tendrá poca personalidad','Son demasiados rasgos'],a:1,ok:'Bien. Tres rasgos distintos le dan más matices a tu chatbot.',rep:'r3',repT:'¿Cómo habla?'},
+{q:'La IA te dio una idea genial. ¿Qué haces antes de usarla?',o:['La copio tal cual','La reviso, cambio algo y digo que usé IA','La borro porque es de la IA'],a:1,ok:'Eso es: la IA propone, tú decides.',rep:'regla',repT:'La IA propone, tú decides'},
+{q:'Tu chatbot es para chicos de 10 a 13 años. ¿Qué tono le va mejor?',o:['Formal y con respuestas largas','Serio y técnico','Cercano y con respuestas breves'],a:2,ok:'Correcto: el tono se ajusta a quién lo va a usar.',rep:'r3',repT:'¿Cómo habla?'}];
+const META=[{l:'Encontrar una idea',t:'Para la próxima: parte de lo que buscas seguido en internet o gira la ruleta. Las ideas salen más fácil de lo que te gusta.'},{l:'Escribir el problema',t:'Truco: completa «[quién] no logra [qué] porque [detalle]». Rai es tu modelo.'},{l:'Elegir la personalidad',t:'Piensa en alguien que admires: ¿cómo lo describirías con 3 palabras distintas?'},{l:'Usar bien la IA',t:'Pídele ideas, no respuestas finales. Y siempre cambia algo con tu criterio.'},{l:'Nada, todo fluyó',t:'¡Genial! En la Misión 2 tu ficha será la base de las instrucciones de tu chatbot.'}];
+const SL=[{k:'formal',l:'Formal',r:'Cercano'},{k:'humor',l:'Serio',r:'Divertido'},{k:'largo',l:'Breve',r:'Detallado'}];
+
+class Component extends DCLogic {
+  state={screen:0,visited:{0:true},game:{},gal:0,raiF:0,quiz:{},filt:{},intSel:-1,gen:[7,0,0],
+    f:{tema:'',prob:-1,edad:'',pubInt:'',nec:'',prop:-1,rasgos:[],formal:4,humor:3,largo:2},check:{},fq:{},meta:-1,
+    tour:null,rect:null,help:false,tilt:[-14,6],spinning:false,pLeft:20,pRun:false,cp:'',ch:'',navC:0,zoom:1,lupa:false,mute:false,full:false};
+  mainRef=React.createRef();navRef=React.createRef();
+  fitNav(){const n=this.navRef.current;if(!n)return;const w=n.clientWidth;const c=w>=1020?0:w>=820?1:2;if(c!==this.state.navC)this.setState({navC:c});}
+  componentDidMount(){
+    setTimeout(()=>{if(this.state.screen===0&&this.state.tour===null)this.setTour(0);},800);
+    this._rs=()=>{this.measure();this.fitNav();};window.addEventListener('resize',this._rs);
+    setTimeout(()=>this.fitNav(),50);if(window.ResizeObserver&&this.navRef.current){this._ro=new ResizeObserver(()=>this.fitNav());this._ro.observe(this.navRef.current);}
+    this._fs=()=>this.setState({full:!!(document.fullscreenElement||document.webkitFullscreenElement)});
+    document.addEventListener('fullscreenchange',this._fs);document.addEventListener('webkitfullscreenchange',this._fs);
+  }
+  componentDidUpdate(pp){const ps=this._prev||this.state;this._prev=this.state;if(ps===this.state)return;
+    const s=this.state;
+    const all=(o,n)=>Object.keys(o).length>=n;
+    if(!all(ps.game,4)&&all(s.game,4))this.sfx('win');
+    if(!all(ps.filt,5)&&all(s.filt,5))this.sfx('win');
+    if(!all(ps.fq,5)&&all(s.fq,5))this.sfx('win');
+    const si=(c)=>[0,1,2,3,4,5].every(i=>c[i]==='si');
+    if(!si(ps.check)&&si(s.check))this.sfx('win');
+  }
+  sfx(k){
+    this._snd=true;
+    if(this.state.mute)return;
+    try{
+      const C=this.ac||(this.ac=new (window.AudioContext||window.webkitAudioContext)());
+      if(C.state==='suspended'&&C.resume)C.resume();
+      const t=C.currentTime;
+      const tone=(f,st,d,type,vol,f2)=>{const o=C.createOscillator(),g=C.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t+st);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+st+d);g.gain.setValueAtTime(0.0001,t+st);g.gain.exponentialRampToValueAtTime(vol||0.12,t+st+0.012);g.gain.exponentialRampToValueAtTime(0.0001,t+st+d);o.connect(g);g.connect(C.destination);o.start(t+st);o.stop(t+st+d+0.02);};
+      if(k==='pop')tone(660,0,0.08,'sine',0.08,990);
+      else if(k==='nav')tone(420,0,0.12,'triangle',0.07,640);
+      else if(k==='tick')tone(1200,0,0.03,'square',0.025);
+      else if(k==='ok'){tone(660,0,0.12,'sine',0.11);tone(990,0.09,0.18,'sine',0.11);}
+      else if(k==='bad'){tone(300,0,0.18,'triangle',0.09,220);}
+      else if(k==='win'){[523,659,784,1047].forEach((f,i)=>tone(f,i*0.09,0.22,'triangle',0.1));}
+    }catch(e){}
+  }
+  componentWillUnmount(){window.removeEventListener('resize',this._rs);document.removeEventListener('fullscreenchange',this._fs);document.removeEventListener('webkitfullscreenchange',this._fs);clearInterval(this._pt);clearInterval(this._sp);}
+  setTour(n){this.setState({tour:n,rect:null,help:false},()=>setTimeout(()=>this.measure(),60));setTimeout(()=>this.measure(),140);}
+  measure(){
+    const s=this.state;if(s.tour===null)return;
+    const el=document.querySelector('[data-tour="'+TOUR[s.tour].k+'"]');if(!el)return;
+    const r=el.getBoundingClientRect();this.setState({rect:{x:r.left,y:r.top,w:r.width,h:r.height}});
+  }
+  go(i){i=Math.max(0,Math.min(SCR.length-1,i));if(i!==this.state.screen)this.sfx('nav');this.setState(s=>({screen:i,visited:{...s.visited,[i]:true},help:false}));if(this.mainRef.current)this.mainRef.current.scrollTop=0;}
+  setF(k,v){this.setState(s=>({f:{...s.f,[k]:v}}));}
+  copy(txt,key){
+    const done=()=>{this.setState({[key]:'✅ ¡Copiado!'});setTimeout(()=>this.setState({[key]:''}),1800);};
+    const fb=()=>{const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}t.remove();done();};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(done,fb);else fb();
+  }
+  chip(label,active,on){return {label,on:(...a)=>{this._snd=false;on(...a);if(!this._snd)this.sfx('pop');},bg:active?'var(--blue-500)':'#fff',bd:active?'var(--blue-500)':'var(--sky-500)'};}
+  temaLabel(){const t=this.state.f.tema;return t==='Otro tema'?'':t;}
+  analysis(){
+    const s=this.state,f=s.f,r=f.rasgos;
+    let ras={kind:'none',txt:''};
+    if(r.length){
+      const sim=SIMIL.find(g=>g.filter(x=>r.includes(x)).length>=2);
+      const con=CONTRA.find(g=>g.every(x=>r.includes(x)));
+      if(sim){const pr=sim.filter(x=>r.includes(x));ras={kind:'warn',txt:pr[0]+' y '+pr[1].toLowerCase()+' se parecen mucho. Cambia uno para que tu chatbot tenga más matices.'};}
+      else if(con)ras={kind:'warn',txt:con[0]+' y '+con[1].toLowerCase()+' se contradicen. ¿Cuál describe mejor a tu chatbot?'};
+      else if(r.length<3)ras={kind:'info',txt:r.length===2?'Te falta 1 rasgo.':'Te faltan '+(3-r.length)+' rasgos.'};
+      else ras={kind:'ok',txt:'¡Bien! Tus 3 rasgos son distintos entre sí.'};
+    }
+    let tono={kind:'ok',txt:'El tono encaja con tu público.'};
+    if(!f.edad)tono={kind:'info',txt:'Elige la edad de tu público en «¿Qué problema resuelve?» para ver si el tono encaja.'};
+    else if(f.edad==='10 a 13 años'&&f.largo>=4)tono={kind:'warn',txt:'Para 10 a 13 años, las respuestas breves se leen mejor.'};
+    else if(f.edad==='14 a 17 años'&&f.formal<=2)tono={kind:'warn',txt:'Un tono muy formal puede sentirse lejano para jóvenes de 14 a 17 años.'};
+    else if((f.edad==='Familias'||f.edad==='Todas las edades')&&f.humor>=5)tono={kind:'warn',txt:'Con públicos mixtos, un humor muy alto puede no conectar con todos.'};
+    const fields={problema:!!f.tema&&f.prob>=0,publico:!!(f.edad&&f.pubInt&&f.nec),proposito:f.prop>=0,personalidad:ras.kind==='ok',tono:!!s.visited[IDX.r3]&&tono.kind==='ok'};
+    return {ras,tono,fields};
+  }
+  greet(){
+    const f=this.state.f,tema=this.temaLabel();
+    const open=f.formal>=4?'¡Hola!':f.formal<=2?'Buen día, te doy la bienvenida.':'Hola.';
+    const verb=f.prop>=0?PROPS[f.prop].v:'lo que necesites';
+    let t=open+' Soy [tu nombre], un chatbot de IA que te ayuda a '+verb+(tema?' en '+tema.toLowerCase():'')+'.';
+    if(f.humor>=4)t+=(f.formal>=4?' Te prometo que será divertido.':' Haremos esto con buen humor.');
+    t+=f.largo>=4?' Cuéntame qué quieres lograr y armamos juntos un plan paso a paso.':' ¿Por dónde empezamos?';
+    return t;
+  }
+  spin(){
+    if(this.state.spinning)return;let k=0;this.setState({spinning:true});
+    this._sp=setInterval(()=>{k++;const g=[Math.floor(Math.random()*(TEMAS.length-1)),Math.floor(Math.random()*GEN_P.length),Math.floor(Math.random()*PROBS.length)];
+      if(k>=12){clearInterval(this._sp);this.sfx('ok');this.setState({gen:g,spinning:false});}else{this.sfx('tick');this.setState({gen:g});}},80);
+  }
+  togglePitch(){
+    if(this.state.pRun){clearInterval(this._pt);this.setState({pRun:false,pLeft:20});return;}
+    const t0=Date.now();this.setState({pRun:true,pLeft:20});
+    this._pt=setInterval(()=>{const left=Math.max(0,20-(Date.now()-t0)/1000);this.setState({pLeft:left});if(left<=0){clearInterval(this._pt);this.setState({pRun:false});}},100);
+  }
+  renderVals(){
+    const s=this.state,f=s.f,cur=SCR[s.screen],a=this.analysis();
+    const is={};SCR.forEach((x,i)=>is[x.id]=i===s.screen);
+    const fb=(o)=>({show:o.kind!=='none',txt:o.txt,bg:o.kind==='ok'?'var(--color-success-100)':o.kind==='warn'?'var(--orange-100)':'var(--sky-100)',icon:o.kind==='ok'?'ph ph-check-circle':o.kind==='warn'?'ph ph-warning-circle':'ph ph-info'});
+    const menu=MOM.map((m,mi)=>{
+      const idxs=SCR.map((x,i)=>i).filter(i=>SCR[i].m===mi);
+      const active=cur.m===mi,done=idxs.every(i=>s.visited[i]);
+      const lab=SHORT[mi],emo=lab.split(' ')[0],txt=lab.slice(emo.length+1),cm=this.state.navC;
+      const name=cm===0||active?lab:(cm===1?MID[mi]:emo);
+      return {num:String(mi),name,pr:cm===2&&!active?'8px':'12px',full:m.n,showTime:false,time:m.t,go:()=>this.go(idxs[0]),
+        pbg:active?'var(--sky-100)':'#fff',pbd:active?'var(--blue-500)':'var(--border-subtle)',
+        nbg:active?'var(--blue-500)':done?'var(--primary-900)':'var(--sky-100)',nfg:active?'var(--primary-900)':done?'#fff':'var(--primary-900)',
+        items:idxs.map(i=>({t:SCR[i].t,go:()=>this.go(i),bg:i===s.screen?'#fff':'transparent',fw:i===s.screen?'700':'400',dot:i===s.screen?'var(--blue-500)':s.visited[i]?'var(--primary-900)':'var(--neutral-300)'}))};
+    });
+    const over=cur.m===0?'Estudio Nexo · Misión 1':'Paso '+cur.m+' de 7 · '+MOM[cur.m].n;
+    const pickRes=(pk,a2,okTxt,why)=>({answered:!!pk,res:(pk===a2?okTxt:'😅 ¡Casi! ')+why,rbg:pk===a2?'var(--color-success-100)':'var(--orange-100)'});
+    const game=GAME.map(g=>{const pk=s.game[g.id],ok=pk===g.a,pick=(v)=>()=>{this.sfx(v===g.a?'ok':'bad');this.setState(st=>({game:{...st.game,[g.id]:v}}));};
+      return {id:g.id,txt:g.txt,why:g.why,answered:!!pk,res:ok?'🎉 ¡Bien! Es '+(g.a==='h'?'una persona.':'un chatbot.'):'😅 Era '+(g.a==='h'?'una persona.':'un chatbot.'),rbg:ok?'var(--color-success-100)':'var(--orange-100)',hBtn:this.chip('Humano',pk==='h',pick('h')),cBtn:this.chip('Chatbot',pk==='c',pick('c'))};});
+    const gameDone=GAME.every(g=>s.game[g.id]),gameScore=String(GAME.filter(g=>s.game[g.id]===g.a).length);
+    const N=GAL.length,gi=((s.gal%N)+N)%N;
+    const rotTo=(i)=>{let d=i-gi;if(d>N/2)d-=N;if(d<-N/2)d+=N;this.setState(st=>({gal:st.gal+d}));};
+    const gal=GAL.map((g,i)=>({...g,key:GALK[i],imgId:i===0?'img-rai':'img-gal-'+GALK[i],tf:'rotateY('+(i*72)+'deg) translateZ(330px)',op:i===gi?1:0.45,go:()=>rotTo(i)}));
+    const raiList=RAI.map((r,i)=>{const on=i===s.raiF;return {n:String(i+1),k:r.k,on:()=>this.setState({raiF:i}),bg:on?'var(--blue-500)':'#fff',bd:on?'var(--blue-500)':'var(--sky-500)'};});
+    const quiz=QUIZ.map((q,i)=>{const pk=s.quiz[i],pick=(v)=>()=>this.setState(st=>({quiz:{...st.quiz,[i]:v}}));
+      return {q:q.q,...pickRes(pk,q.a,'🎉 ¡Correcto! ',q.why),si:this.chip('',pk==='si',pick('si')),no:this.chip('',pk==='no',pick('no'))};});
+    const filt=FILT.map((q,i)=>{const pk=s.filt[i],pick=(v)=>()=>{this.sfx(v===q.a?'ok':'bad');this.setState(st=>({filt:{...st.filt,[i]:v}}));};
+      return {t:q.t,...pickRes(pk,q.a,'👏 ¡Bien visto! ',q.why),si:this.chip('',pk==='si',pick('si')),no:this.chip('',pk==='no',pick('no'))};});
+    const intOpts=TEMAS.slice(0,13);
+    const intChips=intOpts.map((t,i)=>this.chip(t,s.intSel===i,()=>this.setState({intSel:i})));
+    const intTxt=s.intSel>=0?intOpts[s.intSel].toLowerCase():'[tu interés]';
+    const prompt='Actúa como estratega de producto de una agencia digital. Me interesa '+intTxt+'. Propón 5 ideas de chatbot sobre ese tema que ayuden a un público concreto con un problema real. Para cada idea escribe en una línea: el problema, para quién es y qué haría el chatbot. Ninguna idea debe pedir ni usar datos personales.';
+    const gT=TEMAS[s.gen[0]],gP=GEN_P[s.gen[1]],gR=PROBS_PL[s.gen[2]];
+    const genSentence='Un chatbot de '+gT.toLowerCase()+' para '+gP+' que '+gR+'.';
+    const tf=()=>s.spinning?'rotateX('+((Math.random()*40-20).toFixed(0))+'deg)':'rotateX(0deg)';
+    const reels=[{label:'Tema',v:gT,tf:tf()},{label:'Público',v:gP.charAt(0).toUpperCase()+gP.slice(1),tf:tf()},{label:'Problema',v:gR.charAt(0).toUpperCase()+gR.slice(1),tf:tf()}];
+    const retoIds=['r1','r2','r3','r4'],layers=['BASE','BASE','BASE','PRO · PLUS'];
+    const retoTabs=retoIds.map((id,i)=>{const on=s.screen===IDX[id];return {t:SCR[IDX[id]].t,layer:layers[i],go:()=>this.go(IDX[id]),bg:on?'var(--sky-100)':'#fff',bd:on?'var(--blue-500)':'var(--sky-500)',lbg:i===3?'var(--primary-900)':'var(--blue-500)',lfg:i===3?'var(--sky-500)':'var(--primary-900)'};});
+    const temaLow=(this.temaLabel()||'tu tema').toLowerCase();
+    const temaChips=TEMAS.map(t=>this.chip(t,f.tema===t,()=>this.setF('tema',t)));
+    const probChips=PROB_L.map((p,i)=>this.chip(p,f.prob===i,()=>this.setF('prob',i)));
+    const probText=f.prob>=0?'Quien quiere aprender de '+temaLow+' '+PROBS[f.prob]+'.':'';
+    const edadChips=EDADES.map(e=>this.chip(e,f.edad===e,()=>this.setF('edad',e)));
+    const pubChips=PUBI.map(e=>this.chip(e,f.pubInt===e,()=>this.setF('pubInt',e)));
+    const necChips=NECS.map(e=>this.chip(e,f.nec===e,()=>this.setF('nec',e)));
+    const propChips=PROPS.map((p,i)=>({...this.chip(p.l,f.prop===i,()=>this.setF('prop',i)),desc:p.d}));
+    const rasgoChips=RASGOS.map(r=>{const sel=f.rasgos.includes(r),full=f.rasgos.length>=3;
+      return {...this.chip(r,sel,()=>this.setState(st=>{const c=st.f.rasgos;const nx=c.includes(r)?c.filter(x=>x!==r):(c.length>=3?c:[...c,r]);return {f:{...st.f,rasgos:nx}};})),op:(!sel&&full)?0.4:1};});
+    const sliders=SL.map(x=>({l:x.l,r:x.r,v:f[x.k],on:(e)=>this.setF(x.k,Number(e.target.value))}));
+    const styleTxt='(Así respondería) '+(f.rasgos.length?'Con un estilo '+f.rasgos.map(x=>x.toLowerCase()).join(', ')+'. ':'')+(f.largo<=2?'En 2 o 3 líneas.':f.largo>=4?'Con pasos detallados.':'En pasos cortos.')+(f.humor>=4?' Con algo de humor.':'');
+    const FL=[['Problema','problema','r1'],['Público','publico','r1'],['Nombre',null,'r2'],['Propósito','proposito','r2'],['Personalidad','personalidad','r3'],['Intereses',null,'r3'],['Tono','tono','r3']];
+    const pv={tema:this.temaLabel()||'Tu tema',greet:this.greet(),style:styleTxt,
+      fields:FL.map(([t,k,g])=>{const port=k===null,ok=!port&&a.fields[k];return {t,note:port?'va en tu ficha':'',icon:port?'ph ph-pencil-simple':ok?'ph-fill ph-check-circle':'ph ph-circle',c:port?'var(--blue-700)':ok?'var(--blue-700)':'var(--neutral-400)',go:()=>this.go(IDX[g])};})};
+    const BTN=[['si','✅ Sí'],['casi','🤏 Casi'],['no','🔄 Aún no']];
+    const checks=CHECK.map((c,i)=>{const v=s.check[i];
+      return {n:String(i+1),t:c.t,tip:c.tip,showTip:v==='casi'||v==='no',fix:()=>this.go(IDX[c.go]),
+        btns:BTN.map(([k,l])=>{const sel=v===k;const col=k==='si'?'var(--color-success-700)':k==='casi'?'var(--orange-700)':'var(--neutral-700)';
+          return {label:l,on:()=>this.setState(st=>({check:{...st.check,[i]:k}})),bg:sel?col:'#fff',fg:sel?'#fff':'var(--primary-900)',bd:sel?col:'var(--sky-500)'};})};});
+    const allSi=CHECK.every((c,i)=>s.check[i]==='si');
+    const finalQ=FINAL.map((q,i)=>{const pk=s.fq[i],ans=pk!==undefined,ok=pk===q.a;
+      return {n:String(i+1),q:q.q,answered:ans,wrong:ans&&!ok,res:ok?'🎉 '+q.ok:'🔄 Todavía no. Repasa «'+q.repT+'» y vuelve a intentarlo.',rbg:ok?'var(--color-success-100)':'var(--orange-100)',rep:()=>this.go(IDX[q.rep]),
+        opts:q.o.map((l,k)=>({label:l,on:()=>{this.sfx(k===q.a?'ok':'bad');this.setState(st=>({fq:{...st.fq,[i]:k}}));},bg:pk===k?(ok?'var(--color-success-100)':'var(--orange-100)'):'#fff',bd:pk===k?(ok?'var(--color-success-700)':'var(--orange-700)'):'var(--sky-500)'}))};});
+    const fqDone=FINAL.every((q,i)=>s.fq[i]!==undefined),fqN=FINAL.filter((q,i)=>s.fq[i]===q.a).length;
+    const fqMsg=fqN===5?'🏆 ¡Lo dominas! Estás listo para la Misión 2.':fqN>=3?'💪 ¡Vas bien! Repasa las que fallaste y vuelve a intentarlo.':'📚 Repasa las pantallas sugeridas y vuelve a intentarlo. Equivocarse también es aprender.';
+    const metaChips=META.map((m,i)=>this.chip(m.l,s.meta===i,()=>this.setState({meta:i})));
+    let spot={top:'0px',left:'0px',w:'0px',h:'0px'},tip={top:'0px',left:'0px'};
+    if(s.tour!==null&&s.rect){const r=s.rect,pad=6,W=window.innerWidth,H=window.innerHeight;
+      spot={top:(r.y-pad)+'px',left:(r.x-pad)+'px',w:(r.w+pad*2)+'px',h:(r.h+pad*2)+'px'};
+      let tx,ty;if(r.y+r.h+240<H){ty=r.y+r.h+16;tx=Math.min(Math.max(16,r.x+r.w/2-160),W-336);}else{ty=Math.max(16,r.y-250);tx=Math.min(Math.max(16,r.x+r.w/2-160),W-336);}
+      tip={top:ty+'px',left:tx+'px'};}
+    const ti=s.tour===null?0:s.tour;
+    const endTour=()=>this.setState({tour:null});
+    return {
+      navRef:this.navRef,curItems:menu[cur.m].items,is,isReto:['r1','r2','r3','r4'].includes(cur.id),retoTitle:cur.t,menu,over,mainRef:this.mainRef,helpOpen:s.help,
+      heroTf:'rotateY('+s.tilt[0]+'deg) rotateX('+s.tilt[1]+'deg)',
+      game,gameDone,gameScore,gal,gc:GAL[gi],ringTf:'translateZ(-330px) rotateY('+(-s.gal*72)+'deg)',galPos:(gi+1)+' de '+N,
+      raiList,raiCur:RAI[s.raiF],quiz,filt,intChips,prompt,copiedPrompt:s.cp,reels,genSentence,
+      retoTabs,temaChips,temaOtroShow:f.tema==='Otro tema',probChips,hasProb:f.prob>=0,probText,edadChips,pubChips,necChips,propChips,
+      rasgoChips,rasgoCount:String(f.rasgos.length),rasgoFb:fb(a.ras),sliders,tonoFb:fb(a.tono),pv,
+      checks,allSi,copiedHelp:s.ch,finalQ,fqDone,fqScore:String(fqN),fqMsg,metaChips,hasMeta:s.meta>=0,metaTip:s.meta>=0?META[s.meta].t:'',
+      pLeft:String(Math.ceil(s.pLeft)),pPct:((s.pLeft/20)*100)+'%',pLabel:s.pRun?'Reiniciar':'Iniciar 20 segundos',
+      atStart:s.screen===0,atEnd:s.screen===SCR.length-1,navLabel:(s.screen+1)+' de '+SCR.length+' · '+cur.t,navPct:(((s.screen+1)/SCR.length)*100)+'%',
+      tourOn:s.tour!==null&&!!s.rect,spot,tip,tour:{step:(ti+1)+' de '+TOUR.length,n:String(ti+1),total:String(TOUR.length),t:TOUR[ti].t,d:TOUR[ti].d,btn:ti===TOUR.length-1?'¡Listo! 🚀':'Siguiente'},
+      zoomV:String([0.85,1,1.15,1.3][s.zoom]),zoomLabel:Math.round([0.85,1,1.15,1.3][s.zoom]*100)+'%',
+      rootH:'calc(100vh / '+[0.85,1,1.15,1.3][s.zoom]+')',
+      muted:!!s.mute,muteTitle:s.mute?'Activar sonido':'Silenciar',muteIcon:s.mute?'ph ph-speaker-slash':'ph ph-speaker-high',
+      fullTitle:s.full?'Salir de pantalla completa':'Pantalla completa',fullIcon:s.full?'ph ph-corners-in':'ph ph-corners-out',
+      h:{
+        zoomIn:()=>{this.sfx('pop');this.setState(st=>({zoom:Math.min(3,st.zoom+1)}));},zoomOut:()=>{this.sfx('pop');this.setState(st=>({zoom:Math.max(0,st.zoom-1)}));},zoomReset:()=>{this.sfx('pop');this.setState({zoom:1});},
+        toggleMute:()=>{const m=!this.state.mute;this.setState({mute:m},()=>{if(!m)this.sfx('pop');});},
+        toggleFull:()=>{this.sfx('pop');try{const d=document,el=d.documentElement;if(d.fullscreenElement||d.webkitFullscreenElement)(d.exitFullscreen||d.webkitExitFullscreen).call(d);else (el.requestFullscreen||el.webkitRequestFullscreen).call(el);}catch(e){}},
+        next:()=>this.go(s.screen+1),prev:()=>this.go(s.screen-1),
+        toggleHelp:()=>this.setState(st=>({help:!st.help})),
+        startTour:()=>this.setTour(0),
+        tourNext:()=>{if(ti>=TOUR.length-1)endTour();else this.setTour(ti+1);},tourSkip:endTour,
+        tilt:(e)=>{const r=e.currentTarget.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-0.5,y=(e.clientY-r.top)/r.height-0.5;this.setState({tilt:[(-14+x*16).toFixed(1),(6-y*10).toFixed(1)]});},
+        untilt:()=>this.setState({tilt:[-14,6]}),
+        galPrev:()=>this.setState(st=>({gal:st.gal-1})),galNext:()=>this.setState(st=>({gal:st.gal+1})),
+        copyPrompt:()=>this.copy(prompt,'cp'),
+        copyHelp:()=>this.copy('Revisa la ficha de mi chatbot y dime qué parte está incompleta o es muy genérica, sin reescribirla por mí: [pega tu ficha]','ch'),
+        spin:()=>this.spin(),
+        pitch:()=>this.togglePitch()
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

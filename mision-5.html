@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Misión 5 · Crea la marca de tu chatbot</title>
+<link rel="stylesheet" href="ds/tokens/colors.css">
+<link rel="stylesheet" href="ds/tokens/typography.css">
+<link rel="stylesheet" href="ds/tokens/spacing.css">
+<link rel="stylesheet" href="ds/tokens/effects.css">
+<link rel="stylesheet" href="ds/tokens/base.css">
+<link rel="stylesheet" href="ds/styles.css">
+<script src="ds/_ds_bundle.js"></script>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<script src="./image-slot.js"></script>
+<style>
+body{--mint-500:#5691FF;--mint-600:#3771DB;--mint-700:#1F52B8;}
+html,body{margin:0;height:100%;background:#EAF7FF;font-family:"NT Bau",-apple-system,sans-serif;color:#101613;}
+*{box-sizing:border-box;}
+a{color:#1F52B8;}
+a:hover{color:#001F19;}
+button:focus-visible{outline:3px solid #5691FF;outline-offset:2px;}
+</style>
+</helmet>
+
+<div style="zoom:{{ zoomV }};height:{{ rootH }};display:grid;grid-template-rows:56px auto minmax(0,1fr);grid-template-columns:minmax(0,1fr);background:var(--sky-100);">
+
+  <header style="background:var(--blue-700);color:#fff;display:flex;align-items:center;gap:16px;padding:0 clamp(12px,2vw,24px);min-width:0;gap:12px;">
+    <img src="assets/ctc-logotipo-white.png" alt="Crack the Code" style="height:20px;display:block;flex:none;">
+    <div style="width:1px;height:28px;background:rgba(255,255,255,.2);flex:none;"></div>
+    <div style="display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 auto;overflow:hidden;">
+      <span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--sky-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Estudio Nexo · Misión 5 de 8</span>
+      <span style="font-size:15px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Crea la marca de tu chatbot</span>
+    </div>
+    
+    <div data-tour="nivel" title="Vas por el Nivel 4 · Diseñador/a de marca y creador/a de contenido" style="flex:none;display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:var(--sky-500);color:var(--primary-900);font-size:13px;font-weight:700;white-space:nowrap;">
+      <i class="ph ph-trophy" style="font-size:18px;flex:none;"></i><span style="overflow:hidden;text-overflow:ellipsis;">Nivel 4</span>
+    </div>
+    <div data-tour="tools" style="flex:none;display:flex;align-items:center;gap:0;padding:2px 2px 2px 10px;border:1px solid rgba(255,255,255,.25);border-radius:999px;">
+      <span title="Lupa: agranda o achica la pantalla" style="display:flex;align-items:center;gap:4px;font-size:16px;">🔍</span>
+      <button onClick="{{ h.zoomOut }}" title="Achicar pantalla" aria-label="Achicar pantalla"  style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:transparent;color:#fff;cursor:pointer;font-family:inherit;" style-hover="background:rgba(255,255,255,.12);"><i class="ph ph-minus" style="font-size:18px;"></i></button>
+      <button onClick="{{ h.zoomReset }}" title="Tamaño normal" aria-label="Tamaño normal" style="flex:none;min-width:42px;height:32px;border:none;border-radius:999px;background:transparent;color:#fff;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;" style-hover="background:rgba(255,255,255,.12);">{{ zoomLabel }}</button>
+      <button onClick="{{ h.zoomIn }}" title="Agrandar pantalla" aria-label="Agrandar pantalla"  style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:transparent;color:#fff;cursor:pointer;font-family:inherit;" style-hover="background:rgba(255,255,255,.12);"><i class="ph ph-plus" style="font-size:18px;"></i></button>
+      <span style="width:1px;height:20px;background:rgba(255,255,255,.25);margin:0 2px;"></span>
+      
+      <button onClick="{{ h.toggleMute }}" title="{{ muteTitle }}" aria-label="{{ muteTitle }}" aria-pressed="{{ muted }}" style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:transparent;color:#fff;cursor:pointer;" style-hover="background:rgba(255,255,255,.12);"><i class="{{ muteIcon }}" style="font-size:18px;"></i></button>
+      <button onClick="{{ h.toggleFull }}" title="{{ fullTitle }}" aria-label="{{ fullTitle }}" style="flex:none;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:none;border-radius:999px;background:transparent;color:#fff;cursor:pointer;" style-hover="background:rgba(255,255,255,.12);"><i class="{{ fullIcon }}" style="font-size:18px;"></i></button>
+    </div>
+    <button data-tour="ayuda" title="Si te bloqueas" onClick="{{ h.toggleHelp }}" style="flex:none;white-space:nowrap;display:flex;align-items:center;gap:8px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:7px 12px;font-family:inherit;font-size:13px;cursor:pointer;" style-hover="background:rgba(255,255,255,.08);">
+      <i class="ph ph-lifebuoy" style="font-size:18px;"></i>Ayuda
+    </button>
+    <button onClick="{{ h.startTour }}" title="Ver recorrido guiado" aria-label="Ver recorrido guiado" style="flex:none;display:flex;align-items:center;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:12px;padding:7px 10px;font-family:inherit;cursor:pointer;" style-hover="background:rgba(255,255,255,.08);">
+      <i class="ph ph-compass" style="font-size:18px;"></i>
+    </button>
+  </header>
+
+  <nav data-tour="menu" ref="{{ navRef }}" style="background:#fff;border-bottom:1px solid var(--sky-500);display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:4px;padding:8px 12px;overflow:hidden;">
+    <sc-for list="{{ menu }}" as="m" hint-placeholder-count="8">
+      <button onClick="{{ m.go }}" title="{{ m.full }}" aria-label="{{ m.full }}" style="flex:0 1 auto;min-width:0;display:flex;align-items:center;gap:6px;padding:4px {{ m.pr }} 4px 4px;border-radius:999px;border:1px solid {{ m.pbd }};background:{{ m.pbg }};color:var(--primary-900);font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;" style-hover="border-color:var(--blue-500);">
+        <span style="width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;background:{{ m.nbg }};color:{{ m.nfg }};">{{ m.num }}</span><span style="overflow:hidden;text-overflow:ellipsis;">{{ m.name }}</span><sc-if value="{{ m.showTime }}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;color:var(--neutral-600);">{{ m.time }}</span></sc-if>
+      </button>
+    </sc-for>
+  </nav>
+
+  <div style="display:grid;grid-template-rows:minmax(0,1fr) auto;min-height:0;">
+    <main ref="{{ mainRef }}" style="overflow-y:auto;padding:28px clamp(20px,4vw,48px) 56px;">
+      <div style="max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:26px;">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--primary-900);background:var(--blue-500);padding:7px 16px;border-radius:999px;transform:rotate(-2deg);">{{ over }}</span>
+          <sc-for list="{{ curItems }}" as="it" hint-placeholder-count="2">
+            <button onClick="{{ it.go }}" style="display:flex;align-items:center;gap:8px;padding:6px 12px;border:none;border-radius:999px;background:{{ it.bg }};color:var(--primary-900);font-family:inherit;font-size:13px;font-weight:{{ it.fw }};cursor:pointer;" style-hover="background:#fff;">
+              <span style="width:8px;height:8px;border-radius:50%;background:{{ it.dot }};flex:none;"></span>{{ it.t }}
+            </button>
+          </sc-for>
+        </div>
+
+        <!-- INICIO -->
+        <sc-if value="{{ is.inicio }}" hint-placeholder-val="{{ true }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:24px;padding:clamp(28px,4vw,56px);display:flex;flex-wrap:wrap;gap:40px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:22px;flex:3 1 420px;min-width:0;">
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4vw,56px);line-height:1.05;letter-spacing:-.02em;margin:0;">Crea la marca de <span style="color:var(--sky-500);">tu chatbot</span></h1>
+              <p style="font-size:18px;line-height:1.55;margin:0;max-width:520px;text-wrap:pretty;">Tu chatbot ya habla bien. Hoy le das una cara: avatar, colores, letras y estilo, todo a partir de su personalidad.</p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:14px;"><span style="background:rgba(255,255,255,.1);padding:7px 14px;border-radius:999px;white-space:nowrap;">⏱️ 90 minutos</span><span style="background:rgba(255,255,255,.1);padding:7px 14px;border-radius:999px;white-space:nowrap;">🎨 Guía de marca</span><span style="background:rgba(255,255,255,.1);padding:7px 14px;border-radius:999px;white-space:nowrap;">🏅 Rumbo al Nivel 4</span></div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" size="lg" onClick="{{ h.next }}" hint-size="200px,52px">Empezar la misión 🚀</x-import>
+                <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" size="lg" variant="inverse" onClick="{{ h.startTour }}" hint-size="200px,52px">Ver recorrido 🧭</x-import>
+              </div>
+            </div>
+            <div style="height:340px;flex:1 1 260px;min-width:220px;"><image-slot id="img-s5-portada" src="assets/img/img-s5-portada.png" shape="rounded" radius="22" placeholder="Rai pintándose a sí mismo en un lienzo, con paleta de colores" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;"><div style="background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px;"><strong style="font-size:16px;">🎒 Ten a mano</strong><span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">Tu Ficha del chatbot (los 3 rasgos) y tu cuenta de ChatGPT o Gemini para crear imágenes.</span></div><div style="background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px;"><strong style="font-size:16px;">✏️ ¿Sin IA para imágenes?</strong><span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">Un boceto a mano, fotografiado, también vale para la capa Base.</span></div><div style="background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:8px;"><strong style="font-size:16px;">🏃 ¿Faltaste antes?</strong><span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">Solo necesitas tus 3 rasgos. Si no los tienes, usa los de Rai: curioso, paciente y divertido.</span></div></div>
+        </sc-if>
+
+        <!-- MATCH -->
+        <sc-if value="{{ is.match }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">🕵️ Detective visual</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">¿De quién es cada cara?</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">4 avatares sin nombre. Por cómo se ven, ¿a qué chatbot de la galería pertenece cada uno?</p>
+            </div>
+            <div style="height:220px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:88px;line-height:1;">🕵️</span></div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;">
+            <sc-for list="{{ mt }}" as="m" hint-placeholder-count="4">
+              <div style="background:#fff;border-radius:22px;padding:14px;border:3px solid {{ m.bd }};display:flex;flex-direction:column;gap:10px;">
+                <div style="height:150px;border-radius:16px;overflow:hidden;background:var(--sky-100);background-image:{{ m.bgi }};background-size:contain;background-position:center;background-repeat:no-repeat;"></div>
+                <strong style="font-size:15px;">Avatar {{ m.k }}</strong>
+                <div style="display:flex;gap:6px;flex-wrap:wrap;"><sc-for list="{{ m.opts }}" as="o" hint-placeholder-count="4"><button onClick="{{ o.on }}" style="padding:6px 10px;border-radius:999px;border:2px solid {{ o.bd }};background:{{ o.bg }};color:var(--primary-900);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;">{{ o.label }}</button></sc-for></div>
+                <sc-if value="{{ m.answered }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;line-height:1.45;padding:8px 10px;border-radius:12px;background:{{ m.rbg }};">{{ m.res }}</span></sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ mtDone }}" hint-placeholder-val="{{ false }}">
+            <div style="background:var(--blue-500);color:var(--primary-900);border-radius:22px;padding:22px 26px;display:flex;flex-direction:column;gap:8px;">
+              <strong style="font-size:18px;">🎨 Eso es identidad visual</strong>
+              <span style="font-size:16px;line-height:1.55;">Sin leer una palabra, adivinaste de qué trata cada chatbot. Las formas, los colores y los objetos comunican personalidad. Hoy diseñas la de tu chatbot.</span>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <!-- LU -->
+        <sc-if value="{{ is.lu }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:28px;align-items:stretch;">
+            <div style="min-height:380px;background:var(--sky-500);"><image-slot id="lu-retrato" src="assets/img/lu-retrato.png" shape="rect" placeholder="Lu" style="width:100%;height:100%;"></image-slot></div>
+            <div style="display:flex;flex-direction:column;gap:18px;">
+              <div style="display:flex;flex-direction:column;gap:4px;"><h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(34px,4vw,44px);line-height:1.1;letter-spacing:-.02em;margin:0;color:var(--primary-900);">Una cara para tu chatbot 🎨</h1><span style="font-size:15px;color:var(--neutral-600);">Lu · Directora creativa de Estudio Nexo</span></div>
+              <div style="background:#fff;border-radius:24px 24px 24px 6px;padding:22px 26px;font-size:17px;line-height:1.6;">El cliente quiere que la gente reconozca su chatbot de lejos. Necesito su <strong>Guía de marca</strong>: un avatar o logotipo, 3 colores, 2 tipos de letra y un estilo. Y cada decisión tiene que tener un porqué.</div>
+              <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:22px 24px;display:flex;flex-direction:column;gap:12px;">
+                <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--sky-500);">📘 Tu Guía de marca tiene 5 partes</span>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;font-size:15px;">
+                  <span style="padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.1);">🧠 Personalidad de marca</span><span style="padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.1);">🤖 Avatar o logotipo</span><span style="padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.1);">🎨 Paleta de 3 colores</span><span style="padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.1);">🔤 2 tipografías</span><span style="padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.1);">✨ Estilo gráfico</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- RASGOS -->
+        <sc-if value="{{ is.rasgos }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--blue-500);color:var(--primary-900);border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:#fff;color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">🔁 De rasgo a recurso</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Cada rasgo es una decisión</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Toca un rasgo y descubre cómo se convierte en algo que se ve.</p>
+            </div>
+            <div style="height:220px;"><image-slot id="img-rai" src="assets/img/img-rai.png" shape="rounded" radius="22" placeholder="Rai" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ rgC }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;">
+            <sc-for list="{{ rgOut }}" as="o" hint-placeholder-count="3">
+              <div style="background:#fff;border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 0 var(--sky-500);">
+                <span style="font-size:32px;line-height:1;">{{ o.e }}</span><span style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-700);">{{ o.k }}</span><strong style="font-size:17px;line-height:1.35;">{{ o.v }}</strong>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:20px 24px;display:flex;flex-direction:column;gap:8px;">
+            <strong style="font-size:16px;color:var(--sky-500);">🌱 Así lo hizo Rai</strong>
+            <span style="font-size:16px;line-height:1.55;"><strong>Curioso</strong> → ojos grandes y brillantes · <strong>Paciente</strong> → formas redondeadas, sin puntas · <strong>Divertido</strong> → azul vivo y un brote verde en la cabeza.</span>
+          </div>
+        </sc-if>
+
+        <!-- PROCESO RAI -->
+        <sc-if value="{{ is.proceso }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">🎬 Detrás de escena</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Así nació el avatar de Rai</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">3 intentos con IA y una versión final editada. Toca cada versión para ver qué cambió.</p>
+            </div>
+            <div style="height:220px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:88px;line-height:1;">🎬</span></div></div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <sc-for list="{{ verT }}" as="v" hint-placeholder-count="4"><button onClick="{{ v.on }}" style="padding:8px 16px;border-radius:999px;border:2px solid {{ v.bd }};background:{{ v.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;">{{ v.label }}</button></sc-for>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:stretch;">
+            <div style="flex:1 1 280px;min-height:280px;max-width:100%;"><image-slot id="{{ ver.id }}" src="{{ ver.src }}" shape="rounded" radius="22" placeholder="{{ ver.ph }}" style="width:100%;height:100%;"></image-slot></div>
+            <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;flex:999 1 380px;min-width:0;">
+              <span style="font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue-700);">{{ ver.k }}</span>
+              <div style="background:var(--sky-100);border-radius:14px;padding:12px 14px;font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.6;">{{ ver.prompt }}</div>
+              <div style="display:flex;gap:10px;align-items:flex-start;"><span style="font-size:22px;">{{ ver.ic }}</span><span style="font-size:15px;line-height:1.55;">{{ ver.note }}</span></div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;">
+            <div style="background:#fff;border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:6px;"><strong>⚖️ Derechos de autor</strong><span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">No copies personajes, logos ni marcas que ya existen, aunque la IA pueda imitarlos.</span></div>
+            <div style="background:#fff;border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:6px;"><strong>🏷️ «Creado con apoyo de IA»</strong><span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">Si usaste IA, lo dices. Y siempre editas el resultado: la decisión final es tuya.</span></div>
+            <div style="background:#fff;border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:6px;"><strong>🔍 Pequeño y claro</strong><span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">Un avatar se ve del tamaño de una uña. Si no se entiende chiquito, simplifícalo.</span></div>
+          </div>
+        </sc-if>
+
+        <!-- LAB -->
+        <sc-if value="{{ is.lab }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--blue-500);color:var(--primary-900);border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:#fff;color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">🧪 Estudio de diseño</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Prueba combinaciones</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Elige colores, letras y formas y mira cómo cambia tu chatbot en vivo. Juega hasta que se sienta como él.</p>
+            </div>
+            <div style="height:220px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:88px;line-height:1;">🎨</span></div></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">
+            <div style="display:flex;flex-direction:column;gap:16px;flex:999 1 420px;min-width:0;">
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;"><strong style="font-size:17px;color:var(--primary-900);">🎨 Paleta de 3 colores</strong>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;">
+                  <sc-for list="{{ palC }}" as="p" hint-placeholder-count="6">
+                    <button onClick="{{ p.on }}" style="display:flex;flex-direction:column;gap:8px;padding:10px;border-radius:18px;border:3px solid {{ p.bd }};background:#fff;font-family:inherit;cursor:pointer;text-align:left;">
+                      <div style="display:flex;height:36px;border-radius:10px;overflow:hidden;"><span style="flex:1;background:{{ p.a }};"></span><span style="flex:1;background:{{ p.b }};"></span><span style="flex:1;background:{{ p.c }};"></span></div>
+                      <span style="font-size:13px;font-weight:700;color:var(--primary-900);">{{ p.n }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;"><strong style="font-size:17px;color:var(--primary-900);">🔤 2 tipografías: títulos + textos</strong><div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ fontC }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div></div>
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;"><strong style="font-size:17px;color:var(--primary-900);">✨ Estilo de formas</strong><div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ shapeC }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div></div>
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;"><strong style="font-size:17px;color:var(--primary-900);">🤖 Emoji de prueba para el avatar</strong><div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ emoC }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div></div>
+            </div>
+            <aside style="position:sticky;top:0;flex:1 1 320px;max-width:100%;display:flex;flex-direction:column;gap:12px;">
+              <div style="background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 4px 0 var(--sky-500);">
+                  <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:{{ pv.c1 }};color:{{ pv.t1 }};">
+                    <span style="width:44px;height:44px;flex:none;border-radius:{{ pv.avR }};background:{{ pv.c3 }};display:flex;align-items:center;justify-content:center;font-size:22px;">{{ pv.emoji }}</span>
+                    <div style="display:flex;flex-direction:column;"><strong style="font-family:{{ pv.fH }};font-size:18px;line-height:1.1;">[Tu chatbot]</strong><span style="font-size:12px;opacity:.85;">Chatbot de IA</span></div>
+                  </div>
+                  <div style="padding:16px;display:flex;flex-direction:column;gap:10px;background:{{ pv.bg }};font-family:{{ pv.fB }};">
+                    <div style="align-self:flex-start;max-width:85%;background:#fff;padding:10px 14px;border-radius:{{ pv.bR }};font-size:14px;line-height:1.5;color:#101613;">¡Hola! Soy un chatbot de IA. ¿En qué te ayudo hoy?</div>
+                    <div style="align-self:flex-end;max-width:70%;background:{{ pv.c2 }};color:{{ pv.t2 }};padding:10px 14px;border-radius:{{ pv.bR }};font-size:14px;">¿Por dónde empiezo?</div>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;"><span style="padding:6px 12px;border-radius:{{ pv.btnR }};background:{{ pv.c3 }};color:{{ pv.t3 }};font-size:13px;font-weight:700;">Empezar</span><span style="padding:6px 12px;border-radius:{{ pv.btnR }};border:2px solid {{ pv.c1 }};color:#101613;font-size:13px;font-weight:700;background:#fff;">Ver ideas</span></div>
+                  </div>
+                </div>
+              <div style="background:var(--primary-900);color:#fff;border-radius:18px;padding:14px 16px;font-size:14px;line-height:1.5;">{{ pv.why }}</div>
+            </aside>
+          </div>
+        </sc-if>
+
+        <!-- RETO -->
+        <sc-if value="{{ isReto }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:22px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+            <div style="width:110px;height:110px;flex:none;"><image-slot id="img-rai" src="assets/img/img-rai.png" shape="circle" radius="22" placeholder="Rai" style="width:100%;height:100%;"></image-slot></div>
+            <div style="display:flex;flex-direction:column;gap:8px;flex:1 1 300px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">🎨 Diseña tu marca</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(32px,4vw,44px);line-height:1.05;letter-spacing:-.02em;margin:0;">{{ retoTitle }}</h1>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <sc-for list="{{ retoTabs }}" as="t" hint-placeholder-count="3">
+              <button onClick="{{ t.go }}" style="display:flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;border-radius:999px;border:2px solid {{ t.bd }};background:{{ t.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:999px;background:{{ t.lbg }};color:{{ t.lfg }};">{{ t.layer }}</span>{{ t.t }}</button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ is.r1 }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">
+              <div style="display:flex;flex-direction:column;gap:14px;flex:999 1 420px;min-width:0;">
+                <div style="background:var(--blue-500);border-radius:20px;padding:16px 20px;font-size:15px;line-height:1.5;">🧩 Fórmula: <strong>sujeto + acción + estilo + colores + fondo + encuadre</strong>. Arma tu prompt y genera tu avatar en ChatGPT o Gemini.</div>
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;gap:10px;"><strong style="font-size:17px;color:var(--primary-900);">1 · Sujeto</strong><span style="font-size:14px;color:var(--neutral-600);line-height:1.5;">¿Qué es tu avatar? Completa [tu tema] al copiar.</span><div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ pS }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div></div>
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;gap:10px;"><strong style="font-size:17px;color:var(--primary-900);">2 · Acción</strong><div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ pA }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div></div>
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;gap:10px;"><strong style="font-size:17px;color:var(--primary-900);">3 · Estilo</strong><div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ pE }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div></div>
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;gap:10px;"><strong style="font-size:17px;color:var(--primary-900);">4 · Fondo y encuadre</strong><div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ pF }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div><div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ pN }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div></div>
+              </div>
+              <aside style="position:sticky;top:0;flex:1 1 320px;max-width:100%;display:flex;flex-direction:column;gap:12px;">
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;gap:10px;">
+                  <strong style="font-size:16px;color:var(--primary-900);">✨ Tu prompt de avatar</strong>
+                  <span style="font-size:14px;color:var(--neutral-600);line-height:1.5;">Los colores salen de tu paleta del Estudio de diseño.</span>
+                  <div style="background:var(--sky-100);border-radius:14px;padding:14px 16px;font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.6;white-space:pre-wrap;">{{ avPrompt }}</div>
+                  <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" onClick="{{ h.copyAv }}" hint-size="100%,44px">📋 Copiar prompt</x-import>
+                  <span style="font-size:14px;color:var(--blue-700);font-weight:700;text-align:center;">{{ copiedAv }}</span>
+                  <div style="display:flex;gap:8px;flex-wrap:wrap;"><a href="https://chatgpt.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--primary-900);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">💬 ChatGPT<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a><a href="https://gemini.google.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--primary-900);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">✨ Gemini<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a></div>
+                </div>
+                <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.5;">
+                  <strong style="color:var(--sky-500);">🔁 Mejóralo en 2 rondas</strong>
+                  <span>Ronda 1: «Hazlo más simple, que se entienda en tamaño pequeño».</span>
+                  <span>Ronda 2: cambia un detalle que no te guste: «cambia X por Y».</span>
+                </div>
+              </aside>
+            </div>
+          </sc-if>
+          <sc-if value="{{ is.r2 }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;">
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;flex:999 1 420px;min-width:0;">
+                <strong style="font-size:17px;color:var(--primary-900);">🧠 ¿Por qué elegiste cada cosa?</strong>
+                <span style="font-size:14px;color:var(--neutral-600);line-height:1.5;">Elige tus 3 rasgos: la guía explica tus decisiones con ellos.</span>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;"><sc-for list="{{ gR }}" as="c" hint-placeholder-count="4"><button onClick="{{ c.on }}" style="padding:7px 14px;border-radius:999px;border:2px solid {{ c.bd }};background:{{ c.bg }};color:var(--primary-900);font-family:inherit;font-size:14px;font-weight:500;cursor:pointer;">{{ c.label }}</button></sc-for></div>
+                <span style="font-size:14px;color:var(--neutral-600);line-height:1.5;">Tu paleta, tipografías y estilo vienen del Estudio de diseño. Puedes volver a cambiarlos.</span>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;"><x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="secondary" onClick="{{ h.goLab }}" hint-size="230px,44px">🎨 Ir al Estudio de diseño</x-import></div>
+              </div>
+              <aside style="position:sticky;top:0;flex:1 1 320px;max-width:100%;display:flex;flex-direction:column;gap:12px;">
+                <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;gap:10px;">
+                  <strong style="font-size:16px;color:var(--primary-900);">📘 Tu Guía de marca</strong>
+                  <div style="background:var(--sky-100);border-radius:14px;padding:14px 16px;font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.6;white-space:pre-wrap;">{{ guia }}</div>
+                  <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" onClick="{{ h.copyGuia }}" hint-size="100%,44px">📋 Copiar mi guía</x-import>
+                  <span style="font-size:14px;color:var(--blue-700);font-weight:700;text-align:center;">{{ copiedGuia }}</span>
+                </div>
+              </aside>
+            </div>
+          </sc-if>
+          <sc-if value="{{ is.r3 }}" hint-placeholder-val="{{ false }}">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:16px;align-items:start;">
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;"><div style="display:flex;gap:10px;align-items:center;"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);">PRO</span><strong style="font-size:17px;color:var(--primary-900);">🖥️ Tu marca en la interfaz</strong></div>
+                <span style="font-size:15px;line-height:1.55;">Arma en el Estudio de diseño la interfaz con tus colores y toma una captura: es la maqueta de cómo se vería tu chatbot. Agrega en las instrucciones de Claude tu paleta y estilo, para que hable de ellos si se lo preguntan.</span>
+              </div>
+              <div style="background:#fff;border-radius:22px;padding:24px;box-shadow:0 4px 0 var(--sky-500);display:flex;flex-direction:column;gap:14px;"><div style="display:flex;gap:10px;align-items:center;"><span style="font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:var(--primary-900);color:var(--sky-500);">PLUS</span><strong style="font-size:17px;color:var(--primary-900);">😊🤔 2 variantes del avatar</strong></div>
+                <span style="font-size:14px;color:var(--neutral-600);line-height:1.5;">Pide a la IA el mismo avatar con otra expresión:</span>
+                <div style="background:var(--sky-100);border-radius:14px;padding:14px 16px;font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.6;white-space:pre-wrap;">{{ varPrompt }}</div>
+                <div style="display:flex;gap:12px;align-items:center;"><x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" onClick="{{ h.copyVar }}" hint-size="120px,44px">📋 Copiar</x-import><span style="font-size:14px;color:var(--blue-700);font-weight:700;">{{ copiedVar }}</span></div>
+              </div>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <!-- CHECK -->
+        <sc-if value="{{ is.check }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--blue-500);color:var(--primary-900);border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:#fff;color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">✅ Casi listo</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Revisa y guarda</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">Revisa tu marca con honestidad y guárdala con nombres de diseñador profesional.</p>
+            </div>
+            <div style="height:220px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:88px;line-height:1;">📝</span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <sc-for list="{{ checks }}" as="c" hint-placeholder-count="5">
+              <div style="background:#fff;border-radius:22px;padding:16px 20px;display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+                  <span style="width:36px;height:36px;border-radius:50%;background:var(--sky-500);display:flex;align-items:center;justify-content:center;font-family:var(--font-emotional);font-size:20px;color:var(--primary-900);flex:none;">{{ c.n }}</span>
+                  <strong style="flex:1 1 240px;font-size:16px;">{{ c.t }}</strong>
+                  <div style="display:flex;gap:6px;"><sc-for list="{{ c.btns }}" as="b" hint-placeholder-count="3"><button onClick="{{ b.on }}" style="padding:8px 14px;border-radius:999px;border:2px solid {{ b.bd }};background:{{ b.bg }};color:{{ b.fg }};font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;">{{ b.label }}</button></sc-for></div>
+                </div>
+                <sc-if value="{{ c.showTip }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-left:50px;display:flex;gap:10px;align-items:center;padding:10px 14px;border-radius:12px;background:var(--blue-100);font-size:14px;line-height:1.5;flex-wrap:wrap;"><span style="flex:1 1 240px;">{{ c.tip }}</span><button onClick="{{ c.fix }}" style="padding:6px 12px;border-radius:999px;border:2px solid var(--primary-900);background:#fff;color:var(--primary-900);font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;">Ver ayuda</button></div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;align-items:start;">
+            <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:12px;">
+            <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--sky-500);">📒 Bitácora · entrada «Misión 5 · Guía de marca»</span>
+            <div style="display:flex;flex-direction:column;gap:10px;font-size:15px;line-height:1.5;"><span style="display:flex;gap:10px;"><strong style="color:var(--sky-500);">1</strong>Pega tu Guía de marca (botón «Copiar mi guía» del reto).</span><span style="display:flex;gap:10px;"><strong style="color:var(--sky-500);">2</strong>Pega tu avatar o logotipo final.</span><span style="display:flex;gap:10px;"><strong style="color:var(--sky-500);">3</strong>Si usaste IA, deja la línea «Creado con apoyo de IA» y anota qué editaste.</span></div>
+          </div>
+            <div style="background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px;">
+              <strong style="font-size:16px;color:var(--primary-900);">🏷️ Nombra tus archivos así</strong>
+              <span style="font-family:ui-monospace,Menlo,monospace;font-size:15px;background:var(--sky-100);padding:10px 12px;border-radius:12px;">S5_Avatar_NombreChatbot.png</span>
+              <span style="font-size:14px;color:var(--neutral-700);">Ejemplo: S5_Avatar_Rai.png</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- QUIZ -->
+        <sc-if value="{{ is.quiz }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--primary-900);color:#fff;border-radius:28px;padding:clamp(22px,3vw,32px) clamp(22px,3vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;overflow:hidden;">
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--blue-500);color:var(--primary-900);transform:rotate(-3deg);white-space:nowrap;">🏆 Reto final</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.4vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">¿Marca propia o copia?</h1>
+              <p style="font-size:18px;line-height:1.5;margin:0;max-width:480px;text-wrap:pretty;">5 situaciones de diseño. ¿Qué haría un diseñador profesional?</p>
+            </div>
+            <div style="height:220px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><span style="width:170px;height:170px;border-radius:50%;background:rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-size:88px;line-height:1;">⚖️</span></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <sc-for list="{{ qz }}" as="q" hint-placeholder-count="5">
+              <div style="background:#fff;border-radius:22px;padding:20px 22px;display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;gap:12px;align-items:flex-start;"><span style="flex:none;width:36px;height:36px;border-radius:50%;background:var(--blue-500);display:flex;align-items:center;justify-content:center;font-family:var(--font-emotional);font-size:20px;color:var(--primary-900);">{{ q.n }}</span><strong style="font-size:17px;line-height:1.45;padding-top:6px;">{{ q.q }}</strong></div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:8px;"><sc-for list="{{ q.opts }}" as="o" hint-placeholder-count="3"><button onClick="{{ o.on }}" style="padding:12px 16px;border-radius:18px;border:2px solid {{ o.bd }};background:{{ o.bg }};color:var(--primary-900);font-family:inherit;font-size:15px;line-height:1.4;text-align:left;cursor:pointer;">{{ o.label }}</button></sc-for></div>
+                <sc-if value="{{ q.answered }}" hint-placeholder-val="{{ false }}"><span style="font-size:14px;line-height:1.5;padding:10px 14px;border-radius:12px;background:{{ q.rbg }};">{{ q.res }}</span></sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ qzDone }}" hint-placeholder-val="{{ false }}">
+            <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:24px 28px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;">
+              <span style="font-family:var(--font-emotional);font-size:56px;line-height:1;color:var(--sky-500);">{{ qzScore }}/5</span>
+              <span style="font-size:16px;line-height:1.55;flex:1 1 300px;">{{ qzMsg }}</span>
+            </div>
+          </sc-if>
+        </sc-if>
+
+        <!-- FIN -->
+        <sc-if value="{{ is.fin }}" hint-placeholder-val="{{ false }}">
+          <div style="background:var(--blue-500);color:var(--primary-900);border-radius:28px;padding:clamp(24px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;align-items:center;">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;">🏅 Nivel 4 · a mitad de camino</span>
+              <h1 style="font-family:var(--font-emotional);font-weight:300;font-size:clamp(36px,4.6vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0;">Diseñador/a de marca</h1>
+              <span style="font-size:17px;line-height:1.55;max-width:680px;">Tu chatbot ya tiene cara y estilo. En la Misión 6 lo presentas al mundo y completas el Nivel 4.</span>
+            </div>
+            <div style="height:220px;"><image-slot id="img-s5-fin" src="assets/img/img-s5-fin.png" shape="rounded" radius="22" placeholder="Insignia del Nivel 4 con un pincel, a medio llenar" style="width:100%;height:100%;"></image-slot></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px;align-items:stretch;">
+            <div style="min-height:220px;background:var(--sky-500);"><image-slot id="lu-retrato" src="assets/img/lu-retrato.png" shape="rect" placeholder="Lu" style="width:100%;height:100%;"></image-slot></div>
+            <div style="background:#fff;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px;"><strong style="font-size:15px;color:var(--primary-900);">💬 Lu te dice</strong><span style="font-size:16px;line-height:1.6;">¡Ahora sí se ve como un producto de verdad! En la próxima misión escribimos sus mensajes y sus primeras publicaciones. Trae tu Guía de marca.</span></div>
+            <div style="background:var(--primary-900);color:#fff;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:10px;"><span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--sky-500);">🚀 Próxima · Misión 6</span><span style="font-family:var(--font-emotional);font-size:28px;line-height:1.2;">Presenta tu chatbot al mundo</span><span style="font-size:15px;line-height:1.5;">Escribes 3 mensajes clave y creas 3 publicaciones con tu marca.</span></div>
+          </div>
+        </sc-if>
+      </div>
+    </main>
+
+    <div data-tour="nav" style="display:flex;align-items:center;gap:16px;padding:12px clamp(20px,4vw,48px);background:#fff;border-top:1px solid var(--sky-500);">
+      <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="secondary" onClick="{{ h.prev }}" disabled="{{ atStart }}" hint-size="120px,44px">Anterior</x-import>
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;">
+        <span style="font-size:13px;color:var(--neutral-600);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;">{{ navLabel }}</span>
+        <div style="width:min(240px,100%);height:6px;background:var(--sky-100);border-radius:999px;overflow:hidden;"><div style="height:100%;width:{{ navPct }};background:var(--blue-500);transition:width 250ms ease-out;"></div></div>
+      </div>
+      <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="primary" onClick="{{ h.next }}" disabled="{{ atEnd }}" hint-size="120px,44px">Siguiente</x-import>
+    </div>
+  </div>
+</div>
+
+<sc-if value="{{ helpOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ h.toggleHelp }}" style="position:fixed;inset:0;background:rgba(8,11,9,.4);z-index:40;"></div>
+  <aside style="position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:#fff;z-index:41;padding:28px;display:flex;flex-direction:column;gap:18px;overflow-y:auto;box-shadow:var(--shadow-lg);">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <strong style="font-size:20px;color:var(--primary-900);">🆘 ¿Te bloqueaste?</strong>
+      <button onClick="{{ h.toggleHelp }}" aria-label="Cerrar" style="width:40px;height:40px;border-radius:50%;border:none;background:var(--sky-100);cursor:pointer;display:flex;align-items:center;justify-content:center;"><i class="ph ph-x" style="font-size:18px;"></i></button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;font-size:15px;line-height:1.5;">
+      <div style="display:flex;flex-direction:column;gap:4px;"><strong>🖼️ La IA no me deja crear imágenes</strong><span style="color:var(--neutral-700);">Algunas cuentas gratis tienen un límite al día. Prueba con la otra herramienta o haz un boceto a mano y fotografíalo.</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px;"><strong>😵 El avatar sale muy complicado</strong><span style="color:var(--neutral-700);">Pide «más simple, menos detalles, formas grandes». Un avatar debe entenderse chiquito.</span></div>
+      <div style="display:flex;flex-direction:column;gap:4px;"><strong>🙅 Se parece a un personaje famoso</strong><span style="color:var(--neutral-700);">Cámbialo: otra forma, otros colores o un objeto distinto. Tu marca tiene que ser original.</span></div>
+    </div>
+    <div style="background:var(--sky-100);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:10px;">
+      <strong style="font-size:15px;color:var(--primary-900);">🤖 Pídele ayuda a ChatGPT o Gemini</strong>
+      <span style="font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.6;">Te paso los 3 rasgos de mi chatbot: [rasgos]. Sugiere qué formas, colores y estilo de dibujo los representan, y explica por qué. No generes la imagen todavía.</span>
+      <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" variant="secondary" size="sm" onClick="{{ h.copyHelp }}" hint-size="140px,36px">📋 Copiar prompt</x-import>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+
+<a href="https://chatgpt.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--primary-900);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">💬 Abrir ChatGPT<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a>
+<a href="https://gemini.google.com" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:var(--primary-900);color:#fff;font-size:14px;font-weight:700;text-decoration:none;" style-hover="opacity:.88;">✨ Abrir Gemini<i class="ph ph-arrow-up-right" style="font-size:14px;"></i></a>
+</div>
+      <span style="font-size:13px;color:var(--blue-700);font-weight:700;">{{ copiedHelp }}</span>
+    </div>
+    <span style="font-size:14px;line-height:1.5;color:var(--neutral-700);">¿Sigues con dudas? Compara con el ejemplo de Rai o pregúntale a tu profesor.</span>
+  </aside>
+</sc-if>
+
+<sc-if value="{{ tourOn }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:50;"></div>
+  <div style="position:fixed;z-index:51;top:{{ spot.top }};left:{{ spot.left }};width:{{ spot.w }};height:{{ spot.h }};border-radius:18px;box-shadow:0 0 0 4px #5691FF, 0 0 0 9999px rgba(8,11,9,.62);transition:all 250ms ease-out;pointer-events:none;"></div>
+  <div style="position:fixed;z-index:52;top:{{ tip.top }};left:{{ tip.left }};width:320px;background:#fff;border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow-lg);transition:all 250ms ease-out;">
+    <span style="align-self:flex-start;font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--primary-900);background:var(--sky-500);padding:4px 10px;border-radius:999px;white-space:nowrap;">{{ tour.step }}</span>
+    <strong style="font-size:18px;color:var(--primary-900);">{{ tour.t }}</strong>
+    <span style="font-size:15px;line-height:1.5;color:var(--neutral-700);">{{ tour.d }}</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+      <button onClick="{{ h.tourSkip }}" style="background:transparent;border:none;font-family:inherit;font-size:14px;color:var(--neutral-600);cursor:pointer;text-decoration:underline;">Saltar</button>
+      <x-import component-from-global-scope="CrackTheCodeDesignSystem_7d2898.Button" size="sm" onClick="{{ h.tourNext }}" hint-size="110px,36px">{{ tour.btn }}</x-import>
+    </div>
+  </div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const ZS=[0.85,1,1.15,1.3];
+const BTN=[['si','✅ Sí'],['casi','🤏 Casi'],['no','🔄 Aún no']];
+const MOM=[{n:'Inicio',t:''},{n:'Detective visual',t:''},{n:'El encargo',t:''},{n:'De rasgo a recurso',t:''},{n:'Estudio de diseño',t:''},{n:'Diseña tu marca',t:''},{n:'Revisa y guarda',t:''},{n:'Reto final',t:''}];
+const SHORT=['🏠 Inicio','🕵️ Detective','📩 El encargo','🔁 Rasgos','🧪 Estudio','🎨 Tu marca','📤 Guarda','🏆 Reto final'];
+const MID=['🏠 Inicio','🕵️ Detective','📩 Encargo','🔁 Rasgos','🧪 Estudio','🎨 Marca','📤 Guarda','🏆 Reto'];
+const SCR=[['inicio',0,'Bienvenida'],['match',1,'¿De quién es cada cara?'],['lu',2,'Una cara para tu chatbot'],['rasgos',3,'Cada rasgo es una decisión'],['proceso',3,'Así nació el avatar de Rai'],['lab',4,'Prueba combinaciones'],['r1',5,'Tu avatar con IA'],['r2',5,'Tu Guía de marca'],['r3',5,'Extra: interfaz y variantes'],['check',6,'Revisa y guarda'],['quiz',7,'¿Marca propia o copia?'],['fin',7,'Próxima misión']].map(([id,m,t])=>({id,m,t}));
+const IDX={};SCR.forEach((s,i)=>IDX[s.id]=i);
+const TOUR=[{k:'menu',t:'🗺️ Tu ruta',d:'La misión tiene 7 pasos. Toca cualquiera para ir directo.'},{k:'tools',t:'🔍 Ajusta a tu gusto',d:'Agranda o achica la pantalla, apaga el sonido 🔊 o pasa a pantalla completa.'},{k:'ayuda',t:'🆘 ¿Te bloqueaste?',d:'Qué hacer si la IA no crea imágenes o el avatar no te convence.'},{k:'nav',t:'👣 Avanza a tu ritmo',d:'Ten ChatGPT o Gemini abierto para generar tu avatar.'}];
+const MT=[{k:'A',src:'assets/img/img-gal-respawn.png',a:1,why:'Audífonos gamer y control: videojuegos.'},{k:'B',src:'assets/img/img-gal-mesa.png',a:2,why:'Menú y plato: restaurante.'},{k:'C',src:'assets/img/img-gal-glow.png',a:0,why:'Brochas y espejo: maquillaje.'},{k:'D',src:'assets/img/img-gal-coach.png',a:3,why:'Silbato y balón: deportes.'}];
+const MTN=['💄 Glow','🎮 Respawn','🍽️ Mesa Lista','⚽ Coach Gol'];
+const RG={Curioso:[['👀','Ojos y expresión','Ojos grandes y brillantes'],['🔺','Forma','Una antena o un detalle que «explora»'],['🎨','Color','Un acento vivo, como el azul']],Paciente:[['⚪','Forma','Formas redondeadas, sin puntas'],['🎨','Color','Colores suaves y tranquilos'],['🔤','Letra','Letras redondas y fáciles de leer']],Divertido:[['😄','Expresión','Una sonrisa grande'],['🎨','Color','Colores vivos que contrastan'],['🌱','Detalle','Un accesorio inesperado, como el brote de Rai']],Directo:[['⬛','Forma','Formas simples, pocas piezas'],['🎨','Color','Pocos colores, mucho contraste'],['🔤','Letra','Letras rectas y firmes']],'Enérgico':[['🏃','Pose','En movimiento, con brazos arriba'],['🎨','Color','Colores intensos: naranja, azul fuerte'],['⚡','Detalle','Líneas que sugieren velocidad']],Tranquilo:[['🌊','Forma','Curvas suaves'],['🎨','Color','Tonos pastel y celestes'],['😌','Expresión','Ojos entrecerrados, sonrisa leve']],Ordenado:[['📐','Forma','Figuras geométricas y simétricas'],['🎨','Color','Paleta limitada y repetida'],['🔤','Letra','Letras de estilo técnico']],Creativo:[['🎨','Color','Combinaciones inesperadas'],['✏️','Estilo','Trazos que parecen hechos a mano'],['💡','Detalle','Un objeto creativo: pincel, bombilla']]};
+const PAL=[['Cielo','#5691FF','#B6E2FF','#001F19'],['Huerto','#2E9E5B','#D9F2E1','#FFB84D'],['Atardecer','#FF7A45','#FFE1D1','#3A2E8C'],['Neón suave','#756DC8','#D6ADFF','#6BE3D7'],['Chocolate','#7A4B2A','#F4E3D3','#E94F37'],['Menta','#0F8C7E','#6BE3D7','#001F19']];
+const FONTS=[['Moderna','"NT Bau",sans-serif','"NT Bau",sans-serif','letras limpias y modernas'],['Amigable','"Roca One",serif','"NT Bau",sans-serif','títulos suaves y cercanos'],['Clásica','Georgia,serif','"NT Bau",sans-serif','un toque elegante y confiable'],['Tech','ui-monospace,Menlo,monospace','"NT Bau",sans-serif','un aire de código y tecnología']];
+const SHAPES=[['⚪ Redondeado','999px','18px','999px','formas suaves y amigables'],['🔷 Geométrico','8px','6px','6px','formas firmes y ordenadas'],['💬 Burbuja','50%','22px 22px 22px 4px','999px','burbujas de chat divertidas']];
+const EMOS=['🤖','🌱','🎮','💄','⚽','🍳','🐾','🎵','📚','✨'];
+const PS=['un robot pequeño relacionado con [tu tema]','un personaje-objeto de [tu tema] con cara amigable','un animal simpático que representa [tu tema]','un logotipo simple con la inicial de [nombre]'];
+const PA=['saludando con la mano','sonriendo de frente','sosteniendo un objeto de su tema','pensando con una mano en la barbilla'];
+const PE=['ilustración plana','ilustración 3D suave','estilo sticker','dibujo a mano alzada'];
+const PF=['fondo blanco','fondo de un solo color','fondo transparente'];
+const PN=['plano centrado','de cuerpo entero','solo la cara (para ícono)'];
+const RAS=['Curioso','Paciente','Divertido','Directo','Enérgico','Tranquilo','Ordenado','Creativo'];
+const VER=[{k:'Versión 1 · Primer intento',id:'img-s5-rai-v1',ph:'Versión 1 del avatar de Rai',prompt:'un robot de huertos',ic:'😕',note:'Muy genérico: un robot cualquiera con una pala. No se notaba ningún rasgo.'},{k:'Versión 2 · Más detalle',id:'img-s5-rai-v2',ph:'Versión 2 del avatar de Rai',prompt:'un robot pequeño con una planta en la cabeza, ilustración 3D suave, colores azul y verde, fondo blanco, plano centrado',ic:'🙂',note:'Mejor, pero tenía muchas piezas y no se entendía en tamaño pequeño.'},{k:'Versión 3 · Simplificado',id:'img-s5-rai-v3',ph:'Versión 3 del avatar de Rai',prompt:'misma idea, más simple, formas redondeadas, ojos grandes y brillantes, menos detalles',ic:'😀',note:'Ya se ve curioso (ojos) y paciente (formas redondas). Faltaba algo divertido.'},{k:'Versión final · Editada por una persona',id:'img-rai',ph:'Avatar final de Rai',prompt:'(edición a mano: se cambió el color de la planta y se agrandó la sonrisa)',ic:'🏆',note:'La diseñadora editó el resultado: brote más grande y verde, sonrisa más amplia. Etiqueta: «Creado con apoyo de IA».'}];
+const QZ=[
+{q:'La IA te generó un avatar idéntico a un personaje famoso de videojuegos. ¿Qué haces?',o:['Lo uso, total lo hizo la IA','Cambio forma y colores hasta que sea original','Le pongo otro nombre y listo'],a:1,ok:'Exacto: aunque lo haga la IA, copiar un personaje existente no vale.',no:'Un personaje famoso tiene dueño, aunque la IA lo dibuje. Tu marca debe ser original.'},
+{q:'Tu chatbot es «tranquilo». ¿Qué paleta le va mejor?',o:['Rojo y negro intenso','Celestes y tonos suaves','Neón fosforescente'],a:1,ok:'¡Bien! Los colores suaves comunican calma.',no:'Para un rasgo tranquilo, los colores suaves comunican mejor la calma.'},
+{q:'¿Cuál es el mejor nombre para tu archivo final?',o:['final_final2.png','S5_Avatar_Rai.png','avatar nuevo (1).png'],a:1,ok:'Así entrega un profesional: misión, qué es y de quién.',no:'Un buen nombre dice la misión, qué es y de qué chatbot: S5_Avatar_Rai.png.'},
+{q:'Tu avatar se ve genial en grande, pero en pequeño es una mancha. ¿Qué haces?',o:['Lo simplifico: menos detalles, formas grandes','Lo dejo así','Le agrego más detalles'],a:0,ok:'Correcto: un avatar se ve del tamaño de una uña.',no:'Un avatar se usa chiquito: menos detalles y formas grandes lo hacen legible.'},
+{q:'Usaste ChatGPT para crear tu avatar y lo editaste. ¿Qué escribes?',o:['Nada, ya lo edité yo','«Creado con apoyo de IA»','«Hecho 100% por mí»'],a:1,ok:'Así es: decir cómo usaste la IA es parte del trabajo profesional.',no:'Si usaste IA, se declara: «Creado con apoyo de IA».'}];
+const CHECK=[
+{t:'Cada decisión visual se explica con un rasgo',tip:'En la Guía de marca elige tus 3 rasgos: cada uno justifica una decisión.',go:'r2'},
+{t:'Mi avatar o logotipo se entiende en tamaño pequeño',tip:'Pide a la IA «más simple, menos detalles, formas grandes».',go:'r1'},
+{t:'Tengo paleta de 3 colores y 2 tipografías',tip:'Elígelos en el Estudio de diseño.',go:'lab'},
+{t:'Si usé IA, edité el resultado y lo declaré',tip:'Mira cómo la diseñadora de Rai editó la versión final.',go:'proceso'},
+{t:'No imita marcas ni personajes existentes',tip:'Si se parece a algo famoso, cambia forma, colores u objeto.',go:'quiz'}];
+class Component extends DCLogic {
+  state={tour:null,rect:null,help:false,ch:'',cp:'',navC:0,zoom:1,mute:false,full:false,screen:0,visited:{0:true},mt:{},rg:'Curioso',ver:0,pal:0,font:0,shape:0,emo:0,ps:0,pa:0,pe:1,pf:0,pn:0,gr:[],check:{},qz:{}};
+  mainRef=React.createRef();navRef=React.createRef();
+  fitNav(){const n=this.navRef.current;if(!n)return;const w=n.clientWidth;const c=w>=1020?0:w>=820?1:2;if(c!==this.state.navC)this.setState({navC:c});}
+  componentDidMount(){
+    this._rs=()=>{this.measure();this.fitNav();};window.addEventListener('resize',this._rs);
+    setTimeout(()=>this.fitNav(),50);if(window.ResizeObserver&&this.navRef.current){this._ro=new ResizeObserver(()=>this.fitNav());this._ro.observe(this.navRef.current);}
+    this._fs=()=>this.setState({full:!!(document.fullscreenElement||document.webkitFullscreenElement)});
+    document.addEventListener('fullscreenchange',this._fs);document.addEventListener('webkitfullscreenchange',this._fs);
+  }
+  componentDidUpdate(){const ps=this._prev||this.state;this._prev=this.state;if(ps!==this.state&&this.onUpd)this.onUpd(ps);}
+  sfx(k){
+    this._snd=true;
+    if(this.state.mute)return;
+    try{
+      const C=this.ac||(this.ac=new (window.AudioContext||window.webkitAudioContext)());
+      if(C.state==='suspended'&&C.resume)C.resume();
+      const t=C.currentTime;
+      const tone=(f,st,d,type,vol,f2)=>{const o=C.createOscillator(),g=C.createGain();o.type=type||'sine';o.frequency.setValueAtTime(f,t+st);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+st+d);g.gain.setValueAtTime(0.0001,t+st);g.gain.exponentialRampToValueAtTime(vol||0.12,t+st+0.012);g.gain.exponentialRampToValueAtTime(0.0001,t+st+d);o.connect(g);g.connect(C.destination);o.start(t+st);o.stop(t+st+d+0.02);};
+      if(k==='pop')tone(660,0,0.08,'sine',0.08,990);
+      else if(k==='nav')tone(420,0,0.12,'triangle',0.07,640);
+      else if(k==='tick')tone(1200,0,0.03,'square',0.025);
+      else if(k==='ok'){tone(660,0,0.12,'sine',0.11);tone(990,0.09,0.18,'sine',0.11);}
+      else if(k==='bad'){tone(300,0,0.18,'triangle',0.09,220);}
+      else if(k==='win'){[523,659,784,1047].forEach((f,i)=>tone(f,i*0.09,0.22,'triangle',0.1));}
+    }catch(e){}
+  }
+  componentWillUnmount(){window.removeEventListener('resize',this._rs);document.removeEventListener('fullscreenchange',this._fs);document.removeEventListener('webkitfullscreenchange',this._fs);clearInterval(this._pt);clearInterval(this._sp);}
+  setTour(n){this.setState({tour:n,rect:null,help:false},()=>setTimeout(()=>this.measure(),60));setTimeout(()=>this.measure(),140);}
+  measure(){
+    const s=this.state;if(s.tour===null)return;
+    const el=document.querySelector('[data-tour="'+TOUR[s.tour].k+'"]');if(!el)return;
+    const r=el.getBoundingClientRect();this.setState({rect:{x:r.left,y:r.top,w:r.width,h:r.height}});
+  }
+  go(i){i=Math.max(0,Math.min(SCR.length-1,i));if(i!==this.state.screen)this.sfx('nav');this.setState(s=>({screen:i,visited:{...s.visited,[i]:true},help:false}));if(this.mainRef.current)this.mainRef.current.scrollTop=0;}
+  setF(k,v){this.setState(s=>({f:{...s.f,[k]:v}}));}
+  copy(txt,key){
+    const done=()=>{this.setState({[key]:'✅ ¡Copiado!'});setTimeout(()=>this.setState({[key]:''}),1800);};
+    const fb=()=>{const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(e){}t.remove();done();};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(done,fb);else fb();
+  }
+  chip(label,active,on){return {label,on:(...a)=>{this._snd=false;on(...a);if(!this._snd)this.sfx('pop');},bg:active?'var(--blue-500)':'#fff',bd:active?'var(--blue-500)':'var(--sky-500)'};}
+  onUpd(ps){const s=this.state;
+    if(Object.keys(ps.mt).length<4&&Object.keys(s.mt).length>=4)this.sfx('win');
+    if(Object.keys(ps.qz).length<5&&Object.keys(s.qz).length>=5)this.sfx('win');
+    const si=(c)=>CHECK.every((x,i)=>c[i]==='si');if(!si(ps.check)&&si(s.check))this.sfx('win');}
+  cp2(t,k){this.copy(t,'_x');this.setState({cp:k});setTimeout(()=>this.setState({cp:''}),1800);}
+  txt(hex){const n=parseInt(hex.slice(1),16),r=(n>>16)&255,g=(n>>8)&255,b=n&255;return (0.299*r+0.587*g+0.114*b)>150?'#101613':'#fff';}
+  renderVals(){
+    const s=this.state,cur=SCR[s.screen];
+    const is={};SCR.forEach((x,i)=>is[x.id]=i===s.screen);
+    const menu=MOM.map((m,mi)=>{
+      const idxs=SCR.map((x,i)=>i).filter(i=>SCR[i].m===mi);
+      const active=cur.m===mi,done=idxs.every(i=>s.visited[i]);
+      const lab=SHORT[mi],emo=lab.split(' ')[0],cm=s.navC;
+      const name=cm===0||active?lab:(cm===1?MID[mi]:emo);
+      return {num:String(mi),name,pr:cm===2&&!active?'8px':'12px',full:m.n,showTime:false,time:m.t,go:()=>this.go(idxs[0]),
+        pbg:active?'var(--sky-100)':'#fff',pbd:active?'var(--blue-500)':'var(--border-subtle)',
+        nbg:active?'var(--blue-500)':done?'var(--primary-900)':'var(--sky-100)',nfg:active?'var(--primary-900)':done?'#fff':'var(--primary-900)',
+        items:idxs.map(i=>({t:SCR[i].t,go:()=>this.go(i),bg:i===s.screen?'#fff':'transparent',fw:i===s.screen?'700':'400',dot:i===s.screen?'var(--blue-500)':s.visited[i]?'var(--primary-900)':'var(--neutral-300)'}))};
+    });
+    const over=cur.m===0?'Estudio Nexo · Misión 5':'Paso '+cur.m+' de 7 · '+MOM[cur.m].n;
+    let spot={top:'0px',left:'0px',w:'0px',h:'0px'},tip={top:'0px',left:'0px'};
+    if(s.tour!==null&&s.rect){const r=s.rect,pad=6,W=window.innerWidth,H=window.innerHeight;
+      spot={top:(r.y-pad)+'px',left:(r.x-pad)+'px',w:(r.w+pad*2)+'px',h:(r.h+pad*2)+'px'};
+      let tx,ty;if(r.y+r.h+240<H){ty=r.y+r.h+16;tx=Math.min(Math.max(16,r.x+r.w/2-160),W-336);}else{ty=Math.max(16,r.y-250);tx=Math.min(Math.max(16,r.x+r.w/2-160),W-336);}
+      tip={top:ty+'px',left:tx+'px'};}
+    const ti=s.tour===null?0:s.tour;const endTour=()=>this.setState({tour:null});
+    const fbk=(ok)=>ok?'var(--color-success-100)':'var(--orange-100)';
+    const checks=CHECK.map((c,i)=>{const v=s.check[i];return {n:String(i+1),t:c.t,tip:c.tip,showTip:v==='casi'||v==='no',fix:()=>this.go(IDX[c.go]),
+      btns:BTN.map(([k,l])=>{const sel=v===k,col=k==='si'?'var(--color-success-700)':k==='casi'?'var(--orange-700)':'var(--neutral-700)';return {label:l,on:()=>{this.sfx('pop');this.setState(st2=>({check:{...st2.check,[i]:k}}));},bg:sel?col:'#fff',fg:sel?'#fff':'var(--primary-900)',bd:sel?col:'var(--sky-500)'};})};});
+    const mkQ=(arr,key)=>arr.map((q,i)=>{const pk=s[key][i],ans=pk!==undefined,ok=pk===q.a;return {n:String(i+1),q:q.q,answered:ans,res:ok?'🎉 '+q.ok:'🔄 Todavía no. '+q.no,rbg:fbk(ok),
+      opts:q.o.map((l,k)=>({label:l,on:()=>{this.sfx(k===q.a?'ok':'bad');this.setState(st2=>({[key]:{...st2[key],[i]:k}}));},bg:pk===k?fbk(ok):'#fff',bd:pk===k?(ok?'var(--color-success-700)':'var(--orange-700)'):'var(--sky-500)'}))};});
+    const mkTabs=(ids,layers)=>ids.map((id,i)=>{const on=s.screen===IDX[id],pl=layers[i]!=='BASE';return {t:SCR[IDX[id]].t,layer:layers[i],go:()=>this.go(IDX[id]),bg:on?'var(--sky-100)':'#fff',bd:on?'var(--blue-500)':'var(--sky-500)',lbg:pl?'var(--primary-900)':'var(--blue-500)',lfg:pl?'var(--sky-500)':'var(--primary-900)'};});
+    const mt=MT.map((m,i)=>{const pk=s.mt[i],ok=pk===m.a;return {k:m.k,bgi:'url("'+m.src+'")',answered:pk!==undefined,res:(ok?'🎉 ¡Sí! ':'🤔 Era '+MTN[m.a]+'. ')+m.why,rbg:fbk(ok),bd:pk===undefined?'transparent':ok?'var(--color-success-700)':'var(--orange-700)',
+      opts:MTN.map((l,k)=>({label:l,on:()=>{this.sfx(k===m.a?'ok':'bad');this.setState(st2=>({mt:{...st2.mt,[i]:k}}));},bg:pk===k?fbk(ok):'#fff',bd:pk===k?(ok?'var(--color-success-700)':'var(--orange-700)'):'var(--sky-500)'}))};});
+    const rgC=Object.keys(RG).map(r=>this.chip(r,s.rg===r,()=>{this.sfx('pop');this.setState({rg:r});}));
+    const rgOut=RG[s.rg].map(([e,k,v])=>({e,k,v}));
+    const verT=VER.map((v,i)=>this.chip(i<3?'V'+(i+1):'⭐ Final',s.ver===i,()=>{this.sfx('pop');this.setState({ver:i});}));
+    const P=PAL[s.pal],Fo=FONTS[s.font],Sh=SHAPES[s.shape];
+    const palC=PAL.map((p,i)=>({n:p[0],a:p[1],b:p[2],c:p[3],bd:i===s.pal?'var(--blue-500)':'var(--sky-100)',on:()=>{this.sfx('pop');this.setState({pal:i});}}));
+    const fontC=FONTS.map((f,i)=>this.chip(f[0],s.font===i,()=>this.setState({font:i})));
+    const shapeC=SHAPES.map((f,i)=>this.chip(f[0],s.shape===i,()=>this.setState({shape:i})));
+    const emoC=EMOS.map((e,i)=>this.chip(e,s.emo===i,()=>this.setState({emo:i})));
+    const pv={c1:P[1],c2:P[1],c3:P[3],bg:P[2],t1:this.txt(P[1]),t2:this.txt(P[1]),t3:this.txt(P[3]),fH:Fo[1],fB:Fo[2],avR:Sh[1],bR:Sh[2],btnR:Sh[3],emoji:EMOS[s.emo],
+      why:'🎨 Paleta '+P[0]+' · 🔤 '+Fo[0]+': '+Fo[3]+' · ✨ '+Sh[0].slice(2)+': '+Sh[4]+'.'};
+    const pS=PS.map((x,i)=>this.chip(x,s.ps===i,()=>this.setState({ps:i}))),pA=PA.map((x,i)=>this.chip(x,s.pa===i,()=>this.setState({pa:i}))),pE=PE.map((x,i)=>this.chip(x,s.pe===i,()=>this.setState({pe:i}))),pF=PF.map((x,i)=>this.chip(x,s.pf===i,()=>this.setState({pf:i}))),pN=PN.map((x,i)=>this.chip(x,s.pn===i,()=>this.setState({pn:i})));
+    const avPrompt=PS[s.ps]+', '+PA[s.pa]+', '+PE[s.pe]+', colores '+P[1]+', '+P[2]+' y '+P[3]+', '+PF[s.pf]+', '+PN[s.pn]+'. Sin texto. Original, que no se parezca a ningún personaje o marca existente.';
+    const gR=RAS.map(r=>this.chip(r,s.gr.includes(r),()=>this.setState(st2=>{const c=st2.gr;return {gr:c.includes(r)?c.filter(x=>x!==r):(c.length>=3?c:[...c,r])};})));
+    const why=s.gr.map(r=>'- '+r+' → '+RG[r].map(x=>x[2].toLowerCase()).join(', ')).join('\n');
+    const guia='GUÍA DE MARCA · [nombre]\n\nPERSONALIDAD: '+(s.gr.length?s.gr.join(', '):'[3 rasgos]')+'\n'+(why||'')+'\n\nPALETA ('+P[0]+'): principal '+P[1]+' · secundario '+P[2]+' · acento '+P[3]+'\nTIPOGRAFÍAS: '+Fo[0]+' ('+Fo[3]+')\nESTILO GRÁFICO: '+Sh[0].slice(2)+', '+PE[s.pe]+'\nAVATAR: [describe tu avatar final]\n\nCreado con apoyo de IA: [herramienta] · Qué edité: [cambios]';
+    const varPrompt='El mismo avatar de la imagen anterior, con la misma forma y colores, pero con 2 expresiones: 1) muy feliz, celebrando; 2) pensando, con una mano en la barbilla. Mismo estilo y fondo.';
+    return {
+      atStart:s.screen===0,atEnd:s.screen===SCR.length-1,navLabel:(s.screen+1)+' de '+SCR.length+' · '+cur.t,navPct:(((s.screen+1)/SCR.length)*100)+'%',
+      tourOn:s.tour!==null&&!!s.rect,spot,tip,tour:{step:(ti+1)+' de '+TOUR.length,t:TOUR[ti].t,d:TOUR[ti].d,btn:ti===TOUR.length-1?'¡Listo! 🚀':'Siguiente'},
+      zoomV:String(ZS[s.zoom]),zoomLabel:Math.round(ZS[s.zoom]*100)+'%',rootH:'calc(100vh / '+ZS[s.zoom]+')',
+      muted:!!s.mute,muteTitle:s.mute?'Activar sonido':'Silenciar',muteIcon:s.mute?'ph ph-speaker-slash':'ph ph-speaker-high',
+      fullTitle:s.full?'Salir de pantalla completa':'Pantalla completa',fullIcon:s.full?'ph ph-corners-in':'ph ph-corners-out',
+      navRef:this.navRef,mainRef:this.mainRef,menu,over,curItems:menu[cur.m].items,is,helpOpen:s.help,copiedHelp:s.ch,
+      mt,mtDone:Object.keys(s.mt).length>=4,rgC,rgOut,verT,ver:{...VER[s.ver],src:'assets/img/'+VER[s.ver].id+'.png'},palC,fontC,shapeC,emoC,pv,
+      isReto:['r1','r2','r3'].includes(cur.id),retoTitle:cur.t,retoTabs:mkTabs(['r1','r2','r3'],['BASE','BASE','PRO · PLUS']),
+      pS,pA,pE,pF,pN,avPrompt,copiedAv:s.cp==='av'?'✅ ¡Copiado!':'',gR,guia,copiedGuia:s.cp==='gu'?'✅ ¡Copiado!':'',varPrompt,copiedVar:s.cp==='va'?'✅ ¡Copiado!':'',
+      checks,qz:mkQ(QZ,'qz'),qzDone:QZ.every((q,i)=>s.qz[i]!==undefined),qzScore:String(QZ.filter((q,i)=>s.qz[i]===q.a).length),
+      qzMsg:QZ.filter((q,i)=>s.qz[i]===q.a).length===5?'🏆 ¡Pensaste como diseñador profesional!':'💪 Repasa «Así nació el avatar de Rai» y vuelve a intentarlo.',
+      h:{
+        zoomIn:()=>{this.sfx('pop');this.setState(st=>({zoom:Math.min(3,st.zoom+1)}));},zoomOut:()=>{this.sfx('pop');this.setState(st=>({zoom:Math.max(0,st.zoom-1)}));},zoomReset:()=>{this.sfx('pop');this.setState({zoom:1});},
+        toggleMute:()=>{const m=!this.state.mute;this.setState({mute:m},()=>{if(!m)this.sfx('pop');});},
+        toggleFull:()=>{this.sfx('pop');try{const d=document,el=d.documentElement;if(d.fullscreenElement||d.webkitFullscreenElement)(d.exitFullscreen||d.webkitExitFullscreen).call(d);else (el.requestFullscreen||el.webkitRequestFullscreen).call(el);}catch(e){}},
+        next:()=>this.go(s.screen+1),prev:()=>this.go(s.screen-1),toggleHelp:()=>this.setState(st=>({help:!st.help})),startTour:()=>this.setTour(0),
+        tourNext:()=>{if(ti>=TOUR.length-1)endTour();else this.setTour(ti+1);},tourSkip:endTour,
+        copyAv:()=>this.cp2(avPrompt,'av'),copyGuia:()=>this.cp2(guia,'gu'),copyVar:()=>this.cp2(varPrompt,'va'),goLab:()=>this.go(IDX.lab),
+        copyHelp:()=>this.copy('Te paso los 3 rasgos de mi chatbot: [rasgos]. Sugiere qué formas, colores y estilo de dibujo los representan, y explica por qué. No generes la imagen todavía.','ch')
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>
